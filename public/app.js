@@ -120,7 +120,11 @@
   }
 
   function renderProfesores(profesores) {
-    $('#profesores-grid').innerHTML = (profesores || []).map((p) => {
+    const list = (profesores || []).filter((p) => p && (p.nombre || p.foto || p.imagen));
+    const mid = Math.ceil(list.length / 2);
+    const rows = [list.slice(0, mid), list.slice(mid)];
+
+    function cardHtml(p) {
       const foto = p.foto || p.imagen || '';
       return `
       <article class="card card-profesor">
@@ -130,6 +134,14 @@
         <p>${escapeHtml(p.bio || p.descripcion || '')}</p>
         ${ejemploBadge(p.ejemplo)}
       </article>`;
+    }
+
+    $('#profesores-grid').innerHTML = rows.map((row, i) => {
+      const cards = row.map(cardHtml).join('');
+      const divider = i === 0 && rows[1].length
+        ? '<hr class="profesores-divider" aria-hidden="true" />'
+        : '';
+      return `<div class="profesores-row card-grid">${cards}</div>${divider}`;
     }).join('');
   }
 

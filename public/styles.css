@@ -532,3 +532,27 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
   background: #111;
   border: 2px solid rgba(212, 175, 55, 0.45);
 }
+
+
+/* Profesores: dos filas con línea al medio */
+#profesores-grid.profesores-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.profesores-row {
+  margin: 0;
+}
+.profesores-divider {
+  border: none;
+  height: 1px;
+  margin: 1.5rem 0 1.75rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.15) 10%,
+    rgba(212, 175, 55, 0.75) 50%,
+    rgba(212, 175, 55, 0.15) 90%,
+    transparent 100%
+  );
+}
