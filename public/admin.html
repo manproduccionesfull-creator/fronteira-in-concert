@@ -101,7 +101,7 @@
         <!-- PROFESORES -->
         <section class="admin-section" id="sec-profesores">
           <h2>Profesores</h2>
-          <p class="section-lead">Docentes del festival (apartado aparte de Orquestas). Nombre, instrumento y foto opcional.</p>
+          <p class="section-lead">Docentes del festival (apartado aparte de Orquestas). Tocá «Subir foto», elegí JPG/PNG y después Guardar cambios abajo.</p>
           <div id="profesores-list" class="rows-list"></div>
           <button type="button" class="btn outline btn-sm" id="btn-add-profesor">+ Agregar profesor/a</button>
         </section>
@@ -246,24 +246,45 @@
         }
       }
 
-      refreshThumb();
-
-      btnUpload.addEventListener('click', async () => {
-        const file = fileInput.files && fileInput.files[0];
-        if (!file) {
-          status.textContent = 'Elegí un archivo primero';
+      async function doUpload(file) {
+        if (!file) return;
+        const name = (file.name || '').toLowerCase();
+        if (/\.heic$|\.heif$/.test(name)) {
+          status.textContent = 'Esa foto es HEIC (iPhone). Guardala como JPG o PNG y volvé a subir.';
           return;
         }
-        status.textContent = root.dataset.fit === 'prof' ? 'Acomodando foto…' : 'Subiendo…';
+        if (file.size > 12 * 1024 * 1024) {
+          status.textContent = 'La foto pesa demasiado (máx. 12 MB). Probá otra más liviana.';
+          return;
+        }
+        status.textContent = 'Subiendo…';
+        btnUpload.disabled = true;
         try {
           const url = await uploadFile(file, { fit: root.dataset.fit || '' });
           hidden.value = url;
           refreshThumb();
-          status.textContent = 'Listo';
+          status.textContent = 'Listo — no olvides Guardar abajo';
           fileInput.value = '';
         } catch (err) {
-          status.textContent = err.message;
+          status.textContent = err.message || 'No se pudo subir';
+        } finally {
+          btnUpload.disabled = false;
         }
+      }
+
+      refreshThumb();
+
+      // Un solo clic: abre el selector; al elegir, sube solo
+      btnUpload.addEventListener('click', () => {
+        fileInput.click();
+      });
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) {
+          status.textContent = 'No elegiste ninguna foto';
+          return;
+        }
+        doUpload(file);
       });
 
       btnClear.addEventListener('click', () => {

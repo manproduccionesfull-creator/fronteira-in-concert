@@ -15,7 +15,7 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 const UPLOAD_DIR = path.join(PUBLIC_DIR, 'uploads');
 
 const ALLOWED_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']);
-const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+const MAX_UPLOAD_BYTES = 12 * 1024 * 1024; // 12 MB
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   fs.mkdirSync(UPLOAD_DIR, { recursive: true });
@@ -64,7 +64,7 @@ function parseMultipart(req) {
     req.on('data', (chunk) => {
       total += chunk.length;
       if (total > MAX_UPLOAD_BYTES + 64 * 1024) {
-        reject(new Error('Archivo demasiado grande (máx. 5 MB)'));
+        reject(new Error('Archivo demasiado grande (máx. 12 MB)'));
         req.destroy();
         return;
       }
@@ -173,7 +173,7 @@ app.post('/api/upload', async (req, res) => {
       return res.status(400).json({ error: 'Archivo vacío' });
     }
     if (buffer.length > MAX_UPLOAD_BYTES) {
-      return res.status(400).json({ error: 'Archivo demasiado grande (máx. 5 MB)' });
+      return res.status(400).json({ error: 'Archivo demasiado grande (máx. 12 MB)' });
     }
     const ext = safeExt(originalName);
     if (!ext) {
