@@ -1,0 +1,16 @@
+{
+  "name": "fronteira-in-concert",
+  "version": "1.0.0",
+  "description": "PWA Festival Fronteira in Concert — 10ª edición",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

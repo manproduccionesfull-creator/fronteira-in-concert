@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="description" content="Fronteira in Concert — 10ª edición. 8–11 octubre 2026, Bernardo de Irigoyen, Misiones." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fronteira" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+  <title>Fronteira in Concert</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark-img" src="/uploads/logo-fronteira-x.png" alt="" width="44" height="34" />
+      <div>
+        <strong id="brand-name">Fronteira in Concert</strong>
+        <span id="brand-edicion" class="muted">10ª edición</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app">
+    <section id="inicio" class="panel active" data-panel="inicio">
+      <div class="hero">
+        <img id="hero-logo" class="hero-logo" alt="Logo del festival" hidden />
+        <p class="eyebrow" id="hero-edicion">10ª edición</p>
+        <h1 id="hero-nombre">Fronteira in Concert</h1>
+        <p class="hero-meta" id="hero-fechas">8–11 de octubre de 2026</p>
+        <p class="hero-meta" id="hero-lugar">Bernardo de Irigoyen, Misiones</p>
+        <p class="blurb" id="hero-blurb"></p>
+        <p class="org muted" id="hero-org"></p>
+      </div>
+      <div class="quick-actions">
+        <button type="button" class="btn gold" data-goto="cronograma">Ver cronograma</button>
+        <button type="button" class="btn outline" data-goto="inscripcion">Inscribirme</button>
+      </div>
+    </section>
+
+    <section id="cronograma" class="panel" data-panel="cronograma">
+      <h2>Cronograma</h2>
+      <p class="section-lead">Elegí el día para ver la programación.</p>
+      <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Días del festival"></div>
+      <div id="day-events" class="event-list" role="tabpanel"></div>
+    </section>
+
+
+    <section id="orquestas" class="panel" data-panel="orquestas">
+      <h2>Orquestas</h2>
+      <div id="orquestas-grid" class="card-grid"></div>
+    </section>
+
+    <section id="profesores" class="panel" data-panel="profesores">
+      <h2>Profesores</h2>
+      <div id="profesores-grid" class="card-grid"></div>
+    </section>
+
+    <section id="apoyan" class="panel" data-panel="apoyan">
+      <h2>Quiénes apoyan</h2>
+      <div id="apoyan-grid" class="sponsor-grid"></div>
+    </section>
+
+    <section id="inscripcion" class="panel" data-panel="inscripcion">
+      <h2 id="insc-titulo">Inscripción</h2>
+      <p class="section-lead" id="insc-intro"></p>
+      <form id="insc-form" class="form" novalidate>
+        <label>
+          Nombre completo
+          <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" />
+        </label>
+        <label>
+          Teléfono
+          <input type="tel" name="telefono" autocomplete="tel" placeholder="Código de área + número" />
+        </label>
+        <label>
+          Orquesta / institución
+          <input type="text" name="orquesta" placeholder="Opcional" />
+        </label>
+        <label>
+          Mensaje
+          <textarea name="mensaje" rows="4" required placeholder="Contanos en qué querés participar…"></textarea>
+        </label>
+        <button type="submit" class="btn gold full">Enviar por WhatsApp</button>
+      </form>
+    </section>
+
+    <section id="contacto" class="panel" data-panel="contacto">
+      <h2>Contacto</h2>
+      <ul class="contact-list" id="contact-list"></ul>
+      <p class="org muted" id="contact-org"></p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <button type="button" class="nav-item active" data-goto="inicio" aria-current="page">
+      <span class="nav-icon">⌂</span><span>Inicio</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="cronograma">
+      <span class="nav-icon">▦</span><span>Agenda</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="orquestas">
+      <span class="nav-icon">♫</span><span>Orquestas</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="profesores">
+      <span class="nav-icon">♮</span><span>Profes</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="apoyan">
+      <span class="nav-icon">★</span><span>Apoyan</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="inscripcion">
+      <span class="nav-icon">✎</span><span>Inscribir</span>
+    </button>
+    <button type="button" class="nav-item" data-goto="contacto">
+      <span class="nav-icon">✉</span><span>Contacto</span>
+    </button>
+  </nav>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

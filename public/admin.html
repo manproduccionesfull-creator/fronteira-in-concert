@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Admin — Fronteira in Concert</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-wrap">
+    <header class="brand" style="margin-bottom:1.25rem">
+      <span class="brand-mark">♪</span>
+      <div>
+        <strong>Panel de edición</strong>
+        <span class="muted">Fronteira in Concert</span>
+      </div>
+    </header>
+
+    <div id="gate" class="admin-gate">
+      <h2 style="border:none;padding:0">Ingresar</h2>
+      <p class="section-lead">Ingresá la contraseña para editar lo que ve la gente en sus teléfonos.</p>
+      <form id="login-form" class="form">
+        <label>
+          Contraseña
+          <input type="password" id="password" name="password" required autocomplete="current-password" />
+        </label>
+        <button type="submit" class="btn gold">Entrar</button>
+      </form>
+      <p id="gate-status" class="status-msg" hidden></p>
+    </div>
+
+    <div id="editor" class="admin-editor" hidden>
+      <p class="section-lead" style="margin-top:0">
+        Completá los formularios y tocá <strong>Guardar cambios</strong>.
+        La app pública se actualiza al instante (sin programar).
+      </p>
+
+      <form id="content-form" class="admin-form">
+        <!-- INICIO -->
+        <section class="admin-section" id="sec-inicio">
+          <h2>Inicio</h2>
+          <p class="section-lead">Textos de la pantalla de bienvenida y logo del festival.</p>
+          <div class="form-grid">
+            <label>Nombre del festival
+              <input type="text" name="f_nombre" data-path="festival.nombre" required />
+            </label>
+            <label>Edición
+              <input type="text" name="f_edicion" data-path="festival.edicion" />
+            </label>
+            <label>Fechas
+              <input type="text" name="f_fechas" data-path="festival.fechas" />
+            </label>
+            <label>Lugar
+              <input type="text" name="f_lugar" data-path="festival.lugar" />
+            </label>
+            <label class="full">Texto breve (blurb)
+              <textarea name="f_blurb" data-path="festival.blurb" rows="3"></textarea>
+            </label>
+            <label class="full">Organización
+              <input type="text" name="f_org" data-path="festival.organizacion" />
+            </label>
+            <label>Personería
+              <input type="text" name="f_personeria" data-path="festival.personeria" />
+            </label>
+            <label>Presidente
+              <input type="text" name="f_presidente" data-path="festival.presidente" />
+            </label>
+          </div>
+          <div class="image-field" data-image-for="festival.logo">
+            <span class="image-label">Logo del festival (opcional)</span>
+            <div class="image-row">
+              <img class="thumb" alt="Vista previa" hidden />
+              <div class="image-controls">
+                <input type="hidden" name="f_logo" data-path="festival.logo" />
+                <input type="file" accept="image/*" class="file-input" />
+                <button type="button" class="btn outline btn-sm btn-upload">Subir imagen</button>
+                <button type="button" class="btn outline btn-sm btn-clear-img">Quitar</button>
+                <span class="upload-status muted"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CRONOGRAMA -->
+        <section class="admin-section" id="sec-cronograma">
+          <h2>Cronograma por día</h2>
+          <p class="section-lead">Agregá o quitá actividades de cada día. Marcá «ejemplo» si todavía es placeholder.</p>
+          <div id="cronograma-days"></div>
+        </section>
+
+
+        <!-- ORQUESTAS -->
+        <section class="admin-section" id="sec-orquestas">
+          <h2>Orquestas</h2>
+          <p class="section-lead">Orquestas participantes. Cada una tiene dos subidas: logo y foto (son dos campos aparte).</p>
+          <div id="orquestas-list" class="rows-list"></div>
+          <button type="button" class="btn outline btn-sm" id="btn-add-orquesta">+ Agregar orquesta</button>
+        </section>
+
+        <!-- PROFESORES -->
+        <section class="admin-section" id="sec-profesores">
+          <h2>Profesores</h2>
+          <p class="section-lead">Docentes del festival (apartado aparte de Orquestas). Nombre, instrumento y foto opcional.</p>
+          <div id="profesores-list" class="rows-list"></div>
+          <button type="button" class="btn outline btn-sm" id="btn-add-profesor">+ Agregar profesor/a</button>
+        </section>
+
+        <!-- APOYAN -->
+        <section class="admin-section" id="sec-apoyan">
+          <h2>Quiénes apoyan</h2>
+          <p class="section-lead">Instituciones, municipios y patrocinadores. Subí logos si los tenés.</p>
+          <div id="apoyan-list" class="rows-list"></div>
+          <button type="button" class="btn outline btn-sm" id="btn-add-apoya">+ Agregar apoyo</button>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="admin-section" id="sec-contacto">
+          <h2>Contacto</h2>
+          <p class="section-lead">Datos que aparecen en la sección Contacto y en Inscripción (WhatsApp).</p>
+          <div class="form-grid">
+            <label>WhatsApp (solo números, sin +54)
+              <input type="text" name="c_wa" data-path="contacto.whatsapp" placeholder="3741407013" />
+            </label>
+            <label>WhatsApp (cómo se muestra)
+              <input type="text" name="c_wa_disp" data-path="contacto.whatsappDisplay" placeholder="3741-407013" />
+            </label>
+            <label>Instagram
+              <input type="text" name="c_ig" data-path="contacto.instagram" placeholder="@fronteirainconcert" />
+            </label>
+            <label>URL de Instagram
+              <input type="url" name="c_ig_url" data-path="contacto.instagramUrl" />
+            </label>
+            <label>Email
+              <input type="email" name="c_email" data-path="contacto.email" />
+            </label>
+            <label>Web (URL completa)
+              <input type="url" name="c_web" data-path="contacto.web" />
+            </label>
+            <label class="full">Web (cómo se muestra)
+              <input type="text" name="c_web_disp" data-path="contacto.webDisplay" />
+            </label>
+          </div>
+        </section>
+      </form>
+
+      <div class="admin-actions sticky-actions">
+        <button type="button" id="btn-save" class="btn gold">Guardar cambios</button>
+        <button type="button" id="btn-reload" class="btn outline">Recargar</button>
+        <button type="button" id="btn-logout" class="btn outline">Salir</button>
+        <a class="btn outline" href="/" style="text-decoration:none;display:inline-flex;align-items:center">Ver app</a>
+      </div>
+      <p id="edit-status" class="status-msg" hidden></p>
+    </div>
+  </div>
+
+  <script>
+    const KEY = 'fronteira_admin_pwd';
+    const DAY_META = [
+      { key: '2026-10-08', label: 'Jueves 8 de octubre' },
+      { key: '2026-10-09', label: 'Viernes 9 de octubre' },
+      { key: '2026-10-10', label: 'Sábado 10 de octubre' },
+      { key: '2026-10-11', label: 'Domingo 11 de octubre' },
+    ];
+
+    const gate = document.getElementById('gate');
+    const editor = document.getElementById('editor');
+    const gateStatus = document.getElementById('gate-status');
+    const editStatus = document.getElementById('edit-status');
+
+    /** Contenido en memoria (incluye inscripcion y campos no editados en el form) */
+    let content = null;
+
+    function showStatus(el, msg, ok) {
+      el.hidden = false;
+      el.textContent = msg;
+      el.className = 'status-msg ' + (ok ? 'ok' : 'err');
+    }
+
+    function getPwd() { return sessionStorage.getItem(KEY) || ''; }
+    function setPwd(p) { sessionStorage.setItem(KEY, p); }
+    function clearPwd() { sessionStorage.removeItem(KEY); }
+
+    function val(el) {
+      if (!el) return '';
+      if (el.type === 'checkbox') return el.checked;
+      return (el.value || '').trim();
+    }
+
+    function setPathInput(path, value) {
+      const el = document.querySelector('[data-path="' + path + '"]');
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = !!value;
+      else el.value = value == null ? '' : String(value);
+    }
+
+    function getPathInput(path) {
+      const el = document.querySelector('[data-path="' + path + '"]');
+      return val(el);
+    }
+
+    function checkboxHtml(checked, className) {
+      return '<label class="check-label"><input type="checkbox" class="' + className + '"' +
+        (checked ? ' checked' : '') + ' /> Ejemplo (placeholder)</label>';
+    }
+
+    /* ---------- Image upload helpers ---------- */
+    async function uploadFile(file, opts) {
+      opts = opts || {};
+      const fd = new FormData();
+      fd.append('file', file);
+      const qs = opts.fit ? ('?fit=' + encodeURIComponent(opts.fit)) : '';
+      const res = await fetch('/api/upload' + qs, {
+        method: 'POST',
+        headers: { 'X-Admin-Password': getPwd() },
+        body: fd,
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        kickOut();
+        throw new Error('Sesión expirada');
+      }
+      if (!res.ok) throw new Error(body.error || 'Error al subir');
+      return body.url;
+    }
+
+    function bindImageField(root) {
+      if (!root || root.dataset.bound === '1') return;
+      const thumb = root.querySelector('.thumb');
+      const hidden = root.querySelector('input[type="hidden"]');
+      const fileInput = root.querySelector('.file-input');
+      const btnUpload = root.querySelector('.btn-upload');
+      const btnClear = root.querySelector('.btn-clear-img');
+      const status = root.querySelector('.upload-status');
+      if (!thumb || !hidden || !fileInput || !btnUpload || !btnClear) return;
+      root.dataset.bound = '1';
+
+      function refreshThumb() {
+        const url = hidden.value;
+        if (url) {
+          thumb.src = url;
+          thumb.hidden = false;
+        } else {
+          thumb.removeAttribute('src');
+          thumb.hidden = true;
+        }
+      }
+
+      refreshThumb();
+
+      btnUpload.addEventListener('click', async () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) {
+          status.textContent = 'Elegí un archivo primero';
+          return;
+        }
+        status.textContent = root.dataset.fit === 'prof' ? 'Acomodando foto…' : 'Subiendo…';
+        try {
+          const url = await uploadFile(file, { fit: root.dataset.fit || '' });
+          hidden.value = url;
+          refreshThumb();
+          status.textContent = 'Listo';
+          fileInput.value = '';
+        } catch (err) {
+          status.textContent = err.message;
+        }
+      });
+
+      btnClear.addEventListener('click', () => {
+        hidden.value = '';
+        fileInput.value = '';
+        status.textContent = '';
+        refreshThumb();
+      });
+    }
+
+    function bindAllImageFields(scope) {
+      (scope || document).querySelectorAll('.image-field').forEach(bindImageField);
+    }
+
+    /* ---------- Row builders ---------- */
+    function eventRowHtml(ev) {
+      ev = ev || { hora: '', titulo: '', sede: '', ejemplo: false };
+      return (
+        '<div class="row-card event-row">' +
+          '<div class="form-grid compact">' +
+            '<label>Hora<input type="text" class="ev-hora" value="' + escAttr(ev.hora) + '" placeholder="20:00" /></label>' +
+            '<label class="field-with-clear">Sede' +
+              '<span class="field-clear-row">' +
+                '<input type="text" class="ev-sede" value="' + escAttr(ev.sede) + '" />' +
+                '<button type="button" class="btn outline btn-sm btn-clear-field" data-clear=".ev-sede" title="Borrar solo sede">✕ sede</button>' +
+              '</span>' +
+            '</label>' +
+            '<label class="full">Título<input type="text" class="ev-titulo" value="' + escAttr(ev.titulo) + '" /></label>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            checkboxHtml(!!ev.ejemplo, 'ev-ejemplo') +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar actividad</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function sedeRowHtml(s) {
+      s = s || { nombre: '', descripcion: '', ejemplo: false };
+      return (
+        '<div class="row-card sede-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Nombre<input type="text" class="s-nombre" value="' + escAttr(s.nombre) + '" /></label>' +
+            '<label class="full">Descripción<textarea class="s-desc" rows="2">' + escText(s.descripcion) + '</textarea></label>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            checkboxHtml(!!s.ejemplo, 's-ejemplo') +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar sede</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function orchestraLogoImagen(o) {
+      o = o || {};
+      let logo = o.logo || '';
+      let imagen = o.imagen || '';
+      // legacy: imagenes[] → primera a imagen si no hay imagen; logo vacío
+      if (!imagen && Array.isArray(o.imagenes) && o.imagenes.length) {
+        imagen = o.imagenes[0] || '';
+      }
+      return { logo, imagen };
+    }
+
+    function imageFieldHtml(label, hiddenClass, url, btnLabel, dataFit) {
+      url = url || '';
+      btnLabel = btnLabel || 'Subir imagen';
+      const fitAttr = dataFit ? (' data-fit="' + dataFit + '"') : '';
+      return (
+        '<div class="image-field orq-media-field"' + fitAttr + '>' +
+          '<span class="image-label">' + label + '</span>' +
+          '<div class="image-row">' +
+            '<img class="thumb" alt="Vista previa"' + (url ? ' src="' + escAttr(url) + '"' : ' hidden') + ' />' +
+            '<div class="image-controls">' +
+              '<input type="hidden" class="' + hiddenClass + '" value="' + escAttr(url) + '" />' +
+              '<input type="file" accept="image/*" class="file-input" />' +
+              '<button type="button" class="btn outline btn-sm btn-upload">' + btnLabel + '</button>' +
+              '<button type="button" class="btn outline btn-sm btn-clear-img">Quitar</button>' +
+              '<span class="upload-status muted"></span>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function orquestaRowHtml(o) {
+      o = o || { nombre: '', origen: '', descripcion: '', logo: '', imagen: '', ejemplo: false };
+      const li = orchestraLogoImagen(o);
+      return (
+        '<div class="row-card orquesta-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Nombre<input type="text" class="o-nombre" value="' + escAttr(o.nombre) + '" /></label>' +
+            '<label>Origen<input type="text" class="o-origen" value="' + escAttr(o.origen) + '" /></label>' +
+            '<label class="full">Descripción<textarea class="o-desc" rows="2">' + escText(o.descripcion) + '</textarea></label>' +
+          '</div>' +
+          imageFieldHtml('1. Logo de la orquesta', 'o-logo', li.logo, 'Subir logo') +
+          imageFieldHtml('2. Foto (imagen)', 'o-imagen', li.imagen, 'Subir foto') +
+          '<div class="row-footer">' +
+            checkboxHtml(!!o.ejemplo, 'o-ejemplo') +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar orquesta</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function profesorRowHtml(p) {
+      p = p || { nombre: '', instrumento: '', bio: '', foto: '', ejemplo: false };
+      return (
+        '<div class="row-card profesor-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Nombre<input type="text" class="p-nombre" value="' + escAttr(p.nombre) + '" /></label>' +
+            '<label>Instrumento / cargo<input type="text" class="p-instrumento" value="' + escAttr(p.instrumento || p.cargo || '') + '" placeholder="Violín, dirección…" /></label>' +
+            '<label class="full">Bio / descripción<textarea class="p-bio" rows="2">' + escText(p.bio || p.descripcion || '') + '</textarea></label>' +
+          '</div>' +
+          imageFieldHtml('Foto', 'p-foto', p.foto || p.imagen || '', 'Subir foto', 'prof') +
+          '<div class="row-footer">' +
+            checkboxHtml(!!p.ejemplo, 'p-ejemplo') +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar profesor/a</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function apoyaRowHtml(a) {
+      a = a || { nombre: '', tipo: '', imagen: '', ejemplo: false };
+      return (
+        '<div class="row-card apoya-row">' +
+          '<div class="form-grid compact">' +
+            '<label>Nombre<input type="text" class="a-nombre" value="' + escAttr(a.nombre) + '" /></label>' +
+            '<label>Tipo<input type="text" class="a-tipo" value="' + escAttr(a.tipo) + '" placeholder="Institucional, Municipio…" /></label>' +
+          '</div>' +
+          '<div class="image-field" data-image-for="apoya">' +
+            '<span class="image-label">Logo</span>' +
+            '<div class="image-row">' +
+              '<img class="thumb" alt="Vista previa"' + (a.imagen ? ' src="' + escAttr(a.imagen) + '"' : ' hidden') + ' />' +
+              '<div class="image-controls">' +
+                '<input type="hidden" class="a-imagen" value="' + escAttr(a.imagen || '') + '" />' +
+                '<input type="file" accept="image/*" class="file-input" />' +
+                '<button type="button" class="btn outline btn-sm btn-upload">Subir imagen</button>' +
+                '<button type="button" class="btn outline btn-sm btn-clear-img">Quitar</button>' +
+                '<span class="upload-status muted"></span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            checkboxHtml(!!a.ejemplo, 'a-ejemplo') +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar apoyo</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function escAttr(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+    function escText(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function bindRemoveButtons(listEl) {
+      listEl.addEventListener('click', (e) => {
+        const clearBtn = e.target.closest('.btn-clear-field');
+        if (clearBtn) {
+          const sel = clearBtn.getAttribute('data-clear');
+          const card = clearBtn.closest('.row-card');
+          const input = card && sel ? card.querySelector(sel) : null;
+          if (input) input.value = '';
+          return;
+        }
+        const row = e.target.closest('.row-card');
+        if (!row) return;
+        if (e.target.closest('.btn-remove')) {
+          row.remove();
+          return;
+        }
+        if (e.target.closest('.btn-up')) {
+          const prev = row.previousElementSibling;
+          if (prev) listEl.insertBefore(row, prev);
+          return;
+        }
+        if (e.target.closest('.btn-down')) {
+          const next = row.nextElementSibling;
+          if (next) listEl.insertBefore(next, row);
+        }
+      });
+    }
+
+    /* ---------- Fill / collect ---------- */
+    function fillForm(data) {
+      content = JSON.parse(JSON.stringify(data));
+      const f = data.festival || {};
+      setPathInput('festival.nombre', f.nombre);
+      setPathInput('festival.edicion', f.edicion);
+      setPathInput('festival.fechas', f.fechas);
+      setPathInput('festival.lugar', f.lugar);
+      setPathInput('festival.blurb', f.blurb);
+      setPathInput('festival.organizacion', f.organizacion);
+      setPathInput('festival.personeria', f.personeria);
+      setPathInput('festival.presidente', f.presidente);
+      setPathInput('festival.logo', f.logo || '');
+
+      const c = data.contacto || {};
+      setPathInput('contacto.whatsapp', c.whatsapp);
+      setPathInput('contacto.whatsappDisplay', c.whatsappDisplay);
+      setPathInput('contacto.instagram', c.instagram);
+      setPathInput('contacto.instagramUrl', c.instagramUrl);
+      setPathInput('contacto.email', c.email);
+      setPathInput('contacto.web', c.web);
+      setPathInput('contacto.webDisplay', c.webDisplay);
+
+      // Festival logo thumb
+      const logoField = document.querySelector('#sec-inicio .image-field');
+      if (logoField) {
+        const thumb = logoField.querySelector('.thumb');
+        const hidden = logoField.querySelector('input[type="hidden"]');
+        if (f.logo) {
+          thumb.src = f.logo;
+          thumb.hidden = false;
+        } else {
+          thumb.hidden = true;
+          thumb.removeAttribute('src');
+        }
+        if (hidden) hidden.value = f.logo || '';
+      }
+
+      // Cronograma
+      const daysEl = document.getElementById('cronograma-days');
+      daysEl.innerHTML = DAY_META.map((d) => {
+        const events = (data.cronograma && data.cronograma[d.key]) || [];
+        return (
+          '<div class="day-block" data-day="' + d.key + '">' +
+            '<h3>' + d.label + '</h3>' +
+            '<div class="day-events rows-list">' + events.map(eventRowHtml).join('') + '</div>' +
+            '<button type="button" class="btn gold btn-add-event" style="margin-top:10px;width:100%;font-size:1.05rem;padding:12px">+ Agregar actividad</button>' +
+          '</div>'
+        );
+      }).join('');
+
+      daysEl.querySelectorAll('.btn-add-event').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const list = btn.closest('.day-block').querySelector('.day-events');
+          list.insertAdjacentHTML('beforeend', eventRowHtml());
+        });
+      });
+      daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
+
+
+      // Orquestas
+      const orqList = document.getElementById('orquestas-list');
+      orqList.innerHTML = (data.orquestas || []).map(orquestaRowHtml).join('');
+      bindRemoveButtons(orqList);
+      bindAllImageFields(orqList);
+
+      // Profesores
+      const profList = document.getElementById('profesores-list');
+      profList.innerHTML = (data.profesores || []).map(profesorRowHtml).join('');
+      bindRemoveButtons(profList);
+      bindAllImageFields(profList);
+
+      // Apoyan
+      const apoList = document.getElementById('apoyan-list');
+      apoList.innerHTML = (data.apoyan || []).map(apoyaRowHtml).join('');
+      bindRemoveButtons(apoList);
+      bindAllImageFields(apoList);
+    }
+
+    function collectForm() {
+      const out = JSON.parse(JSON.stringify(content || {}));
+      out.festival = out.festival || {};
+      out.festival.nombre = getPathInput('festival.nombre');
+      out.festival.edicion = getPathInput('festival.edicion');
+      out.festival.fechas = getPathInput('festival.fechas');
+      out.festival.lugar = getPathInput('festival.lugar');
+      out.festival.blurb = getPathInput('festival.blurb');
+      out.festival.organizacion = getPathInput('festival.organizacion');
+      out.festival.personeria = getPathInput('festival.personeria');
+      out.festival.presidente = getPathInput('festival.presidente');
+      const logo = getPathInput('festival.logo');
+      if (logo) out.festival.logo = logo;
+      else delete out.festival.logo;
+
+      out.contacto = out.contacto || {};
+      out.contacto.whatsapp = getPathInput('contacto.whatsapp');
+      out.contacto.whatsappDisplay = getPathInput('contacto.whatsappDisplay');
+      out.contacto.instagram = getPathInput('contacto.instagram');
+      out.contacto.instagramUrl = getPathInput('contacto.instagramUrl');
+      out.contacto.email = getPathInput('contacto.email');
+      out.contacto.web = getPathInput('contacto.web');
+      out.contacto.webDisplay = getPathInput('contacto.webDisplay');
+
+      out.cronograma = {};
+      document.querySelectorAll('.day-block').forEach((block) => {
+        const day = block.dataset.day;
+        const events = [];
+        block.querySelectorAll('.event-row').forEach((row) => {
+          events.push({
+            hora: val(row.querySelector('.ev-hora')),
+            titulo: val(row.querySelector('.ev-titulo')),
+            sede: val(row.querySelector('.ev-sede')),
+            ejemplo: !!row.querySelector('.ev-ejemplo').checked,
+          });
+        });
+        out.cronograma[day] = events;
+      });
+
+      // Sedes ocultas en la app: se preservan en el JSON por si vuelven
+      out.sedes = (content && Array.isArray(content.sedes)) ? content.sedes : [];
+
+      out.orquestas = [];
+      document.querySelectorAll('.orquesta-row').forEach((row) => {
+        const item = {
+          nombre: val(row.querySelector('.o-nombre')),
+          origen: val(row.querySelector('.o-origen')),
+          descripcion: val(row.querySelector('.o-desc')),
+          ejemplo: !!row.querySelector('.o-ejemplo').checked,
+        };
+        const logo = val(row.querySelector('.o-logo'));
+        const img = val(row.querySelector('.o-imagen'));
+        if (logo) item.logo = logo;
+        if (img) item.imagen = img;
+        delete item.imagenes;
+        out.orquestas.push(item);
+      });
+
+      out.profesores = [];
+      document.querySelectorAll('.profesor-row').forEach((row) => {
+        const item = {
+          nombre: val(row.querySelector('.p-nombre')),
+          instrumento: val(row.querySelector('.p-instrumento')),
+          bio: val(row.querySelector('.p-bio')),
+          ejemplo: !!row.querySelector('.p-ejemplo').checked,
+        };
+        const foto = val(row.querySelector('.p-foto'));
+        if (foto) item.foto = foto;
+        out.profesores.push(item);
+      });
+
+      out.apoyan = [];
+      document.querySelectorAll('.apoya-row').forEach((row) => {
+        const item = {
+          nombre: val(row.querySelector('.a-nombre')),
+          tipo: val(row.querySelector('.a-tipo')),
+          ejemplo: !!row.querySelector('.a-ejemplo').checked,
+        };
+        const img = val(row.querySelector('.a-imagen'));
+        if (img) item.imagen = img;
+        out.apoyan.push(item);
+      });
+
+      // Preserve inscripcion if present
+      if (content && content.inscripcion) out.inscripcion = content.inscripcion;
+
+      return out;
+    }
+
+    function kickOut() {
+      clearPwd();
+      editor.hidden = true;
+      gate.hidden = false;
+      showStatus(gateStatus, 'Sesión expirada. Volvé a ingresar.', false);
+    }
+
+    async function verifyAndEnter(pwd) {
+      const resGet = await fetch('/api/content', { cache: 'no-store' });
+      if (!resGet.ok) throw new Error('No se pudo cargar el contenido');
+      const data = await resGet.json();
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Admin-Password': pwd,
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.status === 401) throw new Error('Contraseña incorrecta');
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Error al verificar');
+      }
+      setPwd(pwd);
+      gate.hidden = true;
+      editor.hidden = false;
+      fillForm(data);
+      bindAllImageFields(document.getElementById('sec-inicio'));
+    }
+
+    async function loadContent() {
+      const res = await fetch('/api/content', { cache: 'no-store' });
+      if (!res.ok) throw new Error('No se pudo cargar');
+      const data = await res.json();
+      fillForm(data);
+      bindAllImageFields(document.getElementById('sec-inicio'));
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pwd = document.getElementById('password').value;
+      try {
+        await verifyAndEnter(pwd);
+        showStatus(editStatus, 'Sesión iniciada. Ya podés editar.', true);
+      } catch (err) {
+        showStatus(gateStatus, err.message, false);
+      }
+    });
+
+    document.getElementById('btn-save').addEventListener('click', async () => {
+      const payload = collectForm();
+      try {
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Admin-Password': getPwd(),
+          },
+          body: JSON.stringify(payload),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (res.status === 401) {
+          kickOut();
+          return;
+        }
+        if (!res.ok) {
+          showStatus(editStatus, body.error || 'Error al guardar', false);
+          return;
+        }
+        content = payload;
+        showStatus(editStatus, '¡Guardado! Abrí o refrescá la app para ver los cambios.', true);
+      } catch (err) {
+        showStatus(editStatus, err.message, false);
+      }
+    });
+
+    document.getElementById('btn-reload').addEventListener('click', async () => {
+      try {
+        await loadContent();
+        showStatus(editStatus, 'Contenido recargado desde el servidor', true);
+      } catch (err) {
+        showStatus(editStatus, err.message, false);
+      }
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      clearPwd();
+      editor.hidden = true;
+      gate.hidden = false;
+      document.getElementById('password').value = '';
+      gateStatus.hidden = true;
+    });
+
+
+    document.getElementById('btn-add-orquesta').addEventListener('click', () => {
+      const list = document.getElementById('orquestas-list');
+      list.insertAdjacentHTML('beforeend', orquestaRowHtml());
+      bindAllImageFields(list.querySelector('.orquesta-row:last-child'));
+    });
+
+    document.getElementById('btn-add-profesor').addEventListener('click', () => {
+      const list = document.getElementById('profesores-list');
+      list.insertAdjacentHTML('beforeend', profesorRowHtml());
+      bindAllImageFields(list.querySelector('.profesor-row:last-child'));
+    });
+
+    document.getElementById('btn-add-apoya').addEventListener('click', () => {
+      const list = document.getElementById('apoyan-list');
+      list.insertAdjacentHTML('beforeend', apoyaRowHtml());
+      const last = list.querySelector('.apoya-row:last-child .image-field');
+      if (last) bindImageField(last);
+    });
+
+    (async () => {
+      const pwd = getPwd();
+      if (!pwd) return;
+      try {
+        await verifyAndEnter(pwd);
+      } catch {
+        clearPwd();
+      }
+    })();
+  </script>
+</body>
+</html>
