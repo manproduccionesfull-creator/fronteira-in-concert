@@ -70,11 +70,7 @@
         "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
         "celdas": [
-          {
-            "hora": "",
-            "sede": "",
-            "titulo": "Ensayo general (Orquesta Fronterita)"
-          }
+          "Ensayo general (Orquesta Fronterita)"
         ],
         "ejemplo": false
       },
@@ -90,11 +86,7 @@
         "titulo": "Ensayo general (ORQUESTA FINC )",
         "sede": "Sala mayor",
         "celdas": [
-          {
-            "hora": "",
-            "sede": "",
-            "titulo": "Aulas de Instrumentos (Fronterita)"
-          }
+          "Aulas de Instrumentos (Fronterita)"
         ],
         "ejemplo": false
       },
@@ -126,11 +118,7 @@
         "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
         "celdas": [
-          {
-            "hora": "",
-            "sede": "",
-            "titulo": "8:30-9:00 PRÁCTICA INDIVIDUAL"
-          }
+          "8:30-9:00 PRÁCTICA INDIVIDUAL"
         ],
         "ejemplo": false
       },
@@ -139,11 +127,7 @@
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
         "celdas": [
-          {
-            "hora": "",
-            "sede": "",
-            "titulo": "Ensayo general- FRONTRITA"
-          }
+          "Ensayo general- FRONTRITA"
         ],
         "ejemplo": false
       }
