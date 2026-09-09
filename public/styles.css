@@ -93,6 +93,9 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
   text-align: center;
   width: 100%;
 }
+.hero-extra-line { margin: 0.55rem 0 0; }
+.check-row { display: flex; flex-wrap: wrap; gap: 0.75rem 1.1rem; margin: 0.75rem 0 1rem; }
+
 .btn {
   appearance: none;
   border: none;

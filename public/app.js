@@ -36,20 +36,43 @@
     history.replaceState(null, '', `#${id}`);
   }
 
+  function showLine(el, on, text) {
+    if (!el) return;
+    if (!on || !String(text || '').trim()) {
+      el.hidden = true;
+      el.textContent = '';
+      return;
+    }
+    el.hidden = false;
+    el.textContent = text;
+  }
+
   function renderInicio(f) {
-    $('#brand-name').textContent = f.nombre;
-    $('#brand-edicion').textContent = f.edicion;
-    $('#hero-edicion').textContent = f.edicion;
-    $('#hero-nombre').textContent = f.nombre;
-    $('#hero-fechas').textContent = f.fechas;
-    $('#hero-lugar').textContent = f.lugar;
-    $('#hero-blurb').textContent = f.blurb;
-    const orgBits = [f.organizacion, f.personeria].filter(Boolean);
-    $('#hero-org').textContent = orgBits.join(' · ');
-    document.title = `${f.nombre} — ${f.edicion}`;
+    const m = f.mostrar || {};
+    const on = (key) => m[key] !== false;
+    $('#brand-name').textContent = f.nombre || '';
+    $('#brand-edicion').textContent = on('edicion') ? (f.edicion || '') : '';
+    showLine($('#hero-edicion'), on('edicion'), f.edicion);
+    $('#hero-nombre').textContent = f.nombre || '';
+    showLine($('#hero-fechas'), on('fechas'), f.fechas);
+    showLine($('#hero-lugar'), on('lugar'), f.lugar);
+    showLine($('#hero-blurb'), on('blurb'), f.blurb);
+    const orgBits = [];
+    if (on('org')) orgBits.push(f.organizacion, f.personeria);
+    showLine($('#hero-org'), on('org'), orgBits.filter(Boolean).join(' · '));
+    const extra = $('#hero-extra');
+    if (extra) {
+      const lines = Array.isArray(f.lineas) ? f.lineas : [];
+      extra.innerHTML = lines.map((line) => {
+        const texto = (line && line.texto) || '';
+        if (!texto.trim()) return '';
+        return `<p class="hero-extra-line">${escapeHtml(texto)}</p>`;
+      }).join('');
+    }
+    document.title = `${f.nombre || ''} — ${f.edicion || ''}`.replace(/ — $/, '');
     const logo = $('#hero-logo');
     if (logo) {
-      if (f.logo) {
+      if (on('logo') && f.logo) {
         logo.src = f.logo;
         logo.hidden = false;
       } else {
@@ -58,15 +81,39 @@
       }
     }
     const linksEl = $('#inicio-links');
-    if (linksEl) {
-      const links = Array.isArray(f.links) ? f.links : [];
-      linksEl.innerHTML = links.map((item) => {
-        const texto = (item && item.texto) || '';
-        const url = normalizeLink(item && item.url);
-        if (!texto || !url) return '';
-        return `<a class="btn outline inicio-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(texto)}</a>`;
-      }).join('');
+    if (linksEl) linksEl.innerHTML = inicioButtons(f).join('');
+  }
+
+  function inicioButtons(f) {
+    const pages = {
+      cronograma: 'cronograma',
+      inscripcion: 'inscripcion',
+      orquestas: 'orquestas',
+      profesores: 'profesores',
+      apoyan: 'apoyan',
+      contacto: 'contacto',
+    };
+    let items = Array.isArray(f.botones) ? f.botones : null;
+    if (!items) {
+      items = [
+        { texto: 'Ver cronograma', tipo: 'pagina', destino: 'cronograma', estilo: 'gold' },
+        { texto: 'Inscribirme', tipo: 'pagina', destino: 'inscripcion', estilo: 'outline' },
+      ];
+      if (Array.isArray(f.links)) {
+        items = items.concat(f.links.map((l) => ({ texto: l.texto, tipo: 'link', destino: l.url, estilo: 'outline' })));
+      }
     }
+    return items.map((item) => {
+      const texto = (item && item.texto) || '';
+      if (!texto.trim()) return '';
+      const estilo = item.estilo === 'gold' ? 'gold' : 'outline';
+      if (item.tipo === 'pagina' && pages[item.destino]) {
+        return `<button type="button" class="btn ${estilo} inicio-link" data-goto="${pages[item.destino]}">${escapeHtml(texto)}</button>`;
+      }
+      const url = normalizeLink(item.destino || item.url);
+      if (!url) return '';
+      return `<a class="btn ${estilo} inicio-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(texto)}</a>`;
+    });
   }
 
   function normalizeLink(raw) {

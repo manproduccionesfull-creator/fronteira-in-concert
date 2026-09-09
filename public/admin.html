@@ -40,7 +40,7 @@
         <!-- INICIO -->
         <section class="admin-section" id="sec-inicio">
           <h2>Inicio</h2>
-          <p class="section-lead">Textos de la pantalla de bienvenida y logo del festival.</p>
+          <p class="section-lead">Acá cambiás toda la portada. Lo que dejes vacío o destildado no se muestra. Después Guardar cambios.</p>
           <div class="form-grid">
             <label>Nombre del festival
               <input type="text" name="f_nombre" data-path="festival.nombre" required />
@@ -80,8 +80,21 @@
               </div>
             </div>
           </div>
+          <div class="check-row">
+            <label class="check-label"><input type="checkbox" id="show-logo" checked /> Mostrar logo</label>
+            <label class="check-label"><input type="checkbox" id="show-edicion" checked /> Mostrar edición</label>
+            <label class="check-label"><input type="checkbox" id="show-fechas" checked /> Mostrar fechas</label>
+            <label class="check-label"><input type="checkbox" id="show-lugar" checked /> Mostrar lugar</label>
+            <label class="check-label"><input type="checkbox" id="show-blurb" checked /> Mostrar texto</label>
+            <label class="check-label"><input type="checkbox" id="show-org" checked /> Mostrar organización</label>
+          </div>
           <div class="inicio-links-admin">
-            <p class="section-lead">Botones de la página de inicio. Vos ponés el texto y el link. Después Guardar cambios.</p>
+            <p class="section-lead">Textos extra (los agregás o los sacás vos)</p>
+            <div id="inicio-lineas-list" class="rows-list"></div>
+            <button type="button" class="btn outline btn-sm" id="btn-add-linea">+ Agregar texto</button>
+          </div>
+          <div class="inicio-links-admin">
+            <p class="section-lead">Botones. Podés cambiar el texto, mandarlos a una sección de la app o a un link, y quitarlos.</p>
             <div id="inicio-links-list" class="rows-list"></div>
             <button type="button" class="btn outline btn-sm" id="btn-add-link">+ Agregar botón</button>
           </div>
@@ -402,19 +415,60 @@
     }
 
 
+    function lineaRowHtml(item) {
+      item = item || { texto: '' };
+      return (
+        '<div class="row-card linea-row">' +
+          '<label class="full">Texto<input type="text" class="ln-texto" value="' + escAttr(item.texto) + '" placeholder="Una frase, un horario, lo que quieras" /></label>' +
+          '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar texto</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function pageOptions(selected) {
+      const opts = [
+        ['cronograma', 'Cronograma'],
+        ['inscripcion', 'Inscripción'],
+        ['orquestas', 'Orquestas'],
+        ['profesores', 'Profesores'],
+        ['apoyan', 'Quiénes apoyan'],
+        ['contacto', 'Contacto'],
+        ['link', 'Un link externo'],
+      ];
+      return opts.map(([v, label]) =>
+        '<option value="' + v + '"' + (selected === v ? ' selected' : '') + '>' + label + '</option>'
+      ).join('');
+    }
+
     function linkRowHtml(item) {
-      item = item || { texto: '', url: '' };
+      item = item || { texto: '', tipo: 'link', destino: '', estilo: 'outline' };
+      const dest = item.tipo === 'pagina' ? (item.destino || 'cronograma') : 'link';
       return (
         '<div class="row-card link-row">' +
           '<div class="form-grid compact">' +
             '<label>Texto del botón<input type="text" class="lk-texto" value="' + escAttr(item.texto) + '" placeholder="Instagram, Mapa, Formulario…" /></label>' +
-            '<label class="full">Link<input type="text" class="lk-url" value="' + escAttr(item.url) + '" placeholder="https://…" /></label>' +
+            '<label>Adónde va<select class="lk-destino">' + pageOptions(dest) + '</select></label>' +
+            '<label class="full lk-url-wrap">Link<input type="text" class="lk-url" value="' + escAttr(dest === 'link' ? (item.destino || item.url || '') : '') + '" placeholder="https://…" /></label>' +
+            '<label>Estilo<select class="lk-estilo">' +
+              '<option value="gold"' + (item.estilo === 'gold' ? ' selected' : '') + '>Dorado</option>' +
+              '<option value="outline"' + (item.estilo !== 'gold' ? ' selected' : '') + '>Contorno</option>' +
+            '</select></label>' +
           '</div>' +
           '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
             '<button type="button" class="btn outline btn-sm btn-remove">Quitar botón</button>' +
           '</div>' +
         '</div>'
       );
+    }
+
+    function syncLinkUrl(row) {
+      const sel = row.querySelector('.lk-destino');
+      const wrap = row.querySelector('.lk-url-wrap');
+      if (sel && wrap) wrap.hidden = sel.value !== 'link';
     }
 
     function profesorRowHtml(p) {
@@ -523,8 +577,27 @@
       setPathInput('festival.personeria', f.personeria);
       setPathInput('festival.presidente', f.presidente);
       setPathInput('festival.logo', f.logo || '');
+      const mostrar = f.mostrar || {};
+      document.getElementById('show-logo').checked = mostrar.logo !== false && !!f.logo || mostrar.logo !== false;
+      document.getElementById('show-edicion').checked = mostrar.edicion !== false;
+      document.getElementById('show-fechas').checked = mostrar.fechas !== false;
+      document.getElementById('show-lugar').checked = mostrar.lugar !== false;
+      document.getElementById('show-blurb').checked = mostrar.blurb !== false;
+      document.getElementById('show-org').checked = mostrar.org !== false;
+      const lineaList = document.getElementById('inicio-lineas-list');
+      lineaList.innerHTML = (f.lineas || []).map(lineaRowHtml).join('');
+      bindRemoveButtons(lineaList);
+      let botones = f.botones;
+      if (!Array.isArray(botones)) {
+        botones = [
+          { texto: 'Ver cronograma', tipo: 'pagina', destino: 'cronograma', estilo: 'gold' },
+          { texto: 'Inscribirme', tipo: 'pagina', destino: 'inscripcion', estilo: 'outline' },
+        ];
+        (f.links || []).forEach((l) => botones.push({ texto: l.texto, tipo: 'link', destino: l.url, estilo: 'outline' }));
+      }
       const linkList = document.getElementById('inicio-links-list');
-      linkList.innerHTML = (f.links || []).map(linkRowHtml).join('');
+      linkList.innerHTML = botones.map(linkRowHtml).join('');
+      linkList.querySelectorAll('.link-row').forEach(syncLinkUrl);
       bindRemoveButtons(linkList);
 
       const c = data.contacto || {};
@@ -606,12 +679,34 @@
       const logo = getPathInput('festival.logo');
       if (logo) out.festival.logo = logo;
       else delete out.festival.logo;
-      out.festival.links = [];
+      out.festival.mostrar = {
+        logo: document.getElementById('show-logo').checked,
+        edicion: document.getElementById('show-edicion').checked,
+        fechas: document.getElementById('show-fechas').checked,
+        lugar: document.getElementById('show-lugar').checked,
+        blurb: document.getElementById('show-blurb').checked,
+        org: document.getElementById('show-org').checked,
+      };
+      out.festival.lineas = [];
+      document.querySelectorAll('#inicio-lineas-list .linea-row').forEach((row) => {
+        const texto = val(row.querySelector('.ln-texto'));
+        if (texto) out.festival.lineas.push({ texto });
+      });
+      out.festival.botones = [];
       document.querySelectorAll('#inicio-links-list .link-row').forEach((row) => {
         const texto = val(row.querySelector('.lk-texto'));
-        const url = val(row.querySelector('.lk-url'));
-        if (texto || url) out.festival.links.push({ texto, url });
+        const destSel = val(row.querySelector('.lk-destino'));
+        const estilo = val(row.querySelector('.lk-estilo')) || 'outline';
+        if (!texto) return;
+        if (destSel === 'link') {
+          const url = val(row.querySelector('.lk-url'));
+          if (!url) return;
+          out.festival.botones.push({ texto, tipo: 'link', destino: url, estilo });
+        } else {
+          out.festival.botones.push({ texto, tipo: 'pagina', destino: destSel, estilo });
+        }
       });
+      delete out.festival.links;
 
       out.contacto = out.contacto || {};
       out.contacto.whatsapp = getPathInput('contacto.whatsapp');
@@ -782,9 +877,19 @@
     });
 
 
+    document.getElementById('btn-add-linea').addEventListener('click', () => {
+      const list = document.getElementById('inicio-lineas-list');
+      list.insertAdjacentHTML('beforeend', lineaRowHtml());
+    });
+
+    document.getElementById('inicio-links-list').addEventListener('change', (e) => {
+      if (e.target.classList.contains('lk-destino')) syncLinkUrl(e.target.closest('.link-row'));
+    });
+
     document.getElementById('btn-add-link').addEventListener('click', () => {
       const list = document.getElementById('inicio-links-list');
       list.insertAdjacentHTML('beforeend', linkRowHtml());
+      syncLinkUrl(list.querySelector('.link-row:last-child'));
     });
 
     document.getElementById('btn-add-orquesta').addEventListener('click', () => {
