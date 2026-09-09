@@ -1,5 +1,5 @@
 /* Service Worker — cache shell + content para offline */
-const CACHE = 'fronteira-v44';
+const CACHE = 'fronteira-v45';
 const SHELL = [
   '/',
   '/index.html',
