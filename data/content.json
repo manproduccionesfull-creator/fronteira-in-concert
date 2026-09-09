@@ -54,23 +54,23 @@
         "hora": "07:30",
         "titulo": "Desayuno",
         "sede": "",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
         "hora": "08:15",
         "titulo": "Acondicionamiento y organización de los espacios de hospedaje.",
         "sede": "ESCUELAS: EPET 26 - ESPECIAL - FRONTERA 604 - E.F.A 0706",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
         "hora": "10:00",
         "titulo": "Ensayo general (Orquesta Fronterita)",
         "sede": "sala mayor Escuela Frontera 604",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
         "hora": "10:00",
-        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC 10 AÑOS)",
+        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
         "ejemplo": false
       },
@@ -82,8 +82,14 @@
       },
       {
         "hora": "14:00",
-        "titulo": "Ensayo general (ORQUESTA FINC 10 AÑOS)  -   Fronterita",
-        "sede": "Sala mayor - Aulas",
+        "titulo": "Ensayo general (ORQUESTA FINC )",
+        "sede": "Sala mayor",
+        "ejemplo": false
+      },
+      {
+        "hora": "14:00",
+        "titulo": "Fronterita",
+        "sede": "Aulas de Instrumentos",
         "ejemplo": false
       },
       {
@@ -94,7 +100,7 @@
       },
       {
         "hora": "19:30",
-        "titulo": "Presentación de las delegaciones-profesores-actuación",
+        "titulo": "Presentación de las delegaciones-Profesores-Actuación",
         "sede": "",
         "ejemplo": false
       },
@@ -107,22 +113,22 @@
     ],
     "2026-10-09": [
       {
-        "hora": "09:30",
-        "titulo": "Masterclass de cuerdas",
+        "hora": "08:00",
+        "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "14:00",
-        "titulo": "Ensayos por secciones",
-        "sede": "EPET 26",
-        "ejemplo": true
+        "hora": "09:00",
+        "titulo": "ORQUESTA FINC",
+        "sede": "Parciales de intrumentos",
+        "ejemplo": false
       },
       {
-        "hora": "19:30",
-        "titulo": "Noche de cámara",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "ejemplo": true
+        "hora": "09:00",
+        "titulo": "ORQUESTA FRONTRITA",
+        "sede": "Ensayo general",
+        "ejemplo": false
       }
     ],
     "2026-10-10": [
@@ -257,9 +263,10 @@
       "imagen": "/uploads/mtocsktb-90da7f3e.jpg"
     },
     {
-      "nombre": "",
+      "nombre": "Facultad de Arte y Diseño",
       "tipo": "",
-      "ejemplo": false
+      "ejemplo": false,
+      "imagen": "/uploads/mtu774lz-1a9b6285.jpg"
     }
   ],
   "inscripcion": {
@@ -359,5 +366,14 @@
       "foto": "/uploads/mtu3eae3-e72ac33a.png"
     }
   ],
-  "videos": []
+  "videos": [
+    {
+      "texto": "Historia",
+      "url": "https://www.instagram.com/p/DcuC70vKXzE/?hl=es-la"
+    },
+    {
+      "texto": "Recuerdo 2025",
+      "url": "https://www.instagram.com/p/DPV9MnejsNh/?hl=es-la"
+    }
+  ]
 }
