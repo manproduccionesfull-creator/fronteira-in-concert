@@ -1,10 +1,10 @@
 /* Service Worker — cache shell + content para offline */
-const CACHE = 'fronteira-v47';
+const CACHE = 'fronteira-v48';
 const SHELL = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/app.js',
+  '/styles.css?v=48',
+  '/app.js?v=48',
   '/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
@@ -48,8 +48,8 @@ self.addEventListener('fetch', (event) => {
     url.pathname === '/admin.html' ||
     url.pathname === '/' ||
     url.pathname === '/index.html' ||
-    url.pathname === '/app.js' ||
-    url.pathname === '/styles.css' ||
+    url.pathname === '/app.js?v=48' ||
+    url.pathname === '/styles.css?v=48' ||
     url.pathname === '/sw.js'
   ) {
     event.respondWith(networkFirst(event.request));

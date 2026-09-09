@@ -609,3 +609,22 @@ img, svg, video {
   );
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
 }
+
+/* Celular: Profes siempre en dos columnas */
+@media (max-width: 900px) {
+  #profesores-grid .profesores-row.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  #profesores-grid .card-profesor {
+    padding: 0.65rem 0.4rem;
+  }
+  #profesores-grid .prof-foto {
+    width: 88px;
+    height: 88px;
+  }
+  #profesores-grid .card-profesor h3 {
+    font-size: 0.88rem;
+  }
+}
