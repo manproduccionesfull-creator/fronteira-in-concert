@@ -48,86 +48,103 @@
         "hora": "07:00",
         "titulo": "llegada - Acreditación y bienvenida",
         "sede": "Escuela de Frontera 604",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "07:30",
         "titulo": "Desayuno",
         "sede": "",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "08:15",
         "titulo": "Acondicionamiento y organización de los espacios de hospedaje.",
         "sede": "ESCUELAS: EPET 26 - ESPECIAL - FRONTERA 604 - E.F.A 0706",
-        "ejemplo": false
-      },
-      {
-        "hora": "10:00",
-        "titulo": "Ensayo general (Orquesta Fronterita)",
-        "sede": "sala mayor Escuela Frontera 604",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "10:00",
         "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Ensayo general (Orquesta Fronterita)"
+          }
+        ],
         "ejemplo": false
       },
       {
         "hora": "12:30",
         "titulo": "Almuerzo",
         "sede": "Comedor",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "14:00",
         "titulo": "Ensayo general (ORQUESTA FINC )",
         "sede": "Sala mayor",
-        "ejemplo": false
-      },
-      {
-        "hora": "14:00",
-        "titulo": "Fronterita",
-        "sede": "Aulas de Instrumentos",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Aulas de Instrumentos (Fronterita)"
+          }
+        ],
         "ejemplo": false
       },
       {
         "hora": "17:00",
         "titulo": "Merienda y descanso",
         "sede": "",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "19:30",
         "titulo": "Presentación de las delegaciones-Profesores-Actuación",
         "sede": "",
+        "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "21:00",
         "titulo": "Cena - Descanso",
         "sede": "",
+        "celdas": [],
         "ejemplo": false
       }
     ],
     "2026-10-09": [
       {
-        "hora": "08:00",
+        "hora": "07:30 O8:30",
         "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "8:30-9:00 PRÁCTICA INDIVIDUAL"
+          }
+        ],
         "ejemplo": false
       },
       {
         "hora": "09:00",
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
-        "ejemplo": false
-      },
-      {
-        "hora": "09:00",
-        "titulo": "ORQUESTA FRONTRITA",
-        "sede": "Ensayo general",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Ensayo general- FRONTRITA"
+          }
+        ],
         "ejemplo": false
       }
     ],
@@ -136,18 +153,21 @@
         "hora": "10:00",
         "titulo": "Taller de dirección coral",
         "sede": "Escuela de Frontera 604",
+        "celdas": [],
         "ejemplo": true
       },
       {
         "hora": "16:00",
         "titulo": "Ensayo conjunto",
         "sede": "Parque Temático y Ambiental de la Integración",
+        "celdas": [],
         "ejemplo": true
       },
       {
         "hora": "20:30",
         "titulo": "Gala sinfónica",
         "sede": "Parque Temático y Ambiental de la Integración",
+        "celdas": [],
         "ejemplo": true
       }
     ],
@@ -156,18 +176,21 @@
         "hora": "11:00",
         "titulo": "Matiné familiar",
         "sede": "Parque Temático y Ambiental de la Integración",
+        "celdas": [],
         "ejemplo": true
       },
       {
         "hora": "17:00",
         "titulo": "Concierto de clausura",
         "sede": "Parque Temático y Ambiental de la Integración",
+        "celdas": [],
         "ejemplo": true
       },
       {
         "hora": "19:30",
         "titulo": "Brindis y cierre",
         "sede": "Escuela de Frontera 604",
+        "celdas": [],
         "ejemplo": true
       }
     ]

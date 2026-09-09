@@ -150,18 +150,32 @@
       return;
     }
     const L = DAY_LABELS[selectedDay];
+    function celdaBlockHtml(c) {
+      if (typeof c === 'string') c = { hora: '', sede: '', titulo: c };
+      c = c || {};
+      const hora = c.hora || '';
+      const titulo = c.titulo || c.texto || '';
+      const sede = c.sede || '';
+      if (!hora && !titulo && !sede) return '';
+      return `
+        <div class="event-celda-block">
+          ${hora ? `<div class="hora">${escapeHtml(hora)}</div>` : '<div class="hora"></div>'}
+          <div>
+            ${titulo ? `<h3>${escapeHtml(titulo)}</h3>` : ''}
+            ${sede ? `<p class="venue">${escapeHtml(sede)}</p>` : ''}
+          </div>
+        </div>`;
+    }
+
     list.innerHTML = `<p class="muted" style="margin:0 0 0.75rem">${L.full}</p>` + events.map((ev) => `
       <article class="event-card">
         <div class="hora">${escapeHtml(ev.hora)}</div>
         <div>
           <h3>${escapeHtml(ev.titulo)}</h3>
           <p class="venue">${escapeHtml(ev.sede)}</p>
-          ${(Array.isArray(ev.celdas) ? ev.celdas : []).map((c) => {
-            const texto = typeof c === 'string' ? c : (c && c.texto) || '';
-            return texto ? `<p class="event-celda">${escapeHtml(texto)}</p>` : '';
-          }).join('')}
           ${ejemploBadge(ev.ejemplo)}
         </div>
+        ${(Array.isArray(ev.celdas) ? ev.celdas : []).map(celdaBlockHtml).join('')}
       </article>
     `).join('');
   }

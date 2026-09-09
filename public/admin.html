@@ -326,11 +326,31 @@
     }
 
     /* ---------- Row builders ---------- */
-    function celdaRowHtml(texto) {
+    function normalizeCelda(c) {
+      if (typeof c === 'string') return { hora: '', sede: '', titulo: c };
+      c = c || {};
+      return {
+        hora: c.hora || '',
+        sede: c.sede || '',
+        titulo: c.titulo || c.texto || '',
+      };
+    }
+
+    function celdaRowHtml(c) {
+      c = normalizeCelda(c);
       return (
         '<div class="ev-celda">' +
-          '<input type="text" class="ev-celda-text" value="' + escAttr(texto) + '" placeholder="Texto de la celda" />' +
-          '<button type="button" class="btn outline btn-sm btn-remove-celda" title="Quitar esta celda">✕</button>' +
+          '<div class="form-grid compact">' +
+            '<label>Hora<input type="text" class="ev-celda-hora" value="' + escAttr(c.hora) + '" placeholder="20:00" /></label>' +
+            '<label class="field-with-clear">Sede' +
+              '<span class="field-clear-row">' +
+                '<input type="text" class="ev-celda-sede" value="' + escAttr(c.sede) + '" />' +
+                '<button type="button" class="btn outline btn-sm btn-clear-field" data-clear=".ev-celda-sede" title="Borrar solo sede">✕ sede</button>' +
+              '</span>' +
+            '</label>' +
+            '<label class="full">Título<input type="text" class="ev-celda-titulo" value="' + escAttr(c.titulo) + '" /></label>' +
+          '</div>' +
+          '<button type="button" class="btn outline btn-sm btn-remove-celda" title="Quitar esta celda">✕ Quitar celda</button>' +
         '</div>'
       );
     }
@@ -351,7 +371,7 @@
             '<label class="full">Título<input type="text" class="ev-titulo" value="' + escAttr(ev.titulo) + '" /></label>' +
           '</div>' +
           '<div class="ev-celdas">' +
-            celdas.map((c) => celdaRowHtml(typeof c === 'string' ? c : (c && c.texto) || '')).join('') +
+            celdas.map((c) => celdaRowHtml(c)).join('') +
           '</div>' +
           '<button type="button" class="btn outline btn-sm btn-add-celda">+ Agregar celda</button>' +
           '<div class="row-footer">' +
@@ -694,7 +714,7 @@
           if (!add) return;
           const row = add.closest('.event-row');
           const list = row && row.querySelector('.ev-celdas');
-          if (list) list.insertAdjacentHTML('beforeend', celdaRowHtml(''));
+          if (list) list.insertAdjacentHTML('beforeend', celdaRowHtml({ hora: '', sede: '', titulo: '' }));
         });
       }
       daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
@@ -784,7 +804,11 @@
             hora: val(row.querySelector('.ev-hora')),
             titulo: val(row.querySelector('.ev-titulo')),
             sede: val(row.querySelector('.ev-sede')),
-            celdas: [...row.querySelectorAll('.ev-celda-text')].map((i) => val(i)).filter(Boolean),
+            celdas: [...row.querySelectorAll('.ev-celda')].map((celda) => ({
+              hora: val(celda.querySelector('.ev-celda-hora')),
+              sede: val(celda.querySelector('.ev-celda-sede')),
+              titulo: val(celda.querySelector('.ev-celda-titulo')),
+            })).filter((c) => c.hora || c.sede || c.titulo),
             ejemplo: !!row.querySelector('.ev-ejemplo').checked,
           });
         });
