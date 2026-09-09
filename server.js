@@ -37,6 +37,39 @@ function writeContent(data) {
   fs.writeFileSync(CONTENT_PATH, JSON.stringify(data, null, 2), 'utf8');
 }
 
+const GH_REPO = process.env.GITHUB_REPO || 'manproduccionesfull-creator/fronteira-in-concert';
+const GH_BRANCH = process.env.GITHUB_BRANCH || 'main';
+
+async function persistToGithub(relPath, buffer, message) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return;
+  const api = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + relPath.split('/').map(encodeURIComponent).join('/');
+  const headers = {
+    Authorization: 'Bearer ' + token,
+    Accept: 'application/vnd.github+json',
+    'User-Agent': 'fronteira-app',
+    'Content-Type': 'application/json',
+  };
+  let sha;
+  const current = await fetch(api + '?ref=' + encodeURIComponent(GH_BRANCH), { headers });
+  if (current.status === 200) {
+    sha = (await current.json()).sha;
+  } else if (current.status !== 404) {
+    const err = await current.text();
+    throw new Error('No se pudo guardar en GitHub (' + current.status + ')');
+  }
+  const body = {
+    message,
+    content: Buffer.from(buffer).toString('base64'),
+    branch: GH_BRANCH,
+  };
+  if (sha) body.sha = sha;
+  const put = await fetch(api, { method: 'PUT', headers, body: JSON.stringify(body) });
+  if (!put.ok) {
+    throw new Error('No se pudo guardar en GitHub (' + put.status + ')');
+  }
+}
+
 function checkAdmin(req, res) {
   const pwd = req.get('X-Admin-Password') || '';
   if (pwd !== ADMIN_PASSWORD) {
@@ -145,7 +178,7 @@ app.get('/api/content', (_req, res) => {
   }
 });
 
-app.post('/api/content', (req, res) => {
+app.post('/api/content', async (req, res) => {
   if (!checkAdmin(req, res)) return;
   if (!req.body || typeof req.body !== 'object') {
     return res.status(400).json({ error: 'JSON inválido' });
@@ -158,6 +191,11 @@ app.post('/api/content', (req, res) => {
       }
     }
     writeContent(req.body);
+    try {
+      await persistToGithub('data/content.json', fs.readFileSync(CONTENT_PATH), 'Guardar contenido del festival');
+    } catch (err) {
+      console.error(err);
+    }
     res.json({ ok: true, message: 'Contenido guardado' });
   } catch (err) {
     console.error(err);
@@ -209,6 +247,11 @@ app.post('/api/upload', async (req, res) => {
     }
 
     const url = '/uploads/' + filename;
+    try {
+      await persistToGithub('public/uploads/' + filename, fs.readFileSync(dest), 'Guardar imagen ' + filename);
+    } catch (err) {
+      console.error(err);
+    }
     res.json({ ok: true, url, filename });
   } catch (err) {
     console.error(err);
