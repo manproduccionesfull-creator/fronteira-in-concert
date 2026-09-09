@@ -570,6 +570,30 @@ img, svg, video {
 }
 .profesores-row {
   margin: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+.profesores-row .card-profesor {
+  padding: 0.7rem 0.5rem;
+}
+.profesores-row .card-profesor h3 {
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+.profesores-row .card-profesor .origen,
+.profesores-row .card-profesor p {
+  font-size: 0.78rem;
+}
+.profesores-row .prof-foto {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 520px) {
+  .profesores-row .prof-foto {
+    width: 140px;
+    height: 140px;
+  }
 }
 .profesores-divider {
   border: none;
