@@ -100,7 +100,7 @@
       },
       {
         "hora": "19:30",
-        "titulo": "Presentación de las delegaciones-profesores-actuación",
+        "titulo": "Presentación de las delegaciones-Profesores-Actuación",
         "sede": "",
         "ejemplo": false
       },
@@ -113,21 +113,21 @@
     ],
     "2026-10-09": [
       {
-        "hora": "09:30",
-        "titulo": "Masterclass de cuerdas",
+        "hora": "08:00",
+        "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "14:00",
-        "titulo": "Ensayos por secciones",
-        "sede": "EPET 26",
-        "ejemplo": true
+        "hora": "09:00",
+        "titulo": "ORQUESTA FINC",
+        "sede": "Parciales de intrumentos",
+        "ejemplo": false
       },
       {
-        "hora": "19:30",
-        "titulo": "Noche de cámara",
-        "sede": "Parque Temático y Ambiental de la Integración",
+        "hora": "09:00",
+        "titulo": "ORQUESTA FRONTRITA",
+        "sede": "Ensayo general",
         "ejemplo": true
       }
     ],

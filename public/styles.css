@@ -162,6 +162,11 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
 }
 .event-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
 .event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; }
+.event-card .event-celda { margin: 0.35rem 0 0; font-size: 0.92rem; line-height: 1.35; }
+.ev-celdas { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.ev-celda { display: flex; gap: 8px; align-items: center; }
+.ev-celda .ev-celda-text { flex: 1; }
+.btn-add-celda { margin-top: 8px; }
 .badge {
   display: inline-block;
   margin-top: 0.4rem;

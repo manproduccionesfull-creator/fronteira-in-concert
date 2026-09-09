@@ -156,6 +156,10 @@
         <div>
           <h3>${escapeHtml(ev.titulo)}</h3>
           <p class="venue">${escapeHtml(ev.sede)}</p>
+          ${(Array.isArray(ev.celdas) ? ev.celdas : []).map((c) => {
+            const texto = typeof c === 'string' ? c : (c && c.texto) || '';
+            return texto ? `<p class="event-celda">${escapeHtml(texto)}</p>` : '';
+          }).join('')}
           ${ejemploBadge(ev.ejemplo)}
         </div>
       </article>
