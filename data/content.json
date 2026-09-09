@@ -66,11 +66,11 @@
         "hora": "10:00",
         "titulo": "Ensayo general (Orquesta Fronterita)",
         "sede": "sala mayor Escuela Frontera 604",
-        "ejemplo": true
+        "ejemplo": false
       },
       {
         "hora": "10:00",
-        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC 10 AÑOS)",
+        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
         "ejemplo": false
       },
@@ -82,8 +82,14 @@
       },
       {
         "hora": "14:00",
-        "titulo": "Ensayo general (ORQUESTA FINC 10 AÑOS)  -   Fronterita",
-        "sede": "Sala mayor - Aulas",
+        "titulo": "Ensayo general (ORQUESTA FINC )",
+        "sede": "Sala mayor",
+        "ejemplo": false
+      },
+      {
+        "hora": "14:00",
+        "titulo": "Fronterita",
+        "sede": "Aulas de Instrumentos",
         "ejemplo": false
       },
       {
@@ -257,10 +263,10 @@
       "imagen": "/uploads/mtocsktb-90da7f3e.jpg"
     },
     {
-      "nombre": "FAyD | UNaM",
+      "nombre": "Facultad de Arte y Diseño",
       "tipo": "",
       "ejemplo": false,
-      "imagen": "/uploads/mtu7detu-d82dc1a6.jpg"
+      "imagen": "/uploads/mtu774lz-1a9b6285.jpg"
     }
   ],
   "inscripcion": {
