@@ -359,5 +359,14 @@
       "foto": "/uploads/mtu3eae3-e72ac33a.png"
     }
   ],
-  "videos": []
+  "videos": [
+    {
+      "texto": "Historia",
+      "url": "https://www.instagram.com/p/DcuC70vKXzE/?hl=es-la"
+    },
+    {
+      "texto": "Recuerdo 2025",
+      "url": "https://www.instagram.com/p/DPV9MnejsNh/?hl=es-la"
+    }
+  ]
 }
