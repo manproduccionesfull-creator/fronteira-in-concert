@@ -70,7 +70,11 @@
         "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
         "celdas": [
-          "Ensayo general (Orquesta Fronterita)"
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Ensayo general (Orquesta Fronterita)"
+          }
         ],
         "ejemplo": false
       },
@@ -86,7 +90,16 @@
         "titulo": "Ensayo general (ORQUESTA FINC )",
         "sede": "Sala mayor",
         "celdas": [
-          "Aulas de Instrumentos (Fronterita)"
+          {
+            "hora": "14:00",
+            "sede": "Aulas de Instrumentos",
+            "titulo": "Orquesta Fronterita"
+          },
+          {
+            "hora": "13:00 a 14:00",
+            "sede": "Hotel Altos de Irigoyen",
+            "titulo": "Conciertos al Mediodia"
+          }
         ],
         "ejemplo": false
       },
@@ -118,7 +131,11 @@
         "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
         "celdas": [
-          "8:30-9:00 PRÁCTICA INDIVIDUAL"
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "8:30-9:00 PRÁCTICA INDIVIDUAL"
+          }
         ],
         "ejemplo": false
       },
@@ -127,7 +144,11 @@
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
         "celdas": [
-          "Ensayo general- FRONTRITA"
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Ensayo general- FRONTRITA"
+          }
         ],
         "ejemplo": false
       }
