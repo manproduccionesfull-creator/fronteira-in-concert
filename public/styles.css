@@ -628,3 +628,23 @@ img, svg, video {
     font-size: 0.88rem;
   }
 }
+
+/* Celular: Quiénes apoyan en dos columnas, igual que Profes */
+@media (max-width: 900px) {
+  #apoyan-grid.sponsor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  #apoyan-grid .sponsor {
+    padding: 0.7rem 0.4rem;
+  }
+  #apoyan-grid .sponsor-img {
+    width: 72px;
+    height: 72px;
+    max-width: 100%;
+  }
+  #apoyan-grid .sponsor strong {
+    font-size: 0.82rem;
+  }
+}
