@@ -211,6 +211,43 @@
     }).join('');
   }
 
+
+  function youtubeId(url) {
+    const s = String(url || '').trim();
+    let m = s.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = s.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = s.match(/youtube\.com\/(?:shorts|embed|live)\/([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    return '';
+  }
+
+  function renderVideos(videos) {
+    const el = $('#videos-list');
+    if (!el) return;
+    const list = (videos || []).filter((v) => v && (v.texto || v.url));
+    if (!list.length) {
+      el.innerHTML = '<p class="muted">Todavía no hay videos.</p>';
+      return;
+    }
+    el.innerHTML = list.map((v) => {
+      const texto = v.texto || 'Video';
+      const url = normalizeLink(v.url);
+      const id = youtubeId(url);
+      if (id) {
+        return `<article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/${escapeAttr(id)}" title="${escapeAttr(texto)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <h3>${escapeHtml(texto)}</h3>
+        </article>`;
+      }
+      if (!url) return '';
+      return `<a class="video-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(texto)}</a>`;
+    }).join('');
+  }
+
   function renderApoyan(apoyan) {
     $('#apoyan-grid').innerHTML = apoyan.map((a) => `
       <div class="sponsor">
@@ -314,6 +351,7 @@
     renderOrquestas(content.orquestas);
     renderProfesores(content.profesores);
     renderApoyan(content.apoyan);
+    renderVideos(content.videos);
     renderInscripcion(content.inscripcion);
     renderContacto(content.contacto, content.festival);
   }
@@ -327,7 +365,7 @@
     bindNav();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'apoyan', 'inscripcion', 'contacto'];
+    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'apoyan', 'videos', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();

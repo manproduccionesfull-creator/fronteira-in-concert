@@ -124,6 +124,14 @@
           <button type="button" class="btn outline btn-sm" id="btn-add-profesor">+ Agregar profesor/a</button>
         </section>
 
+        <!-- VIDEOS -->
+        <section class="admin-section" id="sec-videos">
+          <h2>Videos</h2>
+          <p class="section-lead">Pegá un link de YouTube o Instagram. No subas el archivo. Después Guardar cambios.</p>
+          <div id="videos-list" class="rows-list"></div>
+          <button type="button" class="btn outline btn-sm" id="btn-add-video">+ Agregar video</button>
+        </section>
+
         <!-- APOYAN -->
         <section class="admin-section" id="sec-apoyan">
           <h2>Quiénes apoyan</h2>
@@ -491,6 +499,22 @@
       );
     }
 
+
+    function videoRowHtml(v) {
+      v = v || { texto: '', url: '' };
+      return (
+        '<div class="row-card video-row">' +
+          '<div class="form-grid compact">' +
+            '<label>Título<input type="text" class="v-texto" value="' + escAttr(v.texto) + '" placeholder="Ensayo, concierto…" /></label>' +
+            '<label class="full">Link<input type="text" class="v-url" value="' + escAttr(v.url) + '" placeholder="https://youtube.com/… o Instagram" /></label>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar video</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
     function apoyaRowHtml(a) {
       a = a || { nombre: '', tipo: '', imagen: '', ejemplo: false };
       return (
@@ -663,6 +687,10 @@
       apoList.innerHTML = (data.apoyan || []).map(apoyaRowHtml).join('');
       bindRemoveButtons(apoList);
       bindAllImageFields(apoList);
+
+      const vidList = document.getElementById('videos-list');
+      vidList.innerHTML = (data.videos || []).map(videoRowHtml).join('');
+      bindRemoveButtons(vidList);
     }
 
     function collectForm() {
@@ -777,6 +805,13 @@
       });
 
       // Preserve inscripcion if present
+      out.videos = [];
+      document.querySelectorAll('#videos-list .video-row').forEach((row) => {
+        const texto = val(row.querySelector('.v-texto'));
+        const url = val(row.querySelector('.v-url'));
+        if (texto || url) out.videos.push({ texto, url });
+      });
+
       if (content && content.inscripcion) out.inscripcion = content.inscripcion;
 
       return out;
@@ -902,6 +937,11 @@
       const list = document.getElementById('profesores-list');
       list.insertAdjacentHTML('beforeend', profesorRowHtml());
       bindAllImageFields(list.querySelector('.profesor-row:last-child'));
+    });
+
+    document.getElementById('btn-add-video').addEventListener('click', () => {
+      const list = document.getElementById('videos-list');
+      list.insertAdjacentHTML('beforeend', videoRowHtml());
     });
 
     document.getElementById('btn-add-apoya').addEventListener('click', () => {
