@@ -91,14 +91,9 @@
         "sede": "Sala mayor",
         "celdas": [
           {
-            "hora": "14:00",
-            "sede": "Aulas de Instrumentos",
-            "titulo": "Orquesta Fronterita"
-          },
-          {
-            "hora": "13:00 a 14:00",
-            "sede": "Hotel Altos de Irigoyen",
-            "titulo": "Conciertos al Mediodia"
+            "hora": "",
+            "sede": "",
+            "titulo": "Aulas de Instrumentos (Fronterita)"
           }
         ],
         "ejemplo": false
