@@ -57,6 +57,25 @@
         logo.removeAttribute('src');
       }
     }
+    const linksEl = $('#inicio-links');
+    if (linksEl) {
+      const links = Array.isArray(f.links) ? f.links : [];
+      linksEl.innerHTML = links.map((item) => {
+        const texto = (item && item.texto) || '';
+        const url = normalizeLink(item && item.url);
+        if (!texto || !url) return '';
+        return `<a class="btn outline inicio-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(texto)}</a>`;
+      }).join('');
+    }
+  }
+
+  function normalizeLink(raw) {
+    const s = String(raw || '').trim();
+    if (!s) return '';
+    if (/^(https?:|mailto:|tel:)/i.test(s)) return s;
+    if (s.startsWith('wa.me/') || s.startsWith('www.')) return 'https://' + s;
+    if (s.startsWith('@')) return 'https://instagram.com/' + s.slice(1);
+    return 'https://' + s;
   }
 
   function renderCronograma(cronograma) {

@@ -80,6 +80,11 @@
               </div>
             </div>
           </div>
+          <div class="inicio-links-admin">
+            <p class="section-lead">Botones de la página de inicio. Vos ponés el texto y el link. Después Guardar cambios.</p>
+            <div id="inicio-links-list" class="rows-list"></div>
+            <button type="button" class="btn outline btn-sm" id="btn-add-link">+ Agregar botón</button>
+          </div>
         </section>
 
         <!-- CRONOGRAMA -->
@@ -396,6 +401,22 @@
       );
     }
 
+
+    function linkRowHtml(item) {
+      item = item || { texto: '', url: '' };
+      return (
+        '<div class="row-card link-row">' +
+          '<div class="form-grid compact">' +
+            '<label>Texto del botón<input type="text" class="lk-texto" value="' + escAttr(item.texto) + '" placeholder="Instagram, Mapa, Formulario…" /></label>' +
+            '<label class="full">Link<input type="text" class="lk-url" value="' + escAttr(item.url) + '" placeholder="https://…" /></label>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar botón</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
     function profesorRowHtml(p) {
       p = p || { nombre: '', instrumento: '', bio: '', foto: '', ejemplo: false };
       return (
@@ -502,6 +523,9 @@
       setPathInput('festival.personeria', f.personeria);
       setPathInput('festival.presidente', f.presidente);
       setPathInput('festival.logo', f.logo || '');
+      const linkList = document.getElementById('inicio-links-list');
+      linkList.innerHTML = (f.links || []).map(linkRowHtml).join('');
+      bindRemoveButtons(linkList);
 
       const c = data.contacto || {};
       setPathInput('contacto.whatsapp', c.whatsapp);
@@ -582,6 +606,12 @@
       const logo = getPathInput('festival.logo');
       if (logo) out.festival.logo = logo;
       else delete out.festival.logo;
+      out.festival.links = [];
+      document.querySelectorAll('#inicio-links-list .link-row').forEach((row) => {
+        const texto = val(row.querySelector('.lk-texto'));
+        const url = val(row.querySelector('.lk-url'));
+        if (texto || url) out.festival.links.push({ texto, url });
+      });
 
       out.contacto = out.contacto || {};
       out.contacto.whatsapp = getPathInput('contacto.whatsapp');
@@ -751,6 +781,11 @@
       gateStatus.hidden = true;
     });
 
+
+    document.getElementById('btn-add-link').addEventListener('click', () => {
+      const list = document.getElementById('inicio-links-list');
+      list.insertAdjacentHTML('beforeend', linkRowHtml());
+    });
 
     document.getElementById('btn-add-orquesta').addEventListener('click', () => {
       const list = document.getElementById('orquestas-list');
