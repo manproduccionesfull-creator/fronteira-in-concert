@@ -157,7 +157,7 @@
         <!-- CONTACTO -->
         <section class="admin-section" id="sec-contacto">
           <h2>Contacto</h2>
-          <p class="section-lead">Datos del apartado Contacto (formulario de inscripción + WhatsApp, Instagram, etc.).</p>
+          <p class="section-lead">Datos del apartado Contacto (inscripción, WhatsApp, Instagram y donación Mercado Pago).</p>
           <div class="form-grid">
             <label>WhatsApp (solo números, sin +54)
               <input type="text" name="c_wa" data-path="contacto.whatsapp" placeholder="3741407013" />
@@ -180,7 +180,14 @@
             <label class="full">Web (cómo se muestra)
               <input type="text" name="c_web_disp" data-path="contacto.webDisplay" />
             </label>
+            <label class="full">Link de donación Mercado Pago
+              <input type="url" name="c_donacion" data-path="contacto.donacionUrl" placeholder="https://mpago.la/… o link de pago" />
+            </label>
+            <label class="full">Texto del botón Donar
+              <input type="text" name="c_donacion_txt" data-path="contacto.donacionTexto" placeholder="Donar con Mercado Pago" />
+            </label>
           </div>
+          <p class="section-lead">Si pegás el link de Mercado Pago, en Contacto aparece el botón Donar. Sin link, no se muestra.</p>
         </section>
       </form>
 
@@ -701,6 +708,8 @@
       setPathInput('contacto.email', c.email);
       setPathInput('contacto.web', c.web);
       setPathInput('contacto.webDisplay', c.webDisplay);
+      setPathInput('contacto.donacionUrl', c.donacionUrl || '');
+      setPathInput('contacto.donacionTexto', c.donacionTexto || 'Donar con Mercado Pago');
 
       // Festival logo + video thumbs
       document.querySelectorAll('#sec-inicio .image-field').forEach((field) => {
@@ -903,6 +912,8 @@
       out.contacto.email = getPathInput('contacto.email');
       out.contacto.web = getPathInput('contacto.web');
       out.contacto.webDisplay = getPathInput('contacto.webDisplay');
+      out.contacto.donacionUrl = getPathInput('contacto.donacionUrl');
+      out.contacto.donacionTexto = getPathInput('contacto.donacionTexto') || 'Donar con Mercado Pago';
 
       out.cronograma = {};
       document.querySelectorAll('.day-block').forEach((block) => {

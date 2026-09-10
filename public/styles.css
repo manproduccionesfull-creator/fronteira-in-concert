@@ -753,3 +753,12 @@ img, svg, video {
   border-radius: 8px;
   background: #000;
 }
+
+.donacion-box {
+  margin: 0 0 1.25rem;
+}
+.donacion-box .donacion-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  text-align: center;
+}

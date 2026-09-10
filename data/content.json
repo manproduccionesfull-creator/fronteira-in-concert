@@ -14,8 +14,7 @@
       "fechas": true,
       "lugar": true,
       "blurb": true,
-      "org": true,
-      "video": true
+      "org": true
     },
     "lineas": [],
     "botones": [
@@ -31,8 +30,7 @@
         "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
         "estilo": "gold"
       }
-    ],
-    "video": "/uploads/inicio-15s.mp4"
+    ]
   },
   "contacto": {
     "whatsapp": "3741407013",
@@ -41,7 +39,9 @@
     "instagramUrl": "https://instagram.com/fronteirainconcert",
     "email": "asociacioncivilallegro@gmail.com",
     "web": "",
-    "webDisplay": ""
+    "webDisplay": "",
+    "donacionUrl": "",
+    "donacionTexto": "Donar con Mercado Pago"
   },
   "cronograma": {
     "2026-10-08": [
@@ -607,6 +607,13 @@
       "bio": "",
       "ejemplo": false,
       "foto": "/uploads/mtvmg2m5-b6caa7b8.jpg"
+    },
+    {
+      "nombre": "",
+      "instrumento": "",
+      "bio": "",
+      "ejemplo": false,
+      "foto": "/uploads/mtvxm0zk-0a97d001.jpg"
     }
   ],
   "videos": [

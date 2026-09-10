@@ -312,12 +312,28 @@
   }
 
   function renderContacto(c, f) {
+    c = c || {};
+    f = f || {};
+    const donBox = $('#donacion-box');
+    const donBtn = $('#donacion-btn');
+    const donUrl = String(c.donacionUrl || '').trim();
+    if (donBox && donBtn) {
+      if (donUrl) {
+        donBox.hidden = false;
+        donBtn.href = donUrl;
+        donBtn.textContent = c.donacionTexto || 'Donar con Mercado Pago';
+      } else {
+        donBox.hidden = true;
+        donBtn.removeAttribute('href');
+      }
+    }
+    const wa = String(c.whatsapp || '').replace(/\D/g, '');
     const items = [
-      { label: 'WhatsApp', value: c.whatsappDisplay || c.whatsapp, href: `https://wa.me/54${c.whatsapp.replace(/\D/g, '')}` },
-      { label: 'Instagram', value: c.instagram, href: c.instagramUrl },
-      { label: 'Email', value: c.email, href: `mailto:${c.email}` },
-      { label: 'Web', value: c.webDisplay || c.web, href: c.web },
-    ];
+      wa ? { label: 'WhatsApp', value: c.whatsappDisplay || c.whatsapp, href: `https://wa.me/54${wa}` } : null,
+      c.instagram ? { label: 'Instagram', value: c.instagram, href: c.instagramUrl || '#' } : null,
+      c.email ? { label: 'Email', value: c.email, href: `mailto:${c.email}` } : null,
+      (c.web || c.webDisplay) ? { label: 'Web', value: c.webDisplay || c.web, href: c.web || '#' } : null,
+    ].filter(Boolean);
     $('#contact-list').innerHTML = items.map((i) => `
       <li>
         <a href="${escapeAttr(i.href)}" target="_blank" rel="noopener noreferrer">
@@ -325,7 +341,8 @@
         </a>
       </li>
     `).join('');
-    $('#contact-org').textContent = `${f.organizacion} · ${f.personeria}`;
+    const orgBits = [f.organizacion, f.personeria].filter(Boolean);
+    $('#contact-org').textContent = orgBits.join(' · ');
   }
 
   function renderInscripcion(insc) {
