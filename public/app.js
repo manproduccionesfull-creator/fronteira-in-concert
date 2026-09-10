@@ -185,7 +185,8 @@
       const hora = c.hora || '';
       const titulo = c.titulo || c.texto || '';
       const sede = c.sede || '';
-      if (!hora && !titulo && !sede && !c.tituloPt && !c.sedePt) return '';
+      const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
+      if (!hora && !titulo && !sede && !c.tituloPt && !c.sedePt && !presentaciones.length) return '';
       return `
         <div class="event-celda-block">
           ${hora ? `<div class="hora">${escapeHtml(hora)}</div>` : '<div class="hora"></div>'}
@@ -193,6 +194,7 @@
             ${titulo ? `<h3 class="multi-lines">${multilineHtml(titulo)}</h3>` : ''}
             ${sede ? `<p class="venue">${escapeHtml(sede)}</p>` : ''}
             ${ptLine(c.tituloPt, c.sedePt)}
+            ${presentacionesHtml(presentaciones)}
           </div>
         </div>`;
     }
@@ -224,8 +226,9 @@
           <article class="event-card concert-card">
             <div class="hora">${escapeHtml(c.hora || '')}</div>
             <div>
-              <h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>
+              ${c.artistas ? `<h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>` : ''}
               <p class="venue">${escapeHtml(c.lugar || '')}</p>
+              ${presentacionesHtml(c.presentaciones)}
             </div>
           </article>
         `).join('') : '<p class="empty">Todavía no hay conciertos cargados para este día.</p>'}
@@ -371,6 +374,19 @@
 
   function multilineHtml(str) {
     return escapeHtml(str).replace(/\n/g, '<br>');
+  }
+
+  function presentacionesHtml(list) {
+    if (!Array.isArray(list) || !list.length) return '';
+    const items = list.filter((p) => p && (p.nombre || p.foto));
+    if (!items.length) return '';
+    return `<ul class="pres-public">${items.map((p) => {
+      const foto = p.foto
+        ? `<img class="pres-thumb" src="${escapeAttr(p.foto)}" alt="" loading="lazy" />`
+        : `<span class="pres-thumb placeholder" aria-hidden="true"></span>`;
+      const nombre = p.nombre ? `<span class="pres-name">${multilineHtml(p.nombre)}</span>` : '';
+      return `<li class="pres-item">${foto}${nombre}</li>`;
+    }).join('')}</ul>`;
   }
 
   function escapeHtml(str) {

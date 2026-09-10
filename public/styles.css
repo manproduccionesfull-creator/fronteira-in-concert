@@ -802,3 +802,59 @@ img, svg, video {
   color: var(--gold);
   font-size: 1.05rem;
 }
+
+
+/* Presentaciones con foto (cronograma / concierto) */
+.pres-public {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.pres-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.pres-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.pres-thumb.placeholder {
+  display: inline-block;
+}
+.pres-name {
+  font-size: 0.92rem;
+  line-height: 1.3;
+  font-weight: 500;
+  white-space: pre-line;
+}
+.admin-editor .pres-block {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+}
+.admin-editor .pres-row {
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.admin-editor .pres-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0.35rem;
+}
+.admin-editor .pres-row .thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}

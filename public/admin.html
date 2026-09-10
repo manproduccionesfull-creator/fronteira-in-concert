@@ -353,8 +353,40 @@
     }
 
     /* ---------- Row builders ---------- */
+    function normalizePresentaciones(list) {
+      if (!Array.isArray(list)) return [];
+      return list.map((p) => ({
+        nombre: (p && p.nombre) || '',
+        foto: (p && p.foto) || '',
+      })).filter((p) => p.nombre || p.foto);
+    }
+
+    function presentacionRowHtml(p) {
+      p = p || { nombre: '', foto: '' };
+      return (
+        '<div class="pres-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Nombre / grupo<input type="text" class="pres-nombre" value="' + escAttr(p.nombre || '') + '" placeholder="Orquesta, solista, coro…" /></label>' +
+          '</div>' +
+          imageFieldHtml('Foto chica', 'pres-foto', p.foto || '', 'Subir foto') +
+          '<button type="button" class="btn outline btn-sm btn-remove-pres" title="Quitar esta presentación">✕ Quitar presentación</button>' +
+        '</div>'
+      );
+    }
+
+    function presentacionesBlockHtml(list) {
+      list = Array.isArray(list) ? list : [];
+      return (
+        '<div class="pres-block">' +
+          '<p class="section-lead" style="margin:8px 0 4px">Presentaciones con foto (una por fila)</p>' +
+          '<div class="pres-list">' + list.map(presentacionRowHtml).join('') + '</div>' +
+          '<button type="button" class="btn outline btn-sm btn-add-pres">+ Agregar presentación con foto</button>' +
+        '</div>'
+      );
+    }
+
     function normalizeCelda(c) {
-      if (typeof c === 'string') return { hora: '', sede: '', titulo: c, tituloPt: '', sedePt: '' };
+      if (typeof c === 'string') return { hora: '', sede: '', titulo: c, tituloPt: '', sedePt: '', presentaciones: [] };
       c = c || {};
       return {
         hora: c.hora || '',
@@ -362,6 +394,7 @@
         titulo: c.titulo || c.texto || '',
         tituloPt: c.tituloPt || '',
         sedePt: c.sedePt || '',
+        presentaciones: Array.isArray(c.presentaciones) ? c.presentaciones : [],
       };
     }
 
@@ -381,6 +414,7 @@
             '<label class="full">Título (português)<textarea class="ev-celda-titulo-pt" rows="3" placeholder="Tradução em português">' + escText(c.tituloPt) + '</textarea></label>' +
             '<label class="full">Sede (português)<input type="text" class="ev-celda-sede-pt" value="' + escAttr(c.sedePt) + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
+          presentacionesBlockHtml(c.presentaciones) +
           '<button type="button" class="btn outline btn-sm btn-remove-celda" title="Quitar esta celda">✕ Quitar celda</button>' +
         '</div>'
       );
@@ -419,7 +453,8 @@
 
 
     function concertRowHtml(c) {
-      c = c || { hora: '', artistas: '', lugar: '' };
+      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [] };
+      const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
       return (
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
@@ -427,6 +462,7 @@
             '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Una presentación o grupo por línea">' + escText(c.artistas) + '</textarea></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
+          presentacionesBlockHtml(presentaciones) +
           '<div class="row-footer">' +
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
             '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
@@ -649,6 +685,12 @@
 
     function bindRemoveButtons(listEl) {
       listEl.addEventListener('click', (e) => {
+        const presBtn = e.target.closest('.btn-remove-pres');
+        if (presBtn) {
+          const row = presBtn.closest('.pres-row');
+          if (row) row.remove();
+          return;
+        }
         const celdaBtn = e.target.closest('.btn-remove-celda');
         if (celdaBtn) {
           const celda = celdaBtn.closest('.ev-celda');
@@ -770,26 +812,42 @@
         btn.addEventListener('click', () => {
           const list = btn.closest('.day-block').querySelector('.day-events');
           list.insertAdjacentHTML('beforeend', eventRowHtml());
+          bindAllImageFields(list.querySelector('.event-row:last-child'));
         });
       });
       daysEl.querySelectorAll('.btn-add-concert').forEach((btn) => {
         btn.addEventListener('click', () => {
           const list = btn.closest('.day-block').querySelector('.day-concerts');
           list.insertAdjacentHTML('beforeend', concertRowHtml());
+          bindAllImageFields(list.querySelector('.concert-row:last-child'));
         });
       });
       if (!daysEl.dataset.celdasBound) {
         daysEl.dataset.celdasBound = '1';
         daysEl.addEventListener('click', (e) => {
+          const addPres = e.target.closest('.btn-add-pres');
+          if (addPres) {
+            const block = addPres.closest('.pres-block');
+            const list = block && block.querySelector('.pres-list');
+            if (list) {
+              list.insertAdjacentHTML('beforeend', presentacionRowHtml());
+              bindAllImageFields(list.querySelector('.pres-row:last-child'));
+            }
+            return;
+          }
           const add = e.target.closest('.btn-add-celda');
           if (!add) return;
           const row = add.closest('.event-row');
           const list = row && row.querySelector('.ev-celdas');
-          if (list) list.insertAdjacentHTML('beforeend', celdaRowHtml({ hora: '', sede: '', titulo: '', tituloPt: '', sedePt: '' }));
+          if (list) {
+            list.insertAdjacentHTML('beforeend', celdaRowHtml({ hora: '', sede: '', titulo: '', tituloPt: '', sedePt: '', presentaciones: [] }));
+            bindAllImageFields(list.querySelector('.ev-celda:last-child'));
+          }
         });
       }
       daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
       daysEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
+      bindAllImageFields(daysEl);
 
 
       // Orquestas
@@ -958,26 +1016,38 @@
             sede: val(row.querySelector('.ev-sede')),
             tituloPt: val(row.querySelector('.ev-titulo-pt')),
             sedePt: val(row.querySelector('.ev-sede-pt')),
-            celdas: [...row.querySelectorAll('.ev-celda')].map((celda) => ({
-              hora: val(celda.querySelector('.ev-celda-hora')),
-              sede: val(celda.querySelector('.ev-celda-sede')),
-              titulo: val(celda.querySelector('.ev-celda-titulo')),
-              tituloPt: val(celda.querySelector('.ev-celda-titulo-pt')),
-              sedePt: val(celda.querySelector('.ev-celda-sede-pt')),
-            })).filter((c) => c.hora || c.sede || c.titulo || c.tituloPt || c.sedePt),
+            celdas: [...row.querySelectorAll('.ev-celda')].map((celda) => {
+              const presentaciones = [...celda.querySelectorAll('.pres-row')].map((pr) => ({
+                nombre: val(pr.querySelector('.pres-nombre')),
+                foto: val(pr.querySelector('.pres-foto')),
+              })).filter((p) => p.nombre || p.foto);
+              return {
+                hora: val(celda.querySelector('.ev-celda-hora')),
+                sede: val(celda.querySelector('.ev-celda-sede')),
+                titulo: val(celda.querySelector('.ev-celda-titulo')),
+                tituloPt: val(celda.querySelector('.ev-celda-titulo-pt')),
+                sedePt: val(celda.querySelector('.ev-celda-sede-pt')),
+                presentaciones,
+              };
+            }).filter((c) => c.hora || c.sede || c.titulo || c.tituloPt || c.sedePt || (c.presentaciones && c.presentaciones.length)),
             ejemplo: !!row.querySelector('.ev-ejemplo').checked,
           });
         });
         out.cronograma[day] = events;
         const concerts = [];
         block.querySelectorAll('.concert-row').forEach((row) => {
+          const presentaciones = [...row.querySelectorAll('.pres-row')].map((pr) => ({
+            nombre: val(pr.querySelector('.pres-nombre')),
+            foto: val(pr.querySelector('.pres-foto')),
+          })).filter((p) => p.nombre || p.foto);
           concerts.push({
             hora: val(row.querySelector('.c-hora')),
             artistas: val(row.querySelector('.c-artistas')),
             lugar: val(row.querySelector('.c-lugar')),
+            presentaciones,
           });
         });
-        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar);
+        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || (c.presentaciones && c.presentaciones.length));
       });
       applyAutoPtCronograma(out.cronograma);
 
