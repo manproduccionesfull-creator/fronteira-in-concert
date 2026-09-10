@@ -117,7 +117,7 @@
         <!-- CRONOGRAMA -->
         <section class="admin-section" id="sec-cronograma">
           <h2>Cronograma por día</h2>
-          <p class="section-lead">Agregá o quitá actividades de cada día. Marcá «ejemplo» si todavía es placeholder.</p>
+          <p class="section-lead">Agregá actividades de cada día y, abajo, el apartado Concierto (quiénes tocan, lugar y hora).</p>
           <div id="cronograma-days"></div>
         </section>
 
@@ -412,6 +412,25 @@
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
             '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
             '<button type="button" class="btn outline btn-sm btn-remove">Quitar actividad</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+
+    function concertRowHtml(c) {
+      c = c || { hora: '', artistas: '', lugar: '' };
+      return (
+        '<div class="row-card concert-row">' +
+          '<div class="form-grid compact">' +
+            '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="20:30" /></label>' +
+            '<label class="full">Quiénes tocan<input type="text" class="c-artistas" value="' + escAttr(c.artistas) + '" placeholder="Orquesta, solista…" /></label>' +
+            '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
+          '</div>' +
+          '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar concierto</button>' +
           '</div>' +
         '</div>'
       );
@@ -733,11 +752,16 @@
       const daysEl = document.getElementById('cronograma-days');
       daysEl.innerHTML = DAY_META.map((d) => {
         const events = (data.cronograma && data.cronograma[d.key]) || [];
+        const concerts = (data.conciertos && data.conciertos[d.key]) || [];
         return (
           '<div class="day-block" data-day="' + d.key + '">' +
             '<h3>' + d.label + '</h3>' +
             '<div class="day-events rows-list">' + events.map(eventRowHtml).join('') + '</div>' +
             '<button type="button" class="btn gold btn-add-event" style="margin-top:10px;width:100%;font-size:1.05rem;padding:12px">+ Agregar actividad</button>' +
+            '<h4 class="day-concert-title">Concierto</h4>' +
+            '<p class="section-lead" style="margin-top:0">Quiénes tocan ese día, lugar y hora.</p>' +
+            '<div class="day-concerts rows-list">' + concerts.map(concertRowHtml).join('') + '</div>' +
+            '<button type="button" class="btn outline btn-add-concert" style="margin-top:10px;width:100%">+ Agregar concierto</button>' +
           '</div>'
         );
       }).join('');
@@ -746,6 +770,12 @@
         btn.addEventListener('click', () => {
           const list = btn.closest('.day-block').querySelector('.day-events');
           list.insertAdjacentHTML('beforeend', eventRowHtml());
+        });
+      });
+      daysEl.querySelectorAll('.btn-add-concert').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const list = btn.closest('.day-block').querySelector('.day-concerts');
+          list.insertAdjacentHTML('beforeend', concertRowHtml());
         });
       });
       if (!daysEl.dataset.celdasBound) {
@@ -759,6 +789,7 @@
         });
       }
       daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
+      daysEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
 
 
       // Orquestas
@@ -916,6 +947,7 @@
       out.contacto.donacionTexto = getPathInput('contacto.donacionTexto') || 'Donar con Mercado Pago';
 
       out.cronograma = {};
+      out.conciertos = {};
       document.querySelectorAll('.day-block').forEach((block) => {
         const day = block.dataset.day;
         const events = [];
@@ -937,6 +969,15 @@
           });
         });
         out.cronograma[day] = events;
+        const concerts = [];
+        block.querySelectorAll('.concert-row').forEach((row) => {
+          concerts.push({
+            hora: val(row.querySelector('.c-hora')),
+            artistas: val(row.querySelector('.c-artistas')),
+            lugar: val(row.querySelector('.c-lugar')),
+          });
+        });
+        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar);
       });
       applyAutoPtCronograma(out.cronograma);
 

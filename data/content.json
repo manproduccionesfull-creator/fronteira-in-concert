@@ -10,12 +10,12 @@
     "presidente": "",
     "mostrar": {
       "logo": false,
-      "video": true,
       "edicion": true,
       "fechas": true,
       "lugar": true,
       "blurb": true,
-      "org": true
+      "org": true,
+      "video": true
     },
     "lineas": [],
     "botones": [
@@ -41,9 +41,7 @@
     "instagramUrl": "https://instagram.com/fronteirainconcert",
     "email": "asociacioncivilallegro@gmail.com",
     "web": "",
-    "webDisplay": "",
-    "donacionUrl": "",
-    "donacionTexto": "Donar con Mercado Pago"
+    "webDisplay": ""
   },
   "cronograma": {
     "2026-10-08": [
@@ -51,35 +49,33 @@
         "hora": "07:00",
         "titulo": "llegada - Acreditación y bienvenida",
         "sede": "Escuela de Frontera 604",
-        "tituloPt": "chegada - Credenciamento e boas-vindas",
-        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "chegada - Credenciamento e boas-vindas",
+        "sedePt": "Escola de Fronteira 604"
       },
       {
         "hora": "07:30",
         "titulo": "Desayuno",
         "sede": "",
-        "tituloPt": "Café da manhã",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Café da manhã",
+        "sedePt": ""
       },
       {
         "hora": "08:15",
         "titulo": "Acondicionamiento y organización de los espacios de hospedaje.",
         "sede": "ESCUELAS: EPET 26 - ESPECIAL - FRONTERA 604 - E.F.A 0706",
-        "tituloPt": "Acondicionamento e organização dos espaços de hospedagem.",
-        "sedePt": "ESCOLAS: EPET 26 - ESPECIAL - FRONTEIRA 604 - E.F.A 0706",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Acondicionamento e organização dos espaços de hospedagem.",
+        "sedePt": "ESCOLAS: EPET 26 - ESPECIAL - FRONTEIRA 604 - E.F.A 0706"
       },
       {
         "hora": "10:00",
         "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
-        "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
-        "sedePt": "Salas",
         "celdas": [
           {
             "hora": "",
@@ -96,14 +92,14 @@
             "sedePt": ""
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
+        "sedePt": "Salas"
       },
       {
         "hora": "12:00",
         "titulo": "Almuerzo",
         "sede": "Comedor",
-        "tituloPt": "Almoço",
-        "sedePt": "Refeitório",
         "celdas": [
           {
             "hora": "13 a 14",
@@ -113,14 +109,14 @@
             "sedePt": "Altos de Irigoyen Hotel"
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Almoço",
+        "sedePt": "Refeitório"
       },
       {
         "hora": "14:00",
         "titulo": "Ensayo general (ORQUESTA FINC )",
         "sede": "Sala mayor",
-        "tituloPt": "Ensaio geral (ORQUESTRA FINC)",
-        "sedePt": "Sala principal",
         "celdas": [
           {
             "hora": "",
@@ -130,34 +126,36 @@
             "sedePt": ""
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Ensaio geral (ORQUESTRA FINC)",
+        "sedePt": "Sala principal"
       },
       {
         "hora": "17:00",
         "titulo": "Merienda y descanso",
         "sede": "aseo personal",
-        "tituloPt": "Lanche e descanso",
-        "sedePt": "higiene pessoal",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Lanche e descanso",
+        "sedePt": "higiene pessoal"
       },
       {
         "hora": "19:30",
         "titulo": "Presentación de las delegaciones-Profesores-Actuación",
         "sede": "",
-        "tituloPt": "Apresentação das delegações-Professores-Apresentação",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Apresentação das delegações-Professores-Apresentação",
+        "sedePt": ""
       },
       {
         "hora": "21:00",
         "titulo": "Cena - Descanso",
         "sede": "",
-        "tituloPt": "Jantar - Descanso",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "Jantar - Descanso",
+        "sedePt": ""
       }
     ],
     "2026-10-09": [
@@ -165,8 +163,6 @@
         "hora": "7:30  8:30",
         "titulo": "DESAYUNO",
         "sede": "Escuela de Frontera 604",
-        "tituloPt": "CAFÉ DA MANHÃ",
-        "sedePt": "Escola de Fronteira 604",
         "celdas": [
           {
             "hora": "8:30  9:00",
@@ -176,14 +172,14 @@
             "sedePt": ""
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CAFÉ DA MANHÃ",
+        "sedePt": "Escola de Fronteira 604"
       },
       {
         "hora": "09:00",
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "Parciais de instrumentos",
         "celdas": [
           {
             "hora": "",
@@ -200,32 +196,32 @@
             "sedePt": "Alunos inscritos"
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "Parciais de instrumentos"
       },
       {
         "hora": "12:00",
         "titulo": "ALMUERZO",
         "sede": "",
-        "tituloPt": "ALMOÇO",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ALMOÇO",
+        "sedePt": ""
       },
       {
         "hora": "13 a 14",
         "titulo": "CONCIERTOS AL MEDIODIA",
         "sede": "Altos de Irigoyen Hotel",
-        "tituloPt": "CONCERTOS AO MEIO-DIA",
-        "sedePt": "Altos de Irigoyen Hotel",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CONCERTOS AO MEIO-DIA",
+        "sedePt": "Altos de Irigoyen Hotel"
       },
       {
         "hora": "14:00",
         "titulo": "ORQUESTA FINC",
         "sede": "ensayo genera -Sala mayor",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "ensaio geral - Sala principal",
         "celdas": [
           {
             "hora": "",
@@ -235,34 +231,36 @@
             "sedePt": "Salas de instrumentos"
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "ensaio geral - Sala principal"
       },
       {
         "hora": "17:00",
         "titulo": "MERIENDA",
         "sede": "aseo personal -Preparación para concierto",
-        "tituloPt": "LANCHE",
-        "sedePt": "higiene pessoal - Preparação para o concerto",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "LANCHE",
+        "sedePt": "higiene pessoal - Preparação para o concerto"
       },
       {
         "hora": "19:00",
         "titulo": "CONCIERTO",
         "sede": "Escola de Educação Básica Dr. Theodureto",
-        "tituloPt": "CONCERTO",
-        "sedePt": "Escola de Educação Básica Dr. Theodureto",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CONCERTO",
+        "sedePt": "Escola de Educação Básica Dr. Theodureto"
       },
       {
         "hora": "21:00",
         "titulo": "CENA - DESCANSO",
         "sede": "Luego cada delagación a sus hospedajes",
-        "tituloPt": "JANTAR - DESCANSO",
-        "sedePt": "Depois cada delegação para suas hospedagens",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "JANTAR - DESCANSO",
+        "sedePt": "Depois cada delegação para suas hospedagens"
       }
     ],
     "2026-10-10": [
@@ -270,8 +268,6 @@
         "hora": "07:30 08:30",
         "titulo": "DESAYUNO",
         "sede": "Escuela de Frontera 604",
-        "tituloPt": "CAFÉ DA MANHÃ",
-        "sedePt": "Escola de Fronteira 604",
         "celdas": [
           {
             "hora": "8:30  9:00",
@@ -281,14 +277,14 @@
             "sedePt": ""
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CAFÉ DA MANHÃ",
+        "sedePt": "Escola de Fronteira 604"
       },
       {
         "hora": "09:00",
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "Parciais de instrumentos",
         "celdas": [
           {
             "hora": "",
@@ -298,41 +294,41 @@
             "sedePt": "Ensaio geral"
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "Parciais de instrumentos"
       },
       {
         "hora": "11:00",
         "titulo": "MASTER CLASS",
         "sede": "Alumnos inscriptos",
-        "tituloPt": "MASTER CLASS",
-        "sedePt": "Alunos inscritos",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "MASTER CLASS",
+        "sedePt": "Alunos inscritos"
       },
       {
         "hora": "12:00",
         "titulo": "ALMUERZO",
         "sede": "",
-        "tituloPt": "ALMOÇO",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ALMOÇO",
+        "sedePt": ""
       },
       {
         "hora": "13 a 14",
         "titulo": "CONCIERTOS AL MEDIODIA",
         "sede": "Altos de Irigoyen Hotel",
-        "tituloPt": "CONCERTOS AO MEIO-DIA",
-        "sedePt": "Altos de Irigoyen Hotel",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CONCERTOS AO MEIO-DIA",
+        "sedePt": "Altos de Irigoyen Hotel"
       },
       {
         "hora": "14:00",
         "titulo": "ORQUESTA FINC",
         "sede": "ensayo genera -Sala mayor",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "ensaio geral - Sala principal",
         "celdas": [
           {
             "hora": "",
@@ -349,34 +345,36 @@
             "sedePt": "Parque Turístico Ambiental de Integración"
           }
         ],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "ensaio geral - Sala principal"
       },
       {
         "hora": "17:00",
         "titulo": "MERIENDA",
         "sede": "aseo personal -Preparación para concierto",
-        "tituloPt": "LANCHE",
-        "sedePt": "higiene pessoal - Preparação para o concerto",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "LANCHE",
+        "sedePt": "higiene pessoal - Preparação para o concerto"
       },
       {
         "hora": "19:00",
         "titulo": "CONCIERTO",
         "sede": "Escuela Frontera 604",
-        "tituloPt": "CONCERTO",
-        "sedePt": "Escuela Frontera 604",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "CONCERTO",
+        "sedePt": "Escuela Frontera 604"
       },
       {
         "hora": "21:30",
         "titulo": "CENA - DESCANSO",
         "sede": "Luego cada delagación a sus hospedajes",
-        "tituloPt": "JANTAR - DESCANSO",
-        "sedePt": "Depois cada delegação para suas hospedagens",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": false,
+        "tituloPt": "JANTAR - DESCANSO",
+        "sedePt": "Depois cada delegação para suas hospedagens"
       }
     ],
     "2026-10-11": [
@@ -384,28 +382,28 @@
         "hora": "",
         "titulo": "",
         "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": true,
+        "tituloPt": "",
+        "sedePt": ""
       },
       {
         "hora": "",
         "titulo": "",
         "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": true,
+        "tituloPt": "",
+        "sedePt": ""
       },
       {
         "hora": "",
         "titulo": "",
         "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": true,
+        "tituloPt": "",
+        "sedePt": ""
       }
     ]
   },
@@ -615,7 +613,7 @@
       "instrumento": "Profesor - Metales",
       "bio": "",
       "ejemplo": false,
-      "foto": "/uploads/mtw04jma-b7b334e4.jpg"
+      "foto": "/uploads/mtvy2914-8c58f6e3.jpg"
     }
   ],
   "videos": [
@@ -627,5 +625,11 @@
       "texto": "Recuerdo 2025",
       "url": "https://www.instagram.com/p/DPV9MnejsNh/?hl=es-la"
     }
-  ]
+  ],
+  "conciertos": {
+    "2026-10-08": [],
+    "2026-10-09": [],
+    "2026-10-10": [],
+    "2026-10-11": []
+  }
 }

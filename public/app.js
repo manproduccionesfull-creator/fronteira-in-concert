@@ -170,10 +170,6 @@
 
     const events = cronograma[selectedDay] || [];
     const list = $('#day-events');
-    if (!events.length) {
-      list.innerHTML = '<p class="empty">Sin eventos para este día.</p>';
-      return;
-    }
     const L = DAY_LABELS[selectedDay];
     function ptLine(tituloPt, sedePt) {
       const parts = [];
@@ -201,7 +197,14 @@
         </div>`;
     }
 
-    list.innerHTML = `<p class="muted" style="margin:0 0 0.75rem">${L.full}</p>` + events.map((ev) => `
+    const concerts = (content && content.conciertos && content.conciertos[selectedDay]) || [];
+    let html = `<p class="muted" style="margin:0 0 0.75rem">${L.full}</p>`;
+    if (!events.length && !concerts.length) {
+      list.innerHTML = '<p class="empty">Sin eventos para este día.</p>';
+      return;
+    }
+    if (events.length) {
+      html += events.map((ev) => `
       <article class="event-card">
         <div class="hora">${escapeHtml(ev.hora)}</div>
         <div>
@@ -213,6 +216,21 @@
         ${(Array.isArray(ev.celdas) ? ev.celdas : []).map(celdaBlockHtml).join('')}
       </article>
     `).join('');
+    }
+    html += `
+      <div class="concert-section">
+        <h3 class="concert-heading">Concierto</h3>
+        ${concerts.length ? concerts.map((c) => `
+          <article class="event-card concert-card">
+            <div class="hora">${escapeHtml(c.hora || '')}</div>
+            <div>
+              <h3>${escapeHtml(c.artistas || '')}</h3>
+              <p class="venue">${escapeHtml(c.lugar || '')}</p>
+            </div>
+          </article>
+        `).join('') : '<p class="empty">Todavía no hay conciertos cargados para este día.</p>'}
+      </div>`;
+    list.innerHTML = html;
   }
 
 

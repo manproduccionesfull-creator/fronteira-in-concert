@@ -220,6 +220,9 @@ app.post('/api/content', async (req, res) => {
     const previous = readContent();
     let payload = enrichContent(req.body);
     payload = preserveFestivalVideo(payload, previous);
+    if (!payload.conciertos && previous && previous.conciertos) {
+      payload.conciertos = previous.conciertos;
+    }
     writeContent(payload);
     try {
       await persistToGithub('data/content.json', fs.readFileSync(CONTENT_PATH), 'Guardar contenido del festival');
