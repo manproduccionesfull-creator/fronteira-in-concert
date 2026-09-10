@@ -1,6 +1,6 @@
 {
   "festival": {
-    "nombre": "Fronteira in Concert",
+    "nombre": "FinC 2026",
     "edicion": "10ª edición",
     "fechas": "8, 9, 10  y 11 de octubre de 2026",
     "lugar": "Bernardo de Irigoyen, Misiones, Argentina",
@@ -457,12 +457,20 @@
       "imagen": "/uploads/mtu1wb2q-65a6dc64.jpg"
     },
     {
-      "nombre": "Orquesta Sinfónica Luzamor",
+      "nombre": "Orquesta  Luzamor",
       "origen": "Maringá-PR-BR",
       "descripcion": "",
       "ejemplo": true,
       "logo": "/uploads/mtu1qy6t-b7482645.png",
       "imagen": "/uploads/mtu16kk6-a724bf4a.jpg"
+    },
+    {
+      "nombre": "Orquesta Binacional",
+      "origen": "Bdo de Irigoyen,Misiones",
+      "descripcion": "",
+      "ejemplo": false,
+      "logo": "/uploads/mtvm44q6-1d8d6e2a.jpg",
+      "imagen": "/uploads/mtvm4v0m-96b71fcc.jpg"
     }
   ],
   "apoyan": [
@@ -591,6 +599,13 @@
       "bio": "",
       "ejemplo": false,
       "foto": "/uploads/mtvl4md9-d9676485.png"
+    },
+    {
+      "nombre": "",
+      "instrumento": "",
+      "bio": "",
+      "ejemplo": false,
+      "foto": "/uploads/mtvmg2m5-b6caa7b8.jpg"
     }
   ],
   "videos": [
