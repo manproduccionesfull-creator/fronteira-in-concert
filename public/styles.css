@@ -161,6 +161,11 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
   font-variant-numeric: tabular-nums;
 }
 .event-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.event-card h3.multi-lines {
+  white-space: pre-line;
+  font-weight: 600;
+  line-height: 1.35;
+}
 .event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; }
 .event-card .pt-line {
   margin: 0.2rem 0 0;

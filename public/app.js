@@ -190,7 +190,7 @@
         <div class="event-celda-block">
           ${hora ? `<div class="hora">${escapeHtml(hora)}</div>` : '<div class="hora"></div>'}
           <div>
-            ${titulo ? `<h3>${escapeHtml(titulo)}</h3>` : ''}
+            ${titulo ? `<h3 class="multi-lines">${multilineHtml(titulo)}</h3>` : ''}
             ${sede ? `<p class="venue">${escapeHtml(sede)}</p>` : ''}
             ${ptLine(c.tituloPt, c.sedePt)}
           </div>
@@ -208,7 +208,7 @@
       <article class="event-card">
         <div class="hora">${escapeHtml(ev.hora)}</div>
         <div>
-          <h3>${escapeHtml(ev.titulo)}</h3>
+          <h3 class="multi-lines">${multilineHtml(ev.titulo)}</h3>
           <p class="venue">${escapeHtml(ev.sede)}</p>
           ${ptLine(ev.tituloPt, ev.sedePt)}
           ${ejemploBadge(ev.ejemplo)}
@@ -224,7 +224,7 @@
           <article class="event-card concert-card">
             <div class="hora">${escapeHtml(c.hora || '')}</div>
             <div>
-              <h3>${escapeHtml(c.artistas || '')}</h3>
+              <h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>
               <p class="venue">${escapeHtml(c.lugar || '')}</p>
             </div>
           </article>
@@ -367,6 +367,10 @@
   function renderInscripcion(insc) {
     if (insc?.titulo) $('#insc-titulo').textContent = insc.titulo;
     if (insc?.intro) $('#insc-intro').textContent = insc.intro;
+  }
+
+  function multilineHtml(str) {
+    return escapeHtml(str).replace(/\n/g, '<br>');
   }
 
   function escapeHtml(str) {

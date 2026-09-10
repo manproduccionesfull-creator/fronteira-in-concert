@@ -377,8 +377,8 @@
                 '<button type="button" class="btn outline btn-sm btn-clear-field" data-clear=".ev-celda-sede" title="Borrar solo sede">✕ sede</button>' +
               '</span>' +
             '</label>' +
-            '<label class="full">Título<input type="text" class="ev-celda-titulo" value="' + escAttr(c.titulo) + '" /></label>' +
-            '<label class="full">Título (português)<input type="text" class="ev-celda-titulo-pt" value="' + escAttr(c.tituloPt) + '" placeholder="Tradução em português" /></label>' +
+            '<label class="full">Título / detalle<textarea class="ev-celda-titulo" rows="4" placeholder="Una presentación por línea">' + escText(c.titulo) + '</textarea></label>' +
+            '<label class="full">Título (português)<textarea class="ev-celda-titulo-pt" rows="3" placeholder="Tradução em português">' + escText(c.tituloPt) + '</textarea></label>' +
             '<label class="full">Sede (português)<input type="text" class="ev-celda-sede-pt" value="' + escAttr(c.sedePt) + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
           '<button type="button" class="btn outline btn-sm btn-remove-celda" title="Quitar esta celda">✕ Quitar celda</button>' +
@@ -399,8 +399,8 @@
                 '<button type="button" class="btn outline btn-sm btn-clear-field" data-clear=".ev-sede" title="Borrar solo sede">✕ sede</button>' +
               '</span>' +
             '</label>' +
-            '<label class="full">Título<input type="text" class="ev-titulo" value="' + escAttr(ev.titulo) + '" /></label>' +
-            '<label class="full">Título (português)<input type="text" class="ev-titulo-pt" value="' + escAttr(ev.tituloPt || '') + '" placeholder="Tradução em português" /></label>' +
+            '<label class="full">Título / detalle<textarea class="ev-titulo" rows="3" placeholder="Podés usar varias líneas">' + escText(ev.titulo) + '</textarea></label>' +
+            '<label class="full">Título (português)<textarea class="ev-titulo-pt" rows="3" placeholder="Tradução em português">' + escText(ev.tituloPt || '') + '</textarea></label>' +
             '<label class="full">Sede (português)<input type="text" class="ev-sede-pt" value="' + escAttr(ev.sedePt || '') + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
           '<div class="ev-celdas">' +
@@ -424,7 +424,7 @@
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="20:30" /></label>' +
-            '<label class="full">Quiénes tocan<input type="text" class="c-artistas" value="' + escAttr(c.artistas) + '" placeholder="Orquesta, solista…" /></label>' +
+            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Una presentación o grupo por línea">' + escText(c.artistas) + '</textarea></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
           '<div class="row-footer">' +
