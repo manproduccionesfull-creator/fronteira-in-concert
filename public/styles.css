@@ -167,30 +167,36 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
 .event-card .event-body {
   min-width: 0;
   width: 100%;
+  text-align: center;
 }
-.event-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.event-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; text-align: center; }
 .event-card h3.multi-lines {
   white-space: pre-line;
   font-weight: 600;
   line-height: 1.35;
+  text-align: center;
 }
-.event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; }
+.event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; text-align: center; }
 .event-card .pt-line {
   margin: 0.2rem 0 0;
   font-size: 0.78rem;
   line-height: 1.35;
   color: var(--muted);
   font-weight: 400;
+  text-align: center;
 }
 .event-card .pt-line .pt-sede { opacity: 0.9; }
+.event-card .badge { display: inline-block; }
 .event-card .event-celda-block {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.45rem;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
   width: 100%;
+  text-align: center;
 }
 .ev-celdas { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
 .ev-celda {
@@ -801,6 +807,7 @@ img, svg, video {
   margin: 0 0 0.75rem;
   color: var(--gold);
   font-size: 1.15rem;
+  text-align: center;
 }
 .concert-card {
   border-color: rgba(212, 175, 55, 0.35);
@@ -815,18 +822,22 @@ img, svg, video {
 /* Presentaciones con foto (cronograma / concierto) */
 .pres-public {
   list-style: none;
-  margin: 0.55rem 0 0;
+  margin: 0.55rem auto 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.45rem;
+  width: 100%;
 }
 .pres-item {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 0.4rem;
   min-width: 0;
+  width: 100%;
+  text-align: center;
 }
 .pres-thumb {
   width: 100%;
@@ -840,15 +851,18 @@ img, svg, video {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   display: block;
+  margin: 0 auto;
 }
 .pres-thumb.placeholder {
   display: block;
+  margin: 0 auto;
 }
 .pres-name {
   font-size: 0.95rem;
   line-height: 1.35;
   font-weight: 500;
   white-space: pre-line;
+  text-align: center;
 }
 .admin-editor .pres-block {
   margin: 0.5rem 0 0.75rem;
