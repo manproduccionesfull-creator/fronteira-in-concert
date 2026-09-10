@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="/icons/icon-512.png" />
   <title>Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=61" />
+  <link rel="stylesheet" href="/styles.css?v=62" />
 </head>
 <body>
   <header class="topbar">
@@ -28,8 +28,12 @@
   <main id="app" class="app">
     <section id="inicio" class="panel active" data-panel="inicio">
       <div class="hero">
-        <div class="hero-video-wrap" id="hero-video-wrap" hidden>
-          <video id="hero-video" class="hero-video" muted playsinline loop autoplay preload="auto"></video>
+        <div class="hero-video-row" id="hero-video-row" hidden>
+          <span class="hero-year" aria-hidden="true">2016</span>
+          <div class="hero-video-wrap" id="hero-video-wrap">
+            <video id="hero-video" class="hero-video" muted playsinline loop autoplay preload="auto"></video>
+          </div>
+          <span class="hero-year" aria-hidden="true">2026</span>
         </div>
         <img id="hero-logo" class="hero-logo" alt="Logo del festival" hidden />
         <p class="eyebrow" id="hero-edicion">10ª edición</p>
@@ -134,6 +138,6 @@
   </nav>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/app.js?v=61" defer></script>
+  <script src="/app.js?v=62" defer></script>
 </body>
 </html>
