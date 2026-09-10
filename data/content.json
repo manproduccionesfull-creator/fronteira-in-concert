@@ -112,7 +112,7 @@
       {
         "hora": "17:00",
         "titulo": "Merienda y descanso",
-        "sede": "",
+        "sede": "aseo personal",
         "celdas": [],
         "ejemplo": false
       },
@@ -134,7 +134,7 @@
     "2026-10-09": [
       {
         "hora": "7:30  8:30",
-        "titulo": "Desayuno",
+        "titulo": "DESAYUNO",
         "sede": "Escuela de Frontera 604",
         "celdas": [
           {
@@ -174,6 +174,40 @@
         "hora": "13 a 14",
         "titulo": "CONCIERTOS AL MEDIODIA",
         "sede": "Altos de Irigoyen Hotel",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "14:00",
+        "titulo": "ORQUESTA FINC",
+        "sede": "ensayo genera -Sala mayor",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "Aulas de instrumentos",
+            "titulo": "FRONTERITA"
+          }
+        ],
+        "ejemplo": false
+      },
+      {
+        "hora": "17:00",
+        "titulo": "MERIENDA",
+        "sede": "aseo personal -Preparación para concierto",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "19:00",
+        "titulo": "CONCIERTO",
+        "sede": "Escola de Educação Básica Dr. Theodureto",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "21:00",
+        "titulo": "CENA - DESCANSO",
+        "sede": "Luego cada delagación a sus hospedajes",
         "celdas": [],
         "ejemplo": false
       }
