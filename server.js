@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
+const { enrichContent } = require('./lib/cronograma-pt');
 
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'fronteira2026';
@@ -190,13 +191,14 @@ app.post('/api/content', async (req, res) => {
         return res.status(400).json({ error: 'Falta la seccion: ' + key });
       }
     }
-    writeContent(req.body);
+    const payload = enrichContent(req.body);
+    writeContent(payload);
     try {
       await persistToGithub('data/content.json', fs.readFileSync(CONTENT_PATH), 'Guardar contenido del festival');
     } catch (err) {
       console.error(err);
     }
-    res.json({ ok: true, message: 'Contenido guardado' });
+    res.json({ ok: true, message: 'Contenido guardado', content: payload });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'No se pudo guardar' });

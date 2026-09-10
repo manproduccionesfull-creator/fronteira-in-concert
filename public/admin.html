@@ -749,6 +749,73 @@
       bindRemoveButtons(vidList);
     }
 
+
+    function autoPtText(s, kind) {
+      s = String(s || '').trim();
+      if (!s) return '';
+      const tituloExact = {
+        'Desayuno': 'Café da manhã', 'DESAYUNO': 'CAFÉ DA MANHÃ', 'Almuerzo': 'Almoço', 'ALMUERZO': 'ALMOÇO',
+        'MERIENDA': 'LANCHE', 'Merienda y descanso': 'Lanche e descanso', 'CONCIERTO': 'CONCERTO',
+        'CONCIERTOS AL MEDIODIA': 'CONCERTOS AO MEIO-DIA', 'CENA - DESCANSO': 'JANTAR - DESCANSO',
+        'Cena - Descanso': 'Jantar - Descanso', 'ORQUESTA FINC': 'ORQUESTRA FINC',
+        'PRÁCTICA INDIVIDUAL': 'PRÁTICA INDIVIDUAL', 'MASTER CLASS': 'MASTER CLASS',
+        'Taller de dirección coral': 'Oficina de regência coral', 'Ensayo conjunto': 'Ensaio conjunto',
+        'Gala sinfónica': 'Gala sinfônica', 'Matiné familiar': 'Matinê familiar',
+        'Concierto de clausura': 'Concerto de encerramento', 'Brindis y cierre': 'Brinde e encerramento',
+        'llegada - Acreditación y bienvenida': 'chegada - Credenciamento e boas-vindas',
+      };
+      const sedeExact = {
+        'Escuela de Frontera 604': 'Escola de Fronteira 604',
+        'Parque Temático y Ambiental de la Integración': 'Parque Temático e Ambiental da Integração',
+        'Sala mayor': 'Sala principal', 'Comedor': 'Refeitório', 'Aulas': 'Salas',
+        'aseo personal': 'higiene pessoal',
+      };
+      if (kind === 'sede') {
+        if (sedeExact[s]) return sedeExact[s];
+      } else if (tituloExact[s]) return tituloExact[s];
+      const reps = kind === 'sede' ? [
+        ['Escuela de Frontera', 'Escola de Fronteira'], ['ESCUELAS', 'ESCOLAS'], ['FRONTERA', 'FRONTEIRA'],
+        ['Aulas', 'Salas'], ['Comedor', 'Refeitório'], ['Sala mayor', 'Sala principal'],
+        ['aseo personal', 'higiene pessoal'], ['Preparación para concierto', 'Preparação para o concerto'],
+        ['Parque Temático y Ambiental de la Integración', 'Parque Temático e Ambiental da Integração'],
+        ['Ensayo general', 'Ensaio geral'], ['ensayo genera', 'ensaio geral'],
+        ['Parciales de intrumentos', 'Parciais de instrumentos'], ['Alumnos inscriptos', 'Alunos inscritos'],
+        ['Luego cada delagación a sus hospedajes', 'Depois cada delegação para suas hospedagens'],
+      ] : [
+        ['ORQUESTA', 'ORQUESTRA'], ['Orquesta', 'Orquestra'], ['Ensayo general', 'Ensaio geral'],
+        ['ensayo general', 'ensaio geral'], ['Ensayo', 'Ensaio'], ['ensayo', 'ensaio'],
+        ['Clases parciales', 'Aulas parciais'], ['Acreditación', 'Credenciamento'],
+        ['bienvenida', 'boas-vindas'], ['llegada', 'chegada'], ['Desayuno', 'Café da manhã'],
+        ['DESAYUNO', 'CAFÉ DA MANHÃ'], ['Almuerzo', 'Almoço'], ['ALMUERZO', 'ALMOÇO'],
+        ['Merienda', 'Lanche'], ['MERIENDA', 'LANCHE'], ['Cena', 'Jantar'], ['CENA', 'JANTAR'],
+        ['Concierto', 'Concerto'], ['CONCIERTO', 'CONCERTO'], ['CONCIERTOS', 'CONCERTOS'],
+        ['Presentación', 'Apresentação'], ['delegaciones', 'delegações'], ['Profesores', 'Professores'],
+        ['Actuación', 'Apresentação'], ['dirección coral', 'regência coral'], ['Taller', 'Oficina'],
+        ['clausura', 'encerramento'], ['Brindis', 'Brinde'], ['cierre', 'encerramento'],
+        ['sinfónica', 'sinfônica'], ['Matiné', 'Matinê'], ['PRÁCTICA', 'PRÁTICA'],
+        ['AL MEDIODIA', 'AO MEIO-DIA'], ['Aulas de Instrumentos', 'Salas de instrumentos'],
+        ['instrumentales', 'instrumentais'], ['organización', 'organização'], ['espacios', 'espaços'],
+        ['hospedaje', 'hospedagem'], ['Acondicionamiento', 'Acondicionamento'], ['FRONTRITA', 'FRONTERITA'],
+      ];
+      let out = s;
+      reps.forEach(([a, b]) => { out = out.split(a).join(b); });
+      return out;
+    }
+
+    function applyAutoPtCronograma(cronograma) {
+      Object.keys(cronograma || {}).forEach((day) => {
+        (cronograma[day] || []).forEach((ev) => {
+          ev.tituloPt = autoPtText(ev.titulo, 'titulo');
+          ev.sedePt = ev.sede ? autoPtText(ev.sede, 'sede') : '';
+          (ev.celdas || []).forEach((c) => {
+            c.tituloPt = autoPtText(c.titulo, 'titulo');
+            c.sedePt = c.sede ? autoPtText(c.sede, 'sede') : '';
+          });
+        });
+      });
+      return cronograma;
+    }
+
     function collectForm() {
       const out = JSON.parse(JSON.stringify(content || {}));
       out.festival = out.festival || {};
@@ -824,6 +891,7 @@
         });
         out.cronograma[day] = events;
       });
+      applyAutoPtCronograma(out.cronograma);
 
       // Sedes ocultas en la app: se preservan en el JSON por si vuelven
       out.sedes = (content && Array.isArray(content.sedes)) ? content.sedes : [];
@@ -952,8 +1020,10 @@
           showStatus(editStatus, body.error || 'Error al guardar', false);
           return;
         }
-        content = payload;
-        showStatus(editStatus, '¡Guardado! Abrí o refrescá la app para ver los cambios.', true);
+        content = body.content || payload;
+        fillForm(content);
+        bindAllImageFields(document.getElementById('sec-inicio'));
+        showStatus(editStatus, '¡Guardado! El portugués del cronograma se completó solo.', true);
       } catch (err) {
         showStatus(editStatus, err.message, false);
       }
