@@ -74,15 +74,26 @@
             "hora": "",
             "sede": "",
             "titulo": "Ensayo general (Orquesta Fronterita)"
+          },
+          {
+            "hora": "11:00",
+            "sede": "",
+            "titulo": "MASTER CLASS"
           }
         ],
         "ejemplo": false
       },
       {
-        "hora": "12:30",
+        "hora": "12:00",
         "titulo": "Almuerzo",
         "sede": "Comedor",
-        "celdas": [],
+        "celdas": [
+          {
+            "hora": "13 a 14",
+            "sede": "Altos de Irigoyen Hotel",
+            "titulo": "CONCIERTOS AL MEDIODIA"
+          }
+        ],
         "ejemplo": false
       },
       {
@@ -122,14 +133,14 @@
     ],
     "2026-10-09": [
       {
-        "hora": "07:30 O8:30",
+        "hora": "7:30  8:30",
         "titulo": "Desayuno",
         "sede": "Escuela de Frontera 604",
         "celdas": [
           {
-            "hora": "",
+            "hora": "8:30  9:00",
             "sede": "",
-            "titulo": "8:30-9:00 PRÁCTICA INDIVIDUAL"
+            "titulo": "PRÁCTICA INDIVIDUAL"
           }
         ],
         "ejemplo": false
@@ -141,10 +152,29 @@
         "celdas": [
           {
             "hora": "",
-            "sede": "",
-            "titulo": "Ensayo general- FRONTRITA"
+            "sede": "Ensayo general",
+            "titulo": "FRONTRITA"
+          },
+          {
+            "hora": "11:00",
+            "sede": "Alumnos inscriptos",
+            "titulo": "MASTER CLASS"
           }
         ],
+        "ejemplo": false
+      },
+      {
+        "hora": "12:00",
+        "titulo": "ALMUERZO",
+        "sede": "",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "13 a 14",
+        "titulo": "CONCIERTOS AL MEDIODIA",
+        "sede": "Altos de Irigoyen Hotel",
+        "celdas": [],
         "ejemplo": false
       }
     ],
