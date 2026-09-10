@@ -707,3 +707,8 @@ img, svg, video {
   text-align: center;
   font-weight: 600;
 }
+
+.contact-subhead {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+}

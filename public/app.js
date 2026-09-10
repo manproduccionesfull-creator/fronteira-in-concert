@@ -25,6 +25,7 @@
   }
 
   function showPanel(id) {
+    if (id === 'inscripcion') id = 'contacto';
     $$('.panel').forEach((p) => p.classList.toggle('active', p.dataset.panel === id));
     $$('.nav-item').forEach((n) => {
       const on = n.dataset.goto === id;
@@ -87,7 +88,7 @@
   function inicioButtons(f) {
     const pages = {
       cronograma: 'cronograma',
-      inscripcion: 'inscripcion',
+      inscripcion: 'contacto',
       orquestas: 'orquestas',
       profesores: 'profesores',
       apoyan: 'apoyan',

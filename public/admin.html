@@ -143,7 +143,7 @@
         <!-- CONTACTO -->
         <section class="admin-section" id="sec-contacto">
           <h2>Contacto</h2>
-          <p class="section-lead">Datos que aparecen en la sección Contacto y en Inscripción (WhatsApp).</p>
+          <p class="section-lead">Datos del apartado Contacto (formulario de inscripción + WhatsApp, Instagram, etc.).</p>
           <div class="form-grid">
             <label>WhatsApp (solo números, sin +54)
               <input type="text" name="c_wa" data-path="contacto.whatsapp" placeholder="3741407013" />
@@ -478,11 +478,11 @@
     function pageOptions(selected) {
       const opts = [
         ['cronograma', 'Cronograma'],
-        ['inscripcion', 'Inscripción'],
+        ['contacto', 'Inscripción / Contacto'],
         ['orquestas', 'Orquestas'],
         ['profesores', 'Profesores'],
         ['apoyan', 'Quiénes apoyan'],
-        ['contacto', 'Contacto'],
+        ['videos', 'Videos'],
         ['link', 'Un link externo'],
       ];
       return opts.map(([v, label]) =>
@@ -492,7 +492,8 @@
 
     function linkRowHtml(item) {
       item = item || { texto: '', tipo: 'link', destino: '', estilo: 'outline' };
-      const dest = item.tipo === 'pagina' ? (item.destino || 'cronograma') : 'link';
+      const destRaw = item.tipo === 'pagina' ? (item.destino || 'cronograma') : 'link';
+      const dest = destRaw === 'inscripcion' ? 'contacto' : destRaw;
       return (
         '<div class="row-card link-row">' +
           '<div class="form-grid compact">' +
