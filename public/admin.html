@@ -80,8 +80,22 @@
               </div>
             </div>
           </div>
+          <div class="image-field" data-image-for="festival.video" data-accept="video/mp4,video/*">
+            <span class="image-label">Video de Inicio (~15 s, se reproduce solo)</span>
+            <div class="image-row">
+              <video class="thumb video-thumb" muted playsinline hidden></video>
+              <div class="image-controls">
+                <input type="hidden" name="f_video" data-path="festival.video" />
+                <input type="file" accept="video/mp4,video/*" class="file-input" />
+                <button type="button" class="btn outline btn-sm btn-upload">Subir video</button>
+                <button type="button" class="btn outline btn-sm btn-clear-img">Quitar</button>
+                <span class="upload-status muted"></span>
+              </div>
+            </div>
+          </div>
           <div class="check-row">
             <label class="check-label"><input type="checkbox" id="show-logo" checked /> Mostrar logo</label>
+            <label class="check-label"><input type="checkbox" id="show-video" checked /> Mostrar video</label>
             <label class="check-label"><input type="checkbox" id="show-edicion" checked /> Mostrar edición</label>
             <label class="check-label"><input type="checkbox" id="show-fechas" checked /> Mostrar fechas</label>
             <label class="check-label"><input type="checkbox" id="show-lugar" checked /> Mostrar lugar</label>
@@ -266,9 +280,15 @@
         if (url) {
           thumb.src = url;
           thumb.hidden = false;
+          if (thumb.tagName === 'VIDEO') {
+            try { thumb.load(); } catch (_) {}
+          }
         } else {
           thumb.removeAttribute('src');
           thumb.hidden = true;
+          if (thumb.tagName === 'VIDEO') {
+            try { thumb.load(); } catch (_) {}
+          }
         }
       }
 
@@ -280,7 +300,7 @@
           return;
         }
         if (file.size > 12 * 1024 * 1024) {
-          status.textContent = 'La foto pesa demasiado (máx. 12 MB). Probá otra más liviana.';
+          status.textContent = 'El archivo pesa demasiado (máx. 12 MB). Probá otro más liviano.';
           return;
         }
         status.textContent = 'Subiendo…';
@@ -648,8 +668,10 @@
       setPathInput('festival.personeria', f.personeria);
       setPathInput('festival.presidente', f.presidente);
       setPathInput('festival.logo', f.logo || '');
+      setPathInput('festival.video', f.video || '');
       const mostrar = f.mostrar || {};
       document.getElementById('show-logo').checked = mostrar.logo !== false && !!f.logo || mostrar.logo !== false;
+      document.getElementById('show-video').checked = mostrar.video !== false && !!f.video;
       document.getElementById('show-edicion').checked = mostrar.edicion !== false;
       document.getElementById('show-fechas').checked = mostrar.fechas !== false;
       document.getElementById('show-lugar').checked = mostrar.lugar !== false;
@@ -680,20 +702,23 @@
       setPathInput('contacto.web', c.web);
       setPathInput('contacto.webDisplay', c.webDisplay);
 
-      // Festival logo thumb
-      const logoField = document.querySelector('#sec-inicio .image-field');
-      if (logoField) {
-        const thumb = logoField.querySelector('.thumb');
-        const hidden = logoField.querySelector('input[type="hidden"]');
-        if (f.logo) {
-          thumb.src = f.logo;
+      // Festival logo + video thumbs
+      document.querySelectorAll('#sec-inicio .image-field').forEach((field) => {
+        const thumb = field.querySelector('.thumb');
+        const hidden = field.querySelector('input[type="hidden"]');
+        if (!thumb || !hidden) return;
+        const url = hidden.value;
+        if (url) {
+          thumb.src = url;
           thumb.hidden = false;
+          if (thumb.tagName === 'VIDEO') {
+            try { thumb.load(); } catch (_) {}
+          }
         } else {
           thumb.hidden = true;
           thumb.removeAttribute('src');
         }
-        if (hidden) hidden.value = f.logo || '';
-      }
+      });
 
       // Cronograma
       const daysEl = document.getElementById('cronograma-days');
@@ -831,8 +856,12 @@
       const logo = getPathInput('festival.logo');
       if (logo) out.festival.logo = logo;
       else delete out.festival.logo;
+      const video = getPathInput('festival.video');
+      if (video) out.festival.video = video;
+      else delete out.festival.video;
       out.festival.mostrar = {
         logo: document.getElementById('show-logo').checked,
+        video: document.getElementById('show-video').checked,
         edicion: document.getElementById('show-edicion').checked,
         fechas: document.getElementById('show-fechas').checked,
         lugar: document.getElementById('show-lugar').checked,

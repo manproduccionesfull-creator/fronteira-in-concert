@@ -81,6 +81,27 @@
         logo.removeAttribute('src');
       }
     }
+    const videoWrap = $('#hero-video-wrap');
+    const video = $('#hero-video');
+    if (videoWrap && video) {
+      if (on('video') && f.video) {
+        videoWrap.hidden = false;
+        if (video.getAttribute('src') !== f.video) {
+          video.src = f.video;
+        }
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        const play = () => video.play().catch(() => {});
+        if (video.readyState >= 2) play();
+        else video.addEventListener('loadeddata', play, { once: true });
+      } else {
+        videoWrap.hidden = true;
+        video.removeAttribute('src');
+        video.load();
+      }
+    }
     const linksEl = $('#inicio-links');
     if (linksEl) linksEl.innerHTML = inicioButtons(f).join('');
   }

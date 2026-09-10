@@ -15,7 +15,8 @@
       "fechas": true,
       "lugar": true,
       "blurb": true,
-      "org": true
+      "org": true,
+      "video": true
     },
     "lineas": [],
     "botones": [
@@ -31,7 +32,8 @@
         "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
         "estilo": "gold"
       }
-    ]
+    ],
+    "video": "/uploads/inicio-15s.mp4"
   },
   "contacto": {
     "whatsapp": "3741407013",

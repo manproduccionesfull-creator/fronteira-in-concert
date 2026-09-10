@@ -15,7 +15,7 @@ const CONTENT_PATH = path.join(__dirname, 'data', 'content.json');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const UPLOAD_DIR = path.join(PUBLIC_DIR, 'uploads');
 
-const ALLOWED_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']);
+const ALLOWED_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.mp4']);
 const MAX_UPLOAD_BYTES = 12 * 1024 * 1024; // 12 MB
 
 if (!fs.existsSync(UPLOAD_DIR)) {
@@ -218,7 +218,7 @@ app.post('/api/upload', async (req, res) => {
     const ext = safeExt(originalName);
     if (!ext) {
       return res.status(400).json({
-        error: 'Tipo no permitido. Usá JPG, PNG, WEBP, GIF o SVG',
+        error: 'Tipo no permitido. Usá JPG, PNG, WEBP, GIF, SVG o MP4',
       });
     }
     const stamp = Date.now().toString(36);

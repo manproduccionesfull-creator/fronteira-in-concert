@@ -396,6 +396,21 @@ img, svg, video {
   height: 96px;
   margin: 0 auto 1rem;
 }
+.hero-video-wrap {
+  width: min(320px, 100%);
+  margin: 0 auto 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+  aspect-ratio: 1 / 1;
+}
+.hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* Admin form UI */
 .admin-form { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -711,4 +726,12 @@ img, svg, video {
 .contact-subhead {
   margin-top: 2rem;
   padding-top: 0.5rem;
+}
+
+.admin-section .video-thumb {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #000;
 }
