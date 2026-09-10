@@ -856,13 +856,15 @@
       const logo = getPathInput('festival.logo');
       if (logo) out.festival.logo = logo;
       else delete out.festival.logo;
-      const video = getPathInput('festival.video') || (content && content.festival && content.festival.video) || '';
+      const videoField = document.querySelector('#sec-inicio [data-path="festival.video"]');
+      const prevVideo = (content && content.festival && content.festival.video) || '';
+      let video = '';
+      if (videoField) video = getPathInput('festival.video');
+      else video = prevVideo;
       if (video) out.festival.video = video;
       else delete out.festival.video;
       const showVideoEl = document.getElementById('show-video');
-      const showVideo = showVideoEl
-        ? showVideoEl.checked
-        : !!(content && content.festival && content.festival.mostrar && content.festival.mostrar.video !== false && video);
+      const showVideo = showVideoEl ? showVideoEl.checked : !!video;
       out.festival.mostrar = {
         logo: document.getElementById('show-logo').checked,
         video: showVideo,

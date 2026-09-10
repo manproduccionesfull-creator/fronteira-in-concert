@@ -9,7 +9,7 @@
     "personeria": "Personería Jurídica N° A-4656",
     "presidente": "",
     "mostrar": {
-      "logo": true,
+      "logo": false,
       "edicion": true,
       "fechas": true,
       "lugar": true,

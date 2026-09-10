@@ -76,9 +76,11 @@
       if (on('logo') && f.logo) {
         logo.src = f.logo;
         logo.hidden = false;
+        logo.style.display = '';
       } else {
         logo.hidden = true;
         logo.removeAttribute('src');
+        logo.style.display = 'none';
       }
     }
     const videoWrap = $('#hero-video-wrap');
