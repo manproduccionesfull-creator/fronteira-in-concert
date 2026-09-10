@@ -150,19 +150,28 @@
       return;
     }
     const L = DAY_LABELS[selectedDay];
+    function ptLine(tituloPt, sedePt) {
+      const parts = [];
+      if (tituloPt) parts.push(`<span class="pt-titulo">${escapeHtml(tituloPt)}</span>`);
+      if (sedePt) parts.push(`<span class="pt-sede">${escapeHtml(sedePt)}</span>`);
+      if (!parts.length) return '';
+      return `<p class="pt-line" lang="pt-BR">${parts.join(' · ')}</p>`;
+    }
+
     function celdaBlockHtml(c) {
       if (typeof c === 'string') c = { hora: '', sede: '', titulo: c };
       c = c || {};
       const hora = c.hora || '';
       const titulo = c.titulo || c.texto || '';
       const sede = c.sede || '';
-      if (!hora && !titulo && !sede) return '';
+      if (!hora && !titulo && !sede && !c.tituloPt && !c.sedePt) return '';
       return `
         <div class="event-celda-block">
           ${hora ? `<div class="hora">${escapeHtml(hora)}</div>` : '<div class="hora"></div>'}
           <div>
             ${titulo ? `<h3>${escapeHtml(titulo)}</h3>` : ''}
             ${sede ? `<p class="venue">${escapeHtml(sede)}</p>` : ''}
+            ${ptLine(c.tituloPt, c.sedePt)}
           </div>
         </div>`;
     }
@@ -173,6 +182,7 @@
         <div>
           <h3>${escapeHtml(ev.titulo)}</h3>
           <p class="venue">${escapeHtml(ev.sede)}</p>
+          ${ptLine(ev.tituloPt, ev.sedePt)}
           ${ejemploBadge(ev.ejemplo)}
         </div>
         ${(Array.isArray(ev.celdas) ? ev.celdas : []).map(celdaBlockHtml).join('')}

@@ -162,6 +162,14 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
 }
 .event-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
 .event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; }
+.event-card .pt-line {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--muted);
+  font-weight: 400;
+}
+.event-card .pt-line .pt-sede { opacity: 0.9; }
 .event-card .event-celda-block {
   grid-column: 1 / -1;
   display: grid;

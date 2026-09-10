@@ -327,12 +327,14 @@
 
     /* ---------- Row builders ---------- */
     function normalizeCelda(c) {
-      if (typeof c === 'string') return { hora: '', sede: '', titulo: c };
+      if (typeof c === 'string') return { hora: '', sede: '', titulo: c, tituloPt: '', sedePt: '' };
       c = c || {};
       return {
         hora: c.hora || '',
         sede: c.sede || '',
         titulo: c.titulo || c.texto || '',
+        tituloPt: c.tituloPt || '',
+        sedePt: c.sedePt || '',
       };
     }
 
@@ -349,6 +351,8 @@
               '</span>' +
             '</label>' +
             '<label class="full">Título<input type="text" class="ev-celda-titulo" value="' + escAttr(c.titulo) + '" /></label>' +
+            '<label class="full">Título (português)<input type="text" class="ev-celda-titulo-pt" value="' + escAttr(c.tituloPt) + '" placeholder="Tradução em português" /></label>' +
+            '<label class="full">Sede (português)<input type="text" class="ev-celda-sede-pt" value="' + escAttr(c.sedePt) + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
           '<button type="button" class="btn outline btn-sm btn-remove-celda" title="Quitar esta celda">✕ Quitar celda</button>' +
         '</div>'
@@ -356,7 +360,7 @@
     }
 
     function eventRowHtml(ev) {
-      ev = ev || { hora: '', titulo: '', sede: '', ejemplo: false, celdas: [] };
+      ev = ev || { hora: '', titulo: '', sede: '', tituloPt: '', sedePt: '', ejemplo: false, celdas: [] };
       const celdas = Array.isArray(ev.celdas) ? ev.celdas : [];
       return (
         '<div class="row-card event-row">' +
@@ -369,6 +373,8 @@
               '</span>' +
             '</label>' +
             '<label class="full">Título<input type="text" class="ev-titulo" value="' + escAttr(ev.titulo) + '" /></label>' +
+            '<label class="full">Título (português)<input type="text" class="ev-titulo-pt" value="' + escAttr(ev.tituloPt || '') + '" placeholder="Tradução em português" /></label>' +
+            '<label class="full">Sede (português)<input type="text" class="ev-sede-pt" value="' + escAttr(ev.sedePt || '') + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
           '<div class="ev-celdas">' +
             celdas.map((c) => celdaRowHtml(c)).join('') +
@@ -714,7 +720,7 @@
           if (!add) return;
           const row = add.closest('.event-row');
           const list = row && row.querySelector('.ev-celdas');
-          if (list) list.insertAdjacentHTML('beforeend', celdaRowHtml({ hora: '', sede: '', titulo: '' }));
+          if (list) list.insertAdjacentHTML('beforeend', celdaRowHtml({ hora: '', sede: '', titulo: '', tituloPt: '', sedePt: '' }));
         });
       }
       daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
@@ -804,11 +810,15 @@
             hora: val(row.querySelector('.ev-hora')),
             titulo: val(row.querySelector('.ev-titulo')),
             sede: val(row.querySelector('.ev-sede')),
+            tituloPt: val(row.querySelector('.ev-titulo-pt')),
+            sedePt: val(row.querySelector('.ev-sede-pt')),
             celdas: [...row.querySelectorAll('.ev-celda')].map((celda) => ({
               hora: val(celda.querySelector('.ev-celda-hora')),
               sede: val(celda.querySelector('.ev-celda-sede')),
               titulo: val(celda.querySelector('.ev-celda-titulo')),
-            })).filter((c) => c.hora || c.sede || c.titulo),
+              tituloPt: val(celda.querySelector('.ev-celda-titulo-pt')),
+              sedePt: val(celda.querySelector('.ev-celda-sede-pt')),
+            })).filter((c) => c.hora || c.sede || c.titulo || c.tituloPt || c.sedePt),
             ejemplo: !!row.querySelector('.ev-ejemplo').checked,
           });
         });
