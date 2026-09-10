@@ -169,6 +169,32 @@ function safeExt(originalName) {
   return '';
 }
 
+
+function preserveFestivalVideo(incoming, previous) {
+  if (!incoming || typeof incoming !== 'object') return incoming;
+  const fest = incoming.festival;
+  if (!fest || typeof fest !== 'object') return incoming;
+  const prevFest = (previous && previous.festival) || {};
+  const prevVideo = prevFest.video || '';
+  const mostrar = fest.mostrar || {};
+  const incomingVideo = String(fest.video || '').trim();
+  // Keep previous video unless admin explicitly turned video off
+  if (!incomingVideo && prevVideo && mostrar.video !== false) {
+    fest.video = prevVideo;
+    fest.mostrar = mostrar;
+    if (fest.mostrar.video === undefined) fest.mostrar.video = true;
+  }
+  // Default clip if still empty and file exists on disk
+  const defaultVideo = '/uploads/inicio-15s.mp4';
+  const defaultPath = path.join(UPLOAD_DIR, 'inicio-15s.mp4');
+  if (!String(fest.video || '').trim() && mostrar.video !== false && fs.existsSync(defaultPath)) {
+    fest.video = defaultVideo;
+    fest.mostrar = fest.mostrar || {};
+    if (fest.mostrar.video === undefined) fest.mostrar.video = true;
+  }
+  return incoming;
+}
+
 app.get('/api/content', (_req, res) => {
   try {
     res.set('Cache-Control', 'no-store');
@@ -191,7 +217,9 @@ app.post('/api/content', async (req, res) => {
         return res.status(400).json({ error: 'Falta la seccion: ' + key });
       }
     }
-    const payload = enrichContent(req.body);
+    const previous = readContent();
+    let payload = enrichContent(req.body);
+    payload = preserveFestivalVideo(payload, previous);
     writeContent(payload);
     try {
       await persistToGithub('data/content.json', fs.readFileSync(CONTENT_PATH), 'Guardar contenido del festival');

@@ -14,7 +14,8 @@
       "fechas": true,
       "lugar": true,
       "blurb": true,
-      "org": true
+      "org": true,
+      "video": true
     },
     "lineas": [],
     "botones": [
@@ -30,7 +31,8 @@
         "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
         "estilo": "gold"
       }
-    ]
+    ],
+    "video": "/uploads/inicio-15s.mp4"
   },
   "contacto": {
     "whatsapp": "3741407013",
@@ -39,9 +41,7 @@
     "instagramUrl": "https://instagram.com/fronteirainconcert",
     "email": "asociacioncivilallegro@gmail.com",
     "web": "",
-    "webDisplay": "",
-    "donacionUrl": "",
-    "donacionTexto": "Donar con Mercado Pago"
+    "webDisplay": ""
   },
   "cronograma": {
     "2026-10-08": [
@@ -609,11 +609,11 @@
       "foto": "/uploads/mtvmg2m5-b6caa7b8.jpg"
     },
     {
-      "nombre": "",
-      "instrumento": "",
+      "nombre": "Tonialdo de Moura Pompeu",
+      "instrumento": "Profesor - Metales",
       "bio": "",
       "ejemplo": false,
-      "foto": "/uploads/mtvxm0zk-0a97d001.jpg"
+      "foto": "/uploads/mtvy2914-8c58f6e3.jpg"
     }
   ],
   "videos": [
