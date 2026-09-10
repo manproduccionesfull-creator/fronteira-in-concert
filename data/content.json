@@ -86,14 +86,16 @@
             "sede": "",
             "titulo": "Ensayo general (Orquesta Fronterita)",
             "tituloPt": "Ensaio geral (Orquestra Fronterita)",
-            "sedePt": ""
+            "sedePt": "",
+            "presentaciones": []
           },
           {
             "hora": "11:00",
             "sede": "",
             "titulo": "MASTER CLASS",
             "tituloPt": "MASTER CLASS",
-            "sedePt": ""
+            "sedePt": "",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -110,7 +112,8 @@
             "sede": "Altos de Irigoyen Hotel",
             "titulo": "CONCIERTOS AL MEDIODIA",
             "tituloPt": "CONCERTOS AO MEIO-DIA",
-            "sedePt": "Altos de Irigoyen Hotel"
+            "sedePt": "Altos de Irigoyen Hotel",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -127,7 +130,8 @@
             "sede": "",
             "titulo": "Aulas de Instrumentos (Fronterita)",
             "tituloPt": "Salas de instrumentos (Fronterita)",
-            "sedePt": ""
+            "sedePt": "",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -173,7 +177,8 @@
             "sede": "",
             "titulo": "PRÁCTICA INDIVIDUAL",
             "tituloPt": "PRÁTICA INDIVIDUAL",
-            "sedePt": ""
+            "sedePt": "",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -190,14 +195,16 @@
             "sede": "Ensayo general",
             "titulo": "FRONTRITA",
             "tituloPt": "FRONTERITA",
-            "sedePt": "Ensaio geral"
+            "sedePt": "Ensaio geral",
+            "presentaciones": []
           },
           {
             "hora": "11:00",
             "sede": "Alumnos inscriptos",
             "titulo": "MASTER CLASS",
             "tituloPt": "MASTER CLASS",
-            "sedePt": "Alunos inscritos"
+            "sedePt": "Alunos inscritos",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -232,7 +239,8 @@
             "sede": "Aulas de instrumentos",
             "titulo": "FRONTERITA",
             "tituloPt": "FRONTERITA",
-            "sedePt": "Salas de instrumentos"
+            "sedePt": "Salas de instrumentos",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -278,7 +286,8 @@
             "sede": "",
             "titulo": "PRÁCTICA INDIVIDUAL",
             "tituloPt": "PRÁTICA INDIVIDUAL",
-            "sedePt": ""
+            "sedePt": "",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -295,7 +304,8 @@
             "sede": "Ensayo general",
             "titulo": "FRONTRITA",
             "tituloPt": "FRONTERITA",
-            "sedePt": "Ensaio geral"
+            "sedePt": "Ensaio geral",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -339,14 +349,16 @@
             "sede": "Aulas de instrumentos",
             "titulo": "FRONTERITA",
             "tituloPt": "FRONTERITA",
-            "sedePt": "Salas de instrumentos"
+            "sedePt": "Salas de instrumentos",
+            "presentaciones": []
           },
           {
             "hora": "16:00",
             "sede": "Parque Turístico Ambiental de Integración",
             "titulo": "FRONTERITA -Ensayo al aire libre y momento ecológico",
             "tituloPt": "FRONTERITA -Ensaio al aire libre y momento ecológico",
-            "sedePt": "Parque Turístico Ambiental de Integración"
+            "sedePt": "Parque Turístico Ambiental de Integración",
+            "presentaciones": []
           }
         ],
         "ejemplo": false
@@ -633,7 +645,13 @@
       {
         "hora": "19:30",
         "artistas": "Duo de cuerdas\nProfesores:\nEndryk (violín)\nMateus (violonchelo)",
-        "lugar": "Profesores: Endryk (violín)"
+        "lugar": "Profesores: Endryk (violín)",
+        "presentaciones": [
+          {
+            "nombre": "",
+            "foto": "/uploads/mtw2bfgq-883bd297.jpg"
+          }
+        ]
       }
     ],
     "2026-10-09": [],
