@@ -29,7 +29,7 @@
         "texto": "Inscripcion a Master Class",
         "tipo": "link",
         "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
-        "estilo": "outline"
+        "estilo": "gold"
       }
     ]
   },
@@ -59,7 +59,8 @@
         "sede": "",
         "celdas": [],
         "ejemplo": false,
-        "tituloPt": "Café da manhã"
+        "tituloPt": "Café da manhã",
+        "sedePt": ""
       },
       {
         "hora": "08:15",
@@ -79,13 +80,15 @@
             "hora": "",
             "sede": "",
             "titulo": "Ensayo general (Orquesta Fronterita)",
-            "tituloPt": "Ensaio geral (Orquestra Fronterita)"
+            "tituloPt": "Ensaio geral (Orquestra Fronterita)",
+            "sedePt": ""
           },
           {
             "hora": "11:00",
             "sede": "",
             "titulo": "MASTER CLASS",
-            "tituloPt": "MASTER CLASS"
+            "tituloPt": "MASTER CLASS",
+            "sedePt": ""
           }
         ],
         "ejemplo": false,
@@ -118,7 +121,8 @@
             "hora": "",
             "sede": "",
             "titulo": "Aulas de Instrumentos (Fronterita)",
-            "tituloPt": "Salas de instrumentos (Fronterita)"
+            "tituloPt": "Salas de instrumentos (Fronterita)",
+            "sedePt": ""
           }
         ],
         "ejemplo": false,
@@ -140,7 +144,8 @@
         "sede": "",
         "celdas": [],
         "ejemplo": false,
-        "tituloPt": "Apresentação das delegações-Professores-Apresentação"
+        "tituloPt": "Apresentação das delegações-Professores-Apresentação",
+        "sedePt": ""
       },
       {
         "hora": "21:00",
@@ -148,7 +153,8 @@
         "sede": "",
         "celdas": [],
         "ejemplo": false,
-        "tituloPt": "Jantar - Descanso"
+        "tituloPt": "Jantar - Descanso",
+        "sedePt": ""
       }
     ],
     "2026-10-09": [
@@ -161,7 +167,8 @@
             "hora": "8:30  9:00",
             "sede": "",
             "titulo": "PRÁCTICA INDIVIDUAL",
-            "tituloPt": "PRÁTICA INDIVIDUAL"
+            "tituloPt": "PRÁTICA INDIVIDUAL",
+            "sedePt": ""
           }
         ],
         "ejemplo": false,
@@ -198,7 +205,8 @@
         "sede": "",
         "celdas": [],
         "ejemplo": false,
-        "tituloPt": "ALMOÇO"
+        "tituloPt": "ALMOÇO",
+        "sedePt": ""
       },
       {
         "hora": "13 a 14",
@@ -259,55 +267,142 @@
         "hora": "07:30 08:30",
         "titulo": "DESAYUNO",
         "sede": "Escuela de Frontera 604",
-        "celdas": [],
-        "ejemplo": true
+        "celdas": [
+          {
+            "hora": "8:30  9:00",
+            "sede": "",
+            "titulo": "PRÁCTICA INDIVIDUAL",
+            "tituloPt": "PRÁTICA INDIVIDUAL",
+            "sedePt": ""
+          }
+        ],
+        "ejemplo": false,
+        "tituloPt": "CAFÉ DA MANHÃ",
+        "sedePt": "Escola de Fronteira 604"
       },
       {
-        "hora": "16:00",
-        "titulo": "Ensayo conjunto",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "celdas": [],
-        "ejemplo": true,
-        "tituloPt": "Ensaio conjunto",
-        "sedePt": "Parque Temático e Ambiental da Integração"
+        "hora": "09:00",
+        "titulo": "ORQUESTA FINC",
+        "sede": "Parciales de intrumentos",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "Ensayo general",
+            "titulo": "FRONTRITA",
+            "tituloPt": "FRONTERITA",
+            "sedePt": "Ensaio geral"
+          }
+        ],
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "Parciais de instrumentos"
       },
       {
-        "hora": "20:30",
-        "titulo": "Gala sinfónica",
-        "sede": "Parque Temático y Ambiental de la Integración",
+        "hora": "11:00",
+        "titulo": "MASTER CLASS",
+        "sede": "Alumnos inscriptos",
         "celdas": [],
-        "ejemplo": true,
-        "tituloPt": "Gala sinfônica",
-        "sedePt": "Parque Temático e Ambiental da Integração"
+        "ejemplo": false,
+        "tituloPt": "MASTER CLASS",
+        "sedePt": "Alunos inscritos"
+      },
+      {
+        "hora": "12:00",
+        "titulo": "ALMUERZO",
+        "sede": "",
+        "celdas": [],
+        "ejemplo": false,
+        "tituloPt": "ALMOÇO",
+        "sedePt": ""
+      },
+      {
+        "hora": "13 a 14",
+        "titulo": "CONCIERTOS AL MEDIODIA",
+        "sede": "Altos de Irigoyen Hotel",
+        "celdas": [],
+        "ejemplo": false,
+        "tituloPt": "CONCERTOS AO MEIO-DIA",
+        "sedePt": "Altos de Irigoyen Hotel"
+      },
+      {
+        "hora": "14:00",
+        "titulo": "ORQUESTA FINC",
+        "sede": "ensayo genera -Sala mayor",
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "Aulas de instrumentos",
+            "titulo": "FRONTERITA",
+            "tituloPt": "FRONTERITA",
+            "sedePt": "Salas de instrumentos"
+          },
+          {
+            "hora": "16:00",
+            "sede": "Parque Turístico Ambiental de Integración",
+            "titulo": "FRONTERITA -Ensayo al aire libre y momento ecológico",
+            "tituloPt": "FRONTERITA -Ensaio al aire libre y momento ecológico",
+            "sedePt": "Parque Turístico Ambiental de Integración"
+          }
+        ],
+        "ejemplo": false,
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "ensaio geral - Sala principal"
+      },
+      {
+        "hora": "17:00",
+        "titulo": "MERIENDA",
+        "sede": "aseo personal -Preparación para concierto",
+        "celdas": [],
+        "ejemplo": false,
+        "tituloPt": "LANCHE",
+        "sedePt": "higiene pessoal - Preparação para o concerto"
+      },
+      {
+        "hora": "19:00",
+        "titulo": "CONCIERTO",
+        "sede": "Escuela Frontera 604",
+        "celdas": [],
+        "ejemplo": false,
+        "tituloPt": "CONCERTO",
+        "sedePt": "Escuela Frontera 604"
+      },
+      {
+        "hora": "21:30",
+        "titulo": "CENA - DESCANSO",
+        "sede": "Luego cada delagación a sus hospedajes",
+        "celdas": [],
+        "ejemplo": false,
+        "tituloPt": "JANTAR - DESCANSO",
+        "sedePt": "Depois cada delegação para suas hospedagens"
       }
     ],
     "2026-10-11": [
       {
-        "hora": "11:00",
-        "titulo": "Matiné familiar",
-        "sede": "Parque Temático y Ambiental de la Integración",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
         "celdas": [],
         "ejemplo": true,
-        "tituloPt": "Matinê familiar",
-        "sedePt": "Parque Temático e Ambiental da Integração"
+        "tituloPt": "",
+        "sedePt": ""
       },
       {
-        "hora": "17:00",
-        "titulo": "Concierto de clausura",
-        "sede": "Parque Temático y Ambiental de la Integración",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
         "celdas": [],
         "ejemplo": true,
-        "tituloPt": "Concerto de encerramento",
-        "sedePt": "Parque Temático e Ambiental da Integração"
+        "tituloPt": "",
+        "sedePt": ""
       },
       {
-        "hora": "19:30",
-        "titulo": "Brindis y cierre",
-        "sede": "Escuela de Frontera 604",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
         "celdas": [],
         "ejemplo": true,
-        "tituloPt": "Brinde e encerramento",
-        "sedePt": "Escola de Fronteira 604"
+        "tituloPt": "",
+        "sedePt": ""
       }
     ]
   },
@@ -484,13 +579,6 @@
       "foto": "/uploads/mtoh0dlh-525a95e1.jpg"
     },
     {
-      "nombre": "Adriano Santos Michelon",
-      "instrumento": "Profesor de  Flauta traversa",
-      "bio": "Mestre - Licenciado -  Profesor de Música & Flautista",
-      "ejemplo": false,
-      "foto": "/uploads/mtogmxge-631fc48d.jpg"
-    },
-    {
       "nombre": "Adilson Alves",
       "instrumento": "Profesor de Clarinete",
       "bio": "",
@@ -502,7 +590,7 @@
       "instrumento": "Profesor - Percusion",
       "bio": "",
       "ejemplo": false,
-      "foto": "/uploads/mtu3eae3-e72ac33a.png"
+      "foto": "/uploads/mtvl4md9-d9676485.png"
     }
   ],
   "videos": [
