@@ -256,13 +256,11 @@
     ],
     "2026-10-10": [
       {
-        "hora": "10:00",
-        "titulo": "Taller de dirección coral",
+        "hora": "07:30 08:30",
+        "titulo": "DESAYUNO",
         "sede": "Escuela de Frontera 604",
         "celdas": [],
-        "ejemplo": true,
-        "tituloPt": "Oficina de regência coral",
-        "sedePt": "Escola de Fronteira 604"
+        "ejemplo": true
       },
       {
         "hora": "16:00",
