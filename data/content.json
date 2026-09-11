@@ -76,6 +76,15 @@
       },
       {
         "hora": "10:00",
+        "titulo": "Ensayo general (Orquesta Fronterita)",
+        "sede": "sala mayor Escuela Frontera 604",
+        "tituloPt": "Ensaio geral (Orquestra Fronterita)",
+        "sedePt": "sala mayor Escuela Frontera 604",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "10:00",
         "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
         "sede": "Aulas",
         "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
@@ -134,6 +143,15 @@
             "presentaciones": []
           }
         ],
+        "ejemplo": false
+      },
+      {
+        "hora": "14:00",
+        "titulo": "Fronterita",
+        "sede": "Aulas de Instrumentos",
+        "tituloPt": "Fronterita",
+        "sedePt": "Salas de instrumentos",
+        "celdas": [],
         "ejemplo": false
       },
       {
@@ -393,31 +411,31 @@
     ],
     "2026-10-11": [
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "11:00",
+        "titulo": "Matiné familiar",
+        "sede": "Parque Temático y Ambiental de la Integración",
+        "tituloPt": "Matinê familiar",
+        "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "17:00",
+        "titulo": "Concierto de clausura",
+        "sede": "Parque Temático y Ambiental de la Integración",
+        "tituloPt": "Concerto de encerramento",
+        "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "19:30",
+        "titulo": "Brindis y cierre",
+        "sede": "Escuela de Frontera 604",
+        "tituloPt": "Brinde e encerramento",
+        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       }
     ]
   },
