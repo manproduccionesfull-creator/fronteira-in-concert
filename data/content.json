@@ -76,28 +76,20 @@
       },
       {
         "hora": "10:00",
-        "titulo": "Ensayo general (Orquesta Fronterita)",
-        "sede": "sala mayor Escuela Frontera 604",
-        "tituloPt": "Ensaio geral (Orquestra Fronterita)",
-        "sedePt": "sala mayor Escuela Frontera 604",
+        "titulo": "FRONTERITA",
+        "sede": "Ensayo general",
+        "tituloPt": "FRONTERITA",
+        "sedePt": "Ensaio geral",
         "celdas": [],
         "ejemplo": false
       },
       {
         "hora": "10:00",
-        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
-        "sede": "Aulas",
-        "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
-        "sedePt": "Salas",
+        "titulo": "ORQUESTA FINC",
+        "sede": "Clases parciales  instrumentales",
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "Clases parciales  instrumentales",
         "celdas": [
-          {
-            "hora": "",
-            "sede": "",
-            "titulo": "Ensayo general (Orquesta Fronterita)",
-            "tituloPt": "Ensaio geral (Orquestra Fronterita)",
-            "sedePt": "",
-            "presentaciones": []
-          },
           {
             "hora": "11:00",
             "sede": "",
@@ -129,29 +121,20 @@
       },
       {
         "hora": "14:00",
-        "titulo": "Ensayo general (ORQUESTA FINC )",
-        "sede": "Sala mayor",
-        "tituloPt": "Ensaio geral (ORQUESTRA FINC)",
-        "sedePt": "Sala principal",
+        "titulo": "ORQUESTA FINC",
+        "sede": "Ensayo general - Sala mayor",
+        "tituloPt": "ORQUESTRA FINC",
+        "sedePt": "Ensaio geral - Sala principal",
         "celdas": [
           {
             "hora": "",
-            "sede": "",
-            "titulo": "Aulas de Instrumentos (Fronterita)",
-            "tituloPt": "Salas de instrumentos (Fronterita)",
-            "sedePt": "",
+            "sede": "Aulas de Instrumentos",
+            "titulo": "FRONTERITA",
+            "tituloPt": "FRONTERITA",
+            "sedePt": "Salas de instrumentos",
             "presentaciones": []
           }
         ],
-        "ejemplo": false
-      },
-      {
-        "hora": "14:00",
-        "titulo": "Fronterita",
-        "sede": "Aulas de Instrumentos",
-        "tituloPt": "Fronterita",
-        "sedePt": "Salas de instrumentos",
-        "celdas": [],
         "ejemplo": false
       },
       {
