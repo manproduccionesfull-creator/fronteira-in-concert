@@ -76,20 +76,19 @@
       },
       {
         "hora": "10:00",
-        "titulo": "FRONTERITA",
-        "sede": "Ensayo general",
-        "tituloPt": "FRONTERITA",
-        "sedePt": "Ensaio geral",
-        "celdas": [],
-        "ejemplo": false
-      },
-      {
-        "hora": "10:00",
-        "titulo": "ORQUESTA FINC",
-        "sede": "Clases parciales  instrumentales",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "Clases parciales  instrumentales",
+        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
+        "sede": "Aulas",
+        "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
+        "sedePt": "Salas",
         "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "Ensayo general (Orquesta Fronterita)",
+            "tituloPt": "Ensaio geral (Orquestra Fronterita)",
+            "sedePt": "",
+            "presentaciones": []
+          },
           {
             "hora": "11:00",
             "sede": "",
@@ -109,7 +108,7 @@
         "sedePt": "Refeitório",
         "celdas": [
           {
-            "hora": "13:00 a 14:00",
+            "hora": "13 a 14",
             "sede": "Altos de Irigoyen Hotel",
             "titulo": "CONCIERTOS AL MEDIODIA",
             "tituloPt": "CONCERTOS AO MEIO-DIA",
@@ -121,17 +120,17 @@
       },
       {
         "hora": "14:00",
-        "titulo": "ORQUESTA FINC",
-        "sede": "Ensayo general - Sala mayor",
-        "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "Ensaio geral - Sala principal",
+        "titulo": "Ensayo general (ORQUESTA FINC )",
+        "sede": "Sala mayor",
+        "tituloPt": "Ensaio geral (ORQUESTRA FINC)",
+        "sedePt": "Sala principal",
         "celdas": [
           {
             "hora": "",
-            "sede": "Aulas de Instrumentos",
-            "titulo": "FRONTERITA",
-            "tituloPt": "FRONTERITA",
-            "sedePt": "Salas de instrumentos",
+            "sede": "",
+            "titulo": "Aulas de Instrumentos (Fronterita)",
+            "tituloPt": "Salas de instrumentos (Fronterita)",
+            "sedePt": "",
             "presentaciones": []
           }
         ],
@@ -394,31 +393,31 @@
     ],
     "2026-10-11": [
       {
-        "hora": "11:00",
-        "titulo": "Matiné familiar",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "tituloPt": "Matinê familiar",
-        "sedePt": "Parque Temático e Ambiental da Integração",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
+        "tituloPt": "",
+        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": true
       },
       {
-        "hora": "17:00",
-        "titulo": "Concierto de clausura",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "tituloPt": "Concerto de encerramento",
-        "sedePt": "Parque Temático e Ambiental da Integração",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
+        "tituloPt": "",
+        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": true
       },
       {
-        "hora": "19:30",
-        "titulo": "Brindis y cierre",
-        "sede": "Escuela de Frontera 604",
-        "tituloPt": "Brinde e encerramento",
-        "sedePt": "Escola de Fronteira 604",
+        "hora": "",
+        "titulo": "",
+        "sede": "",
+        "tituloPt": "",
+        "sedePt": "",
         "celdas": [],
-        "ejemplo": false
+        "ejemplo": true
       }
     ]
   },
