@@ -230,9 +230,9 @@
       {
         "hora": "14:00",
         "titulo": "ORQUESTA FINC",
-        "sede": "ensayo general -Sala mayor",
+        "sede": "ensayo genera -Sala mayor",
         "tituloPt": "ORQUESTRA FINC",
-        "sedePt": "ensaio gerall -Sala principal",
+        "sedePt": "ensaio geral - Sala principal",
         "celdas": [
           {
             "hora": "",
@@ -251,6 +251,24 @@
         "sede": "aseo personal -Preparación para concierto",
         "tituloPt": "LANCHE",
         "sedePt": "higiene pessoal - Preparação para o concerto",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "19:00",
+        "titulo": "CONCIERTO",
+        "sede": "Escola de Educação Básica Dr. Theodureto",
+        "tituloPt": "CONCERTO",
+        "sedePt": "Escola de Educação Básica Dr. Theodureto",
+        "celdas": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "21:00",
+        "titulo": "CENA - DESCANSO",
+        "sede": "Luego cada delagación a sus hospedajes",
+        "tituloPt": "JANTAR - DESCANSO",
+        "sedePt": "Depois cada delegação para suas hospedagens",
         "celdas": [],
         "ejemplo": false
       }
@@ -609,7 +627,7 @@
       "instrumento": "Profesor - Metales",
       "bio": "",
       "ejemplo": false,
-      "foto": "/uploads/mu176y27-8852c89f.jpg"
+      "foto": "/uploads/mtvy2914-8c58f6e3.jpg"
     }
   ],
   "videos": [
@@ -626,40 +644,17 @@
     "2026-10-08": [
       {
         "hora": "19:30",
-        "artistas": "Duo de cuerdas\nOSC\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
-        "lugar": "Escuela de Frontera 604",
+        "artistas": "Duo de cuerdas\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
+        "lugar": "",
         "presentaciones": [
           {
             "nombre": "",
             "foto": "/uploads/mtw2bfgq-883bd297.jpg"
           }
         ]
-      },
-      {
-        "hora": "",
-        "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
-        "lugar": "",
-        "presentaciones": [
-          {
-            "nombre": "",
-            "foto": "/uploads/mu17e5en-06aa98c8.jpg"
-          }
-        ]
       }
     ],
-    "2026-10-09": [
-      {
-        "hora": "19:00",
-        "artistas": "CAMERATA OSC",
-        "lugar": "Auditorio Escola de Educação Básica Dr. Theodureto",
-        "presentaciones": [
-          {
-            "nombre": "",
-            "foto": "/uploads/mu19oc5f-e3066b8d.jpg"
-          }
-        ]
-      }
-    ],
+    "2026-10-09": [],
     "2026-10-10": [],
     "2026-10-11": []
   }
