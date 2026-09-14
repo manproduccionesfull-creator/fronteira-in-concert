@@ -627,7 +627,7 @@
       "instrumento": "Profesor - Metales",
       "bio": "",
       "ejemplo": false,
-      "foto": "/uploads/mtvy2914-8c58f6e3.jpg"
+      "foto": "/uploads/mu176y27-8852c89f.jpg"
     }
   ],
   "videos": [
@@ -645,11 +645,22 @@
       {
         "hora": "19:30",
         "artistas": "Duo de cuerdas\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
-        "lugar": "",
+        "lugar": "Escuela de Frontera 604",
         "presentaciones": [
           {
             "nombre": "",
             "foto": "/uploads/mtw2bfgq-883bd297.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
+        "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
+        "lugar": "",
+        "presentaciones": [
+          {
+            "nombre": "",
+            "foto": "/uploads/mu17e5en-06aa98c8.jpg"
           }
         ]
       }
