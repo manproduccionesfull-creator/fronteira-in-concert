@@ -393,31 +393,31 @@
     ],
     "2026-10-11": [
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "11:00",
+        "titulo": "Matiné familiar",
+        "sede": "Parque Temático y Ambiental de la Integración",
+        "tituloPt": "Matinê familiar",
+        "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "17:00",
+        "titulo": "Concierto de clausura",
+        "sede": "Parque Temático y Ambiental de la Integración",
+        "tituloPt": "Concerto de encerramento",
+        "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       },
       {
-        "hora": "",
-        "titulo": "",
-        "sede": "",
-        "tituloPt": "",
-        "sedePt": "",
+        "hora": "19:30",
+        "titulo": "Brindis y cierre",
+        "sede": "Escuela de Frontera 604",
+        "tituloPt": "Brinde e encerramento",
+        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
-        "ejemplo": true
+        "ejemplo": false
       }
     ]
   },
@@ -464,7 +464,7 @@
       "imagen": "/uploads/mtu1vq5m-6a165995.png"
     },
     {
-      "nombre": "",
+      "nombre": "Ensamble Gruppetto",
       "origen": "Ruiz de montoya, Misiones,Argentina",
       "descripcion": "",
       "ejemplo": false,
@@ -644,17 +644,40 @@
     "2026-10-08": [
       {
         "hora": "19:30",
-        "artistas": "Duo de cuerdas\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
-        "lugar": "",
+        "artistas": "Duo de cuerdas\nOSC\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
+        "lugar": "Escuela de Frontera 604",
         "presentaciones": [
           {
             "nombre": "",
             "foto": "/uploads/mtw2bfgq-883bd297.jpg"
           }
         ]
+      },
+      {
+        "hora": "",
+        "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
+        "lugar": "",
+        "presentaciones": [
+          {
+            "nombre": "",
+            "foto": "/uploads/mu17e5en-06aa98c8.jpg"
+          }
+        ]
       }
     ],
-    "2026-10-09": [],
+    "2026-10-09": [
+      {
+        "hora": "19:00",
+        "artistas": "CAMERATA OSC",
+        "lugar": "Auditorio Escola de Educação Básica Dr. Theodureto",
+        "presentaciones": [
+          {
+            "nombre": "",
+            "foto": "/uploads/mu19oc5f-e3066b8d.jpg"
+          }
+        ]
+      }
+    ],
     "2026-10-10": [],
     "2026-10-11": []
   }
