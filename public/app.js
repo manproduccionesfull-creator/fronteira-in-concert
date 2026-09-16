@@ -208,18 +208,40 @@
       list.innerHTML = '<p class="empty">Sin eventos para este día.</p>';
       return;
     }
-    html += events.map((ev) => `
-      <article class="event-card">
+    html += events.map((ev) => {
+      const celdas = Array.isArray(ev.celdas) ? ev.celdas : [];
+      const medio = isMediodiaEvent(ev);
+      let celdasHtml = '';
+      if (celdas.length) {
+        if (medio) {
+          const items = celdas.map((c) => {
+            if (typeof c === 'string') c = { titulo: c };
+            c = c || {};
+            const titulo = (c.titulo || c.texto || '').trim();
+            const hora = (c.hora || '').trim();
+            if (!titulo && !hora && !(c.presentaciones || []).length) return '';
+            return `<li class="medio-item">
+              ${hora ? `<span class="medio-hora">${escapeHtml(hora)}</span>` : ''}
+              <span class="medio-nombre">${escapeHtml(titulo || '—')}</span>
+            </li>`;
+          }).filter(Boolean).join('');
+          celdasHtml = items ? `<ul class="concert-name-cols medio-grid">${items}</ul>` : '';
+        } else {
+          celdasHtml = celdas.map(celdaBlockHtml).join('');
+        }
+      }
+      return `
+      <article class="event-card${medio ? ' event-mediodia' : ''}">
         ${ev.hora ? `<div class="hora">${escapeHtml(ev.hora)}</div>` : ''}
         <div class="event-body">
           <h3 class="multi-lines">${multilineHtml(ev.titulo)}</h3>
           <p class="venue">${escapeHtml(ev.sede)}</p>
           ${ptLine(ev.tituloPt, ev.sedePt)}
           ${ejemploBadge(ev.ejemplo)}
+          ${celdasHtml}
         </div>
-        ${(Array.isArray(ev.celdas) ? ev.celdas : []).map(celdaBlockHtml).join('')}
-      </article>
-    `).join('');
+      </article>`;
+    }).join('');
     list.innerHTML = html;
   }
 
@@ -410,8 +432,14 @@
     if (!c) return false;
     if (c.listaDosColumnas) return true;
     const h = String(c.hora || '').toLowerCase();
-    // Mediodía típico del festival
-    return /\b13\b|mediod[ií]a|13\s*a\s*14|13:/.test(h);
+    const t = String(c.titulo || c.artistas || '').toLowerCase();
+    return /\b13\b|mediod[ií]a|13\s*a\s*14|13:/.test(h) || /mediod/.test(t);
+  }
+
+  function isMediodiaEvent(ev) {
+    const h = String((ev && ev.hora) || '').toLowerCase();
+    const t = String((ev && ev.titulo) || '').toLowerCase();
+    return /mediod/.test(t) || /13\s*a\s*14/.test(h) || /^13:/.test(h);
   }
 
   function artistasBlockHtml(c) {
