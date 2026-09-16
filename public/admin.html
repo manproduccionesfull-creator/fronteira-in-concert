@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=88" />
+  <link rel="stylesheet" href="/styles.css?v=89" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -124,7 +124,7 @@
         <!-- CONCIERTOS -->
         <section class="admin-section" id="sec-conciertos">
           <h2>Conciertos</h2>
-          <p class="section-lead">Conciertos. Cargá participantes de a 2: nombre + info. En el teléfono también se ven de a 2.</p>
+          <p class="section-lead">Conciertos. Mediodía (13hs): foto del lugar + nombres de a 2 (jueves a domingo igual). Noche: texto + foto como Duo.</p>
           <div id="conciertos-days"></div>
         </section>
 
@@ -517,8 +517,9 @@
       let artistasText = c.artistas || '';
       const namedPres = presentaciones.filter((p) => p && (p.nombre || p.info));
       const photoPres = presentaciones.filter((p) => p && p.foto);
-      // Lista mediodía: nombres en grilla 2 cols. Conciertos con foto: texto + fotos, sin cuadros.
-      let useGrid = !!c.listaDosColumnas;
+      // Lista mediodía: nombres en grilla 2 cols + foto lugar. Noche: texto + foto tipo Duo.
+      const horaMid = /\b13\b|13:|13\s*a\s*14|mediod/.test(String(c.hora || '').toLowerCase());
+      let useGrid = !!c.listaDosColumnas || horaMid;
       if (!useGrid && !String(artistasText).trim() && namedPres.length >= 2 && photoPres.length === 0) {
         useGrid = true;
       }
@@ -930,7 +931,8 @@
           '<div class="day-block" data-day="' + d.key + '">' +
             '<h3>' + d.label + '</h3>' +
             '<div class="day-concerts rows-list">' + concerts.map(concertRowHtml).join('') + '</div>' +
-            '<button type="button" class="btn outline btn-add-concert" style="margin-top:10px;width:100%">+ Agregar concierto</button>' +
+            '<button type="button" class="btn outline btn-add-concert" style="margin-top:10px;width:100%">+ Agregar concierto (noche)</button>' +
+            '<button type="button" class="btn gold btn-add-midday" style="margin-top:8px;width:100%">+ Mediodía 13hs (foto + lista de a 2)</button>' +
           '</div>'
         );
       }).join('');
@@ -938,6 +940,13 @@
         btn.addEventListener('click', () => {
           const list = btn.closest('.day-block').querySelector('.day-concerts');
           list.insertAdjacentHTML('beforeend', concertRowHtml());
+          bindAllImageFields(list.querySelector('.concert-row:last-child'));
+        });
+      });
+      concEl.querySelectorAll('.btn-add-midday').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const list = btn.closest('.day-block').querySelector('.day-concerts');
+          list.insertAdjacentHTML('beforeend', concertRowHtml({ hora: '13:00', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: true }));
           bindAllImageFields(list.querySelector('.concert-row:last-child'));
         });
       });
