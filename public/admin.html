@@ -459,14 +459,16 @@
 
 
     function concertRowHtml(c) {
-      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [] };
+      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: false };
       const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
+      const twoCol = !!c.listaDosColumnas;
       return (
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
-            '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="20:30" /></label>' +
-            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Una presentación o grupo por línea">' + escText(c.artistas) + '</textarea></label>' +
+            '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 / 20:30" /></label>' +
+            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="6" placeholder="Un grupo o presentación por línea (en mediodía se ve en 2 columnas)">' + escText(c.artistas) + '</textarea></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
+            '<label class="check-label full"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> Lista en 2 columnas (mediodía)</label>' +
           '</div>' +
           presentacionesBlockHtml(presentaciones) +
           '<div class="row-footer">' +
@@ -1077,6 +1079,7 @@
             hora: val(row.querySelector('.c-hora')),
             artistas: val(row.querySelector('.c-artistas')),
             lugar: val(row.querySelector('.c-lugar')),
+            listaDosColumnas: !!(row.querySelector('.c-dos-cols') && row.querySelector('.c-dos-cols').checked),
             presentaciones,
           });
         });

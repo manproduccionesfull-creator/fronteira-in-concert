@@ -259,7 +259,7 @@
       <article class="event-card concert-card">
         ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
         <div class="event-body">
-          ${c.artistas ? `<h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>` : ''}
+          ${artistasBlockHtml(c)}
           <p class="venue">${escapeHtml(c.lugar || '')}</p>
           ${presentacionesHtml(c.presentaciones)}
         </div>
@@ -404,6 +404,24 @@
 
   function multilineHtml(str) {
     return escapeHtml(str).replace(/\n/g, '<br>');
+  }
+
+  function isListaDosColumnas(c) {
+    if (!c) return false;
+    if (c.listaDosColumnas) return true;
+    const h = String(c.hora || '').toLowerCase();
+    // Mediodía típico del festival
+    return /\b13\b|mediod[ií]a|13\s*a\s*14|13:/.test(h);
+  }
+
+  function artistasBlockHtml(c) {
+    const raw = String((c && c.artistas) || '').trim();
+    if (!raw) return '';
+    const lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+    if (isListaDosColumnas(c) && lines.length >= 2) {
+      return `<ul class="concert-name-cols">${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join('')}</ul>`;
+    }
+    return `<h3 class="multi-lines">${multilineHtml(raw)}</h3>`;
   }
 
   function presentacionesHtml(list) {
