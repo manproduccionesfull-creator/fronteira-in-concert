@@ -888,3 +888,51 @@ img, svg, video {
   object-position: center top;
   background: rgba(0,0,0,0.2);
 }
+
+
+/* Inicio explore grid (v2 trial — easy to revert) */
+body.on-inicio {
+  padding-bottom: calc(var(--safe-b) + 16px);
+}
+body.on-inicio .bottom-nav[hidden] {
+  display: none !important;
+}
+.inicio-explore {
+  margin-top: 1.35rem;
+  padding-bottom: 0.5rem;
+}
+.inicio-explore-title {
+  font-size: 1rem;
+  margin: 0 0 0.85rem;
+  border-bottom: none;
+  padding-bottom: 0;
+  color: var(--gold);
+  font-weight: 600;
+}
+.inicio-explore-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.inicio-explore-card {
+  appearance: none;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: var(--bg-card);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 1rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  min-height: 88px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.inicio-explore-card .nav-icon {
+  font-size: 1.35rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.inicio-explore-card:active { transform: scale(0.98); opacity: 0.92; }

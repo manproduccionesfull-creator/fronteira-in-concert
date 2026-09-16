@@ -33,6 +33,10 @@
       if (on) n.setAttribute('aria-current', 'page');
       else n.removeAttribute('aria-current');
     });
+    // Hide bottom nav on Inicio (sections opened from explore grid)
+    document.body.classList.toggle('on-inicio', id === 'inicio');
+    const nav = document.querySelector('.bottom-nav');
+    if (nav) nav.hidden = id === 'inicio';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     history.replaceState(null, '', `#${id}`);
   }
