@@ -261,7 +261,8 @@
 
   function renderProfesores(profesores) {
     const list = (profesores || []).filter((p) => p && (p.nombre || p.foto || p.imagen));
-    const mid = Math.ceil(list.length / 2);
+    // Even first row so the mid divider does not leave a blank grid cell
+    const mid = Math.floor(list.length / 2);
     const rows = [list.slice(0, mid), list.slice(mid)];
 
     function cardHtml(p) {
