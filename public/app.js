@@ -460,7 +460,7 @@
     renderOrquestas(content.orquestas);
     renderProfesores(content.profesores);
     renderApoyan(content.apoyan);
-    renderVideos(content.videos);
+    // Videos panel removed from nav (data kept for later)
     renderInscripcion(content.inscripcion);
     renderContacto(content.contacto, content.festival);
   }
@@ -474,7 +474,7 @@
     bindNav();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'apoyan', 'videos', 'inscripcion', 'contacto'];
+    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'apoyan', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();
