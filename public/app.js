@@ -277,21 +277,16 @@
       list.innerHTML = html + '<p class="empty">Todavía no hay conciertos cargados para este día.</p>';
       return;
     }
-    html += concerts.map((c) => {
-      const venueFoto = c.fotoLugar
-        ? `<img class="venue-foto" src="${escapeAttr(c.fotoLugar)}" alt="${escapeAttr(c.lugar || 'Lugar')}" loading="lazy" />`
-        : '';
-      return `
+    html += concerts.map((c) => `
       <article class="event-card concert-card">
         ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
         <div class="event-body">
-          ${venueFoto}
-          ${c.lugar ? `<p class="venue">${escapeHtml(c.lugar || '')}</p>` : ''}
           ${artistasBlockHtml(c)}
+          <p class="venue">${escapeHtml(c.lugar || '')}</p>
           ${presentacionesHtml(c.presentaciones, { twoCols: true })}
         </div>
-      </article>`;
-    }).join('');
+      </article>
+    `).join('');
     list.innerHTML = html;
   }
 

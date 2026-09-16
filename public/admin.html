@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=85" />
+  <link rel="stylesheet" href="/styles.css?v=84" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -520,7 +520,6 @@
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
-          imageFieldHtml('Foto del lugar', 'c-foto-lugar', c.fotoLugar || '', 'Subir foto del lugar') +
           participantesBlockHtml(c.artistas) +
           presentacionesBlockHtml(presentaciones) +
           '<div class="row-footer">' +
@@ -1185,18 +1184,15 @@
             info: val(card.querySelector('.c-part-info')),
           })).filter((p) => p.nombre || p.info);
           const artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
-          const fotoLugar = val(row.querySelector('.c-foto-lugar'));
-          const item = {
+          concerts.push({
             hora: val(row.querySelector('.c-hora')),
             artistas,
             lugar: val(row.querySelector('.c-lugar')),
-            listaDosColumnas: parts.length >= 2 || presentaciones.length >= 2,
+            listaDosColumnas: parts.length >= 2,
             presentaciones,
-          };
-          if (fotoLugar) item.fotoLugar = fotoLugar;
-          concerts.push(item);
+          });
         });
-        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || c.fotoLugar || (c.presentaciones && c.presentaciones.length));
+        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || (c.presentaciones && c.presentaciones.length));
       });
       applyAutoPtCronograma(out.cronograma);
 
