@@ -124,7 +124,7 @@
         <!-- CONCIERTOS -->
         <section class="admin-section" id="sec-conciertos">
           <h2>Conciertos</h2>
-          <p class="section-lead">Acá van los conciertos de la app (noche y mediodía). Para mediodía: hora 13:00, un grupo por línea en «Quiénes tocan» y marcá «Lista en 2 columnas».</p>
+          <p class="section-lead">Conciertos (noche y mediodía). Para muchos grupos: un renglón por participante (Nombre — info), marcá «De a 2» y se numeran solos.</p>
           <div id="conciertos-days"></div>
         </section>
 
@@ -467,8 +467,8 @@
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
-            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="8" placeholder="Un grupo por línea">' + escText(c.artistas) + '</textarea></label>' +
-            '<label class="check-label full" style="display:block;margin:8px 0;padding:10px;border:1px solid rgba(212,175,55,.45);border-radius:10px;background:rgba(212,175,55,.08)"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> <strong>Lista en 2 columnas</strong> (para mediodía)</label>' +
+            '<label class="full">Participantes<textarea class="c-artistas" rows="8" placeholder="Uno por renglón: Nombre — info">' + escText(c.artistas) + '</textarea></label>' +
+            '<label class="check-label full" style="display:block;margin:8px 0;padding:10px;border:1px solid rgba(212,175,55,.45);border-radius:10px;background:rgba(212,175,55,.08)"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> <strong>De a 2</strong> (número + nombre + info)</label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
           presentacionesBlockHtml(presentaciones) +

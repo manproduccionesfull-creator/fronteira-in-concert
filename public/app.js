@@ -442,23 +442,29 @@
     return /mediod/.test(t) || /13\s*a\s*14/.test(h) || /^13:/.test(h);
   }
 
+  function parseArtistaLine(l) {
+    let s = String(l || '').trim();
+    // strip leading "1." / "1)" / "1 " if user typed a number
+    s = s.replace(/^\d+[.)\-:]\s*/, '');
+    const parts = s.split(/\s*[—–|]\s*|\s+-\s+/);
+    if (parts.length >= 2) {
+      return { nombre: parts.shift().trim(), info: parts.join(' — ').trim() };
+    }
+    return { nombre: s, info: '' };
+  }
+
   function artistasBlockHtml(c) {
     const raw = String((c && c.artistas) || '').trim();
     if (!raw) return '';
     let lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
-    // If pasted as one line with commas/semicolons, split those too
     if (lines.length === 1 && /[,;|]/.test(lines[0])) {
       lines = lines[0].split(/[,;|]+/).map((s) => s.trim()).filter(Boolean);
     }
     if (isListaDosColumnas(c) && lines.length >= 2) {
-      return `<ul class="concert-name-cols">${lines.map((l) => {
-        const parts = l.split(/\s*[—–|]\s*|\s+-\s+/);
-        if (parts.length >= 2) {
-          const name = parts.shift().trim();
-          const info = parts.join(' — ').trim();
-          return `<li><span class="cn-name">${escapeHtml(name)}</span><span class="cn-info">${escapeHtml(info)}</span></li>`;
-        }
-        return `<li><span class="cn-name">${escapeHtml(l)}</span></li>`;
+      return `<ul class="concert-name-cols">${lines.map((l, i) => {
+        const { nombre, info } = parseArtistaLine(l);
+        const infoHtml = info ? `<span class="cn-info">${escapeHtml(info)}</span>` : '';
+        return `<li><span class="cn-num">${i + 1}</span><span class="cn-name">${escapeHtml(nombre)}</span>${infoHtml}</li>`;
       }).join('')}</ul>`;
     }
     return `<h3 class="multi-lines">${multilineHtml(raw)}</h3>`;
@@ -470,13 +476,14 @@
     if (!items.length) return '';
     const twoCols = opts && opts.twoCols && items.length >= 2;
     const cls = twoCols ? 'pres-public cols-2' : 'pres-public';
-    return `<ul class="${cls}">${items.map((p) => {
+    return `<ul class="${cls}">${items.map((p, i) => {
       const foto = p.foto
         ? `<img class="pres-thumb" src="${escapeAttr(p.foto)}" alt="" loading="lazy" />`
         : '';
+      const num = twoCols ? `<span class="cn-num">${i + 1}</span>` : '';
       const nombre = p.nombre ? `<span class="pres-name">${multilineHtml(p.nombre)}</span>` : '';
       const info = p.info ? `<span class="pres-info">${multilineHtml(p.info)}</span>` : '';
-      return `<li class="pres-item">${foto}${nombre}${info}</li>`;
+      return `<li class="pres-item">${num}${foto}${nombre}${info}</li>`;
     }).join('')}</ul>`;
   }
 
