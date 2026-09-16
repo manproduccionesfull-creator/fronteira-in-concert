@@ -117,10 +117,16 @@
         <!-- CRONOGRAMA -->
         <section class="admin-section" id="sec-cronograma">
           <h2>Cronograma por día</h2>
-          <p class="section-lead">Agregá actividades de cada día y, abajo, el apartado Concierto (quiénes tocan, lugar y hora).</p>
+          <p class="section-lead">Agregá las actividades de cada día (ensayos, comidas, clases). Los conciertos se editan más abajo, en Conciertos.</p>
           <div id="cronograma-days"></div>
         </section>
 
+        <!-- CONCIERTOS -->
+        <section class="admin-section" id="sec-conciertos">
+          <h2>Conciertos</h2>
+          <p class="section-lead">Quiénes tocan cada día, hora, lugar y fotos. Esto es lo que se ve en la pestaña Conciertos de la app.</p>
+          <div id="conciertos-days"></div>
+        </section>
 
         <!-- ORQUESTAS -->
         <section class="admin-section" id="sec-orquestas">
@@ -563,6 +569,7 @@
         ['contacto', 'Inscripción / Contacto'],
         ['orquestas', 'Orquestas'],
         ['profesores', 'Profesores'],
+        ['conciertos', 'Conciertos'],
         ['apoyan', 'Quiénes apoyan'],
         ['videos', 'Videos'],
         ['link', 'Un link externo'],
@@ -790,20 +797,15 @@
         }
       });
 
-      // Cronograma
+      // Cronograma (solo actividades)
       const daysEl = document.getElementById('cronograma-days');
       daysEl.innerHTML = DAY_META.map((d) => {
         const events = (data.cronograma && data.cronograma[d.key]) || [];
-        const concerts = (data.conciertos && data.conciertos[d.key]) || [];
         return (
           '<div class="day-block" data-day="' + d.key + '">' +
             '<h3>' + d.label + '</h3>' +
             '<div class="day-events rows-list">' + events.map(eventRowHtml).join('') + '</div>' +
             '<button type="button" class="btn gold btn-add-event" style="margin-top:10px;width:100%;font-size:1.05rem;padding:12px">+ Agregar actividad</button>' +
-            '<h4 class="day-concert-title">Concierto</h4>' +
-            '<p class="section-lead" style="margin-top:0">Quiénes tocan ese día, lugar y hora.</p>' +
-            '<div class="day-concerts rows-list">' + concerts.map(concertRowHtml).join('') + '</div>' +
-            '<button type="button" class="btn outline btn-add-concert" style="margin-top:10px;width:100%">+ Agregar concierto</button>' +
           '</div>'
         );
       }).join('');
@@ -813,13 +815,6 @@
           const list = btn.closest('.day-block').querySelector('.day-events');
           list.insertAdjacentHTML('beforeend', eventRowHtml());
           bindAllImageFields(list.querySelector('.event-row:last-child'));
-        });
-      });
-      daysEl.querySelectorAll('.btn-add-concert').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const list = btn.closest('.day-block').querySelector('.day-concerts');
-          list.insertAdjacentHTML('beforeend', concertRowHtml());
-          bindAllImageFields(list.querySelector('.concert-row:last-child'));
         });
       });
       if (!daysEl.dataset.celdasBound) {
@@ -846,8 +841,42 @@
         });
       }
       daysEl.querySelectorAll('.day-events').forEach(bindRemoveButtons);
-      daysEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
       bindAllImageFields(daysEl);
+
+      // Conciertos (sección aparte)
+      const concEl = document.getElementById('conciertos-days');
+      concEl.innerHTML = DAY_META.map((d) => {
+        const concerts = (data.conciertos && data.conciertos[d.key]) || [];
+        return (
+          '<div class="day-block" data-day="' + d.key + '">' +
+            '<h3>' + d.label + '</h3>' +
+            '<div class="day-concerts rows-list">' + concerts.map(concertRowHtml).join('') + '</div>' +
+            '<button type="button" class="btn outline btn-add-concert" style="margin-top:10px;width:100%">+ Agregar concierto</button>' +
+          '</div>'
+        );
+      }).join('');
+      concEl.querySelectorAll('.btn-add-concert').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const list = btn.closest('.day-block').querySelector('.day-concerts');
+          list.insertAdjacentHTML('beforeend', concertRowHtml());
+          bindAllImageFields(list.querySelector('.concert-row:last-child'));
+        });
+      });
+      if (!concEl.dataset.presBound) {
+        concEl.dataset.presBound = '1';
+        concEl.addEventListener('click', (e) => {
+          const addPres = e.target.closest('.btn-add-pres');
+          if (!addPres) return;
+          const block = addPres.closest('.pres-block');
+          const list = block && block.querySelector('.pres-list');
+          if (list) {
+            list.insertAdjacentHTML('beforeend', presentacionRowHtml());
+            bindAllImageFields(list.querySelector('.pres-row:last-child'));
+          }
+        });
+      }
+      concEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
+      bindAllImageFields(concEl);
 
 
       // Orquestas
@@ -1005,8 +1034,7 @@
       out.contacto.donacionTexto = getPathInput('contacto.donacionTexto') || 'Donar con Mercado Pago';
 
       out.cronograma = {};
-      out.conciertos = {};
-      document.querySelectorAll('.day-block').forEach((block) => {
+      document.querySelectorAll('#cronograma-days .day-block').forEach((block) => {
         const day = block.dataset.day;
         const events = [];
         block.querySelectorAll('.event-row').forEach((row) => {
@@ -1034,6 +1062,11 @@
           });
         });
         out.cronograma[day] = events;
+      });
+
+      out.conciertos = {};
+      document.querySelectorAll('#conciertos-days .day-block').forEach((block) => {
+        const day = block.dataset.day;
         const concerts = [];
         block.querySelectorAll('.concert-row').forEach((row) => {
           const presentaciones = [...row.querySelectorAll('.pres-row')].map((pr) => ({
