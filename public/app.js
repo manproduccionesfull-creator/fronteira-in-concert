@@ -199,14 +199,12 @@
         </div>`;
     }
 
-    const concerts = (content && content.conciertos && content.conciertos[selectedDay]) || [];
     let html = `<p class="muted" style="margin:0 0 0.75rem">${L.full}</p>`;
-    if (!events.length && !concerts.length) {
+    if (!events.length) {
       list.innerHTML = '<p class="empty">Sin eventos para este día.</p>';
       return;
     }
-    if (events.length) {
-      html += events.map((ev) => `
+    html += events.map((ev) => `
       <article class="event-card">
         ${ev.hora ? `<div class="hora">${escapeHtml(ev.hora)}</div>` : ''}
         <div class="event-body">
@@ -218,21 +216,51 @@
         ${(Array.isArray(ev.celdas) ? ev.celdas : []).map(celdaBlockHtml).join('')}
       </article>
     `).join('');
+    list.innerHTML = html;
+  }
+
+
+  let selectedConcertDay = selectedDay;
+
+  function renderConciertos(conciertos) {
+    const tabs = $('#concert-day-tabs');
+    const list = $('#concert-day-events');
+    if (!tabs || !list) return;
+    const days = Object.keys(DAY_LABELS);
+    if (!DAY_LABELS[selectedConcertDay]) selectedConcertDay = days[0];
+
+    tabs.innerHTML = days.map((d) => {
+      const L = DAY_LABELS[d];
+      const active = d === selectedConcertDay ? 'active' : '';
+      return `<button type="button" class="day-tab ${active}" role="tab" aria-selected="${d === selectedConcertDay}" data-concert-day="${d}">
+        ${L.dia} <strong>${L.num}</strong><small>oct</small>
+      </button>`;
+    }).join('');
+
+    tabs.onclick = (e) => {
+      const btn = e.target.closest('[data-concert-day]');
+      if (!btn) return;
+      selectedConcertDay = btn.dataset.concertDay;
+      renderConciertos(conciertos);
+    };
+
+    const L = DAY_LABELS[selectedConcertDay];
+    const concerts = (conciertos && conciertos[selectedConcertDay]) || [];
+    let html = `<p class="muted" style="margin:0 0 0.75rem">${L.full}</p>`;
+    if (!concerts.length) {
+      list.innerHTML = html + '<p class="empty">Todavía no hay conciertos cargados para este día.</p>';
+      return;
     }
-    html += `
-      <div class="concert-section">
-        <h3 class="concert-heading">Concierto</h3>
-        ${concerts.length ? concerts.map((c) => `
-          <article class="event-card concert-card">
-            ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
-            <div class="event-body">
-              ${c.artistas ? `<h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>` : ''}
-              <p class="venue">${escapeHtml(c.lugar || '')}</p>
-              ${presentacionesHtml(c.presentaciones)}
-            </div>
-          </article>
-        `).join('') : '<p class="empty">Todavía no hay conciertos cargados para este día.</p>'}
-      </div>`;
+    html += concerts.map((c) => `
+      <article class="event-card concert-card">
+        ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
+        <div class="event-body">
+          ${c.artistas ? `<h3 class="multi-lines">${multilineHtml(c.artistas || '')}</h3>` : ''}
+          <p class="venue">${escapeHtml(c.lugar || '')}</p>
+          ${presentacionesHtml(c.presentaciones)}
+        </div>
+      </article>
+    `).join('');
     list.innerHTML = html;
   }
 
@@ -459,6 +487,7 @@
     renderCronograma(content.cronograma);
     renderOrquestas(content.orquestas);
     renderProfesores(content.profesores);
+    renderConciertos(content.conciertos);
     renderApoyan(content.apoyan);
     // Videos panel removed from nav (data kept for later)
     renderInscripcion(content.inscripcion);
@@ -474,7 +503,7 @@
     bindNav();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'apoyan', 'inscripcion', 'contacto'];
+    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();

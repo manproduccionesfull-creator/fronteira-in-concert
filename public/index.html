@@ -65,6 +65,14 @@
       <div id="profesores-grid" class="profesores-wrap"></div>
     </section>
 
+
+    <section id="conciertos" class="panel" data-panel="conciertos">
+      <h2>Conciertos</h2>
+      <p class="section-lead">Elegí el día para ver los conciertos.</p>
+      <div class="day-tabs" id="concert-day-tabs" role="tablist" aria-label="Días de conciertos"></div>
+      <div id="concert-day-events" class="event-list" role="tabpanel"></div>
+    </section>
+
     <section id="apoyan" class="panel" data-panel="apoyan">
       <h2>Quiénes apoyan</h2>
       <div id="apoyan-grid" class="sponsor-grid"></div>
@@ -120,6 +128,9 @@
     <button type="button" class="nav-item" data-goto="profesores">
       <span class="nav-icon">♮</span><span>Profes</span>
     </button>
+    <button type="button" class="nav-item" data-goto="conciertos">
+      <span class="nav-icon">♪</span><span>Conciertos</span>
+    </button>
     <button type="button" class="nav-item" data-goto="apoyan">
       <span class="nav-icon">★</span><span>Apoyan</span>
     </button>
@@ -129,6 +140,6 @@
   </nav>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/app.js?v=69" defer></script>
+  <script src="/app.js?v=70" defer></script>
 </body>
 </html>
