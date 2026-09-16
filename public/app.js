@@ -271,15 +271,12 @@
 
   function renderOrquestas(orquestas) {
     $('#orquestas-grid').innerHTML = orquestas.map((o) => {
-      const logo = o.logo || '';
       const imagen = o.imagen || (Array.isArray(o.imagenes) && o.imagenes[0]) || '';
       let media = '';
       if (imagen) {
         media += `<img class="card-img" src="${escapeAttr(imagen)}" alt="${escapeAttr(o.nombre)}" loading="lazy" />`;
       }
-      if (logo) {
-        media += `<img class="orch-logo" src="${escapeAttr(logo)}" alt="Logo ${escapeAttr(o.nombre)}" loading="lazy" />`;
-      }
+      // Logos disabled (bandwidth) — kept out of UI even if content still has them
       return `
       <article class="card">
         ${media}

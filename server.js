@@ -10,6 +10,18 @@ const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 const { enrichContent } = require('./lib/cronograma-pt');
 
+function stripOrquestaLogos(data) {
+  if (!data || typeof data !== 'object') return data;
+  if (Array.isArray(data.orquestas)) {
+    data.orquestas = data.orquestas.map((o) => {
+      if (!o || typeof o !== 'object') return o;
+      return { ...o, logo: '' };
+    });
+  }
+  return data;
+}
+
+
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'fronteira2026';
 const CONTENT_PATH = path.join(__dirname, 'data', 'content.json');
@@ -199,7 +211,7 @@ function preserveFestivalVideo(incoming, previous) {
 app.get('/api/content', (_req, res) => {
   try {
     res.set('Cache-Control', 'no-store');
-    res.json(readContent());
+    res.json(stripOrquestaLogos(readContent()));
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'No se pudo leer el contenido' });
@@ -220,6 +232,7 @@ app.post('/api/content', async (req, res) => {
     }
     const previous = readContent();
     let payload = enrichContent(req.body);
+    payload = stripOrquestaLogos(payload);
     payload = preserveFestivalVideo(payload, previous);
     if (!payload.conciertos && previous && previous.conciertos) {
       payload.conciertos = previous.conciertos;

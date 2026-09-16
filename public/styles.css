@@ -968,16 +968,17 @@ body.on-inicio #hero-extra {
 }
 body.on-inicio .inicio-links {
   margin-top: 0;
-  gap: 0.45rem;
+  gap: 0.35rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   flex: 0 0 auto;
 }
 body.on-inicio .inicio-links .btn {
-  padding: 0.7rem 0.45rem;
-  min-height: 46px;
-  font-size: 0.82rem;
+  padding: 0.4rem 0.35rem;
+  min-height: 34px;
+  font-size: 0.72rem;
   line-height: 1.15;
+  font-weight: 600;
 }
 .inicio-explore {
   margin-top: 0;
