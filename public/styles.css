@@ -1152,3 +1152,55 @@ body.on-inicio .inicio-links .btn {
 .pres-public.cols-2 .pres-info {
   text-align: left;
 }
+
+
+/* Admin: participantes de concierto en 2 columnas */
+.admin-editor .part-block { margin: 0.55rem 0 0.75rem; }
+.admin-editor .part-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem 0.65rem;
+}
+.admin-editor .part-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.55rem 0.55rem 0.55rem 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.admin-editor .part-num {
+  position: absolute;
+  left: 0.45rem;
+  top: 0.55rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.22);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-editor .part-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  margin: 0;
+}
+.admin-editor .part-card input {
+  width: 100%;
+  font-size: 0.9rem;
+}
+.admin-editor .part-card .btn-remove-part {
+  align-self: flex-end;
+  margin-top: 0.15rem;
+}
+@media (max-width: 700px) {
+  .admin-editor .part-grid { grid-template-columns: 1fr; }
+}

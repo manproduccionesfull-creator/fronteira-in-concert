@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/styles.css?v=84" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -124,7 +124,7 @@
         <!-- CONCIERTOS -->
         <section class="admin-section" id="sec-conciertos">
           <h2>Conciertos</h2>
-          <p class="section-lead">Conciertos (noche y mediodía). Para muchos grupos: un renglón por participante (Nombre — info), marcá «De a 2» y se numeran solos.</p>
+          <p class="section-lead">Conciertos. Cargá participantes de a 2: nombre + info. En el teléfono también se ven de a 2.</p>
           <div id="conciertos-days"></div>
         </section>
 
@@ -459,18 +459,68 @@
     }
 
 
+    
+    function parseArtistasToRows(artistas) {
+      const raw = String(artistas || '').trim();
+      if (!raw) return [{ nombre: '', info: '' }, { nombre: '', info: '' }];
+      let lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+      if (lines.length === 1 && /[,;|]/.test(lines[0])) {
+        lines = lines[0].split(/[,;|]+/).map((s) => s.trim()).filter(Boolean);
+      }
+      const rows = lines.map((l) => {
+        let s = String(l || '').trim().replace(/^\d+[.)\-:]\s*/, '');
+        const parts = s.split(/\s*[—–|]\s*|\s+-\s+/);
+        if (parts.length >= 2) {
+          return { nombre: parts.shift().trim(), info: parts.join(' — ').trim() };
+        }
+        return { nombre: s, info: '' };
+      });
+      if (rows.length % 2 === 1) rows.push({ nombre: '', info: '' });
+      if (!rows.length) rows.push({ nombre: '', info: '' }, { nombre: '', info: '' });
+      return rows;
+    }
+
+    function partRowHtml(p, idx) {
+      p = p || { nombre: '', info: '' };
+      const n = (idx == null ? 0 : idx) + 1;
+      return (
+        '<div class="part-card">' +
+          '<span class="part-num">' + n + '</span>' +
+          '<label>Nombre<input type="text" class="c-part-nombre" value="' + escAttr(p.nombre || '') + '" placeholder="Grupo / artista" /></label>' +
+          '<label>Info<input type="text" class="c-part-info" value="' + escAttr(p.info || '') + '" placeholder="Ciudad, escuela…" /></label>' +
+          '<button type="button" class="btn outline btn-sm btn-remove-part" title="Quitar">✕</button>' +
+        '</div>'
+      );
+    }
+
+    function participantesBlockHtml(artistas) {
+      const rows = parseArtistasToRows(artistas);
+      return (
+        '<div class="part-block">' +
+          '<p class="section-lead" style="margin:6px 0 4px">Participantes (de a 2 en pantalla)</p>' +
+          '<div class="part-grid">' + rows.map(partRowHtml).join('') + '</div>' +
+          '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">' +
+            '<button type="button" class="btn outline btn-sm btn-add-part">+ Agregar 2</button>' +
+            '<button type="button" class="btn outline btn-sm btn-paste-parts">Pegar lista…</button>' +
+          '</div>' +
+          '<details style="margin-top:8px"><summary class="muted" style="cursor:pointer">Pegar muchos de una vez</summary>' +
+            '<textarea class="c-artistas-paste" rows="4" placeholder="Uno por renglón: Nombre — info"></textarea>' +
+            '<button type="button" class="btn outline btn-sm btn-apply-paste" style="margin-top:6px">Cargar en grilla</button>' +
+          '</details>' +
+        '</div>'
+      );
+    }
+
     function concertRowHtml(c) {
-      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: false };
+      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: true };
       const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
-      const twoCol = !!c.listaDosColumnas;
       return (
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
-            '<label class="full">Participantes<textarea class="c-artistas" rows="8" placeholder="Uno por renglón: Nombre — info">' + escText(c.artistas) + '</textarea></label>' +
-            '<label class="check-label full" style="display:block;margin:8px 0;padding:10px;border:1px solid rgba(212,175,55,.45);border-radius:10px;background:rgba(212,175,55,.08)"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> <strong>De a 2</strong> (número + nombre + info)</label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
+          participantesBlockHtml(c.artistas) +
           presentacionesBlockHtml(presentaciones) +
           '<div class="row-footer">' +
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
@@ -880,18 +930,57 @@
       }
       concEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
       bindAllImageFields(concEl);
-      if (!concEl.dataset.dosColsHook) {
-        concEl.dataset.dosColsHook = '1';
-        concEl.addEventListener('input', (e) => {
-          const hora = e.target.closest && e.target.classList.contains('c-hora') ? e.target : null;
-          if (!hora) return;
-          const row = hora.closest('.concert-row');
-          const box = row && row.querySelector('.c-dos-cols');
-          if (!box) return;
-          const h = String(hora.value || '').toLowerCase();
-          if (/\b13\b|13:|13\s*a\s*14|mediod/.test(h)) box.checked = true;
+
+      if (!concEl.dataset.partBound) {
+        concEl.dataset.partBound = '1';
+        const renumberParts = (grid) => {
+          if (!grid) return;
+          [...grid.querySelectorAll('.part-card')].forEach((card, i) => {
+            const num = card.querySelector('.part-num');
+            if (num) num.textContent = String(i + 1);
+          });
+        };
+        concEl.addEventListener('click', (e) => {
+          const add = e.target.closest('.btn-add-part');
+          if (add) {
+            const block = add.closest('.part-block');
+            const grid = block && block.querySelector('.part-grid');
+            if (grid) {
+              const start = grid.querySelectorAll('.part-card').length;
+              grid.insertAdjacentHTML('beforeend', partRowHtml({ nombre: '', info: '' }, start) + partRowHtml({ nombre: '', info: '' }, start + 1));
+              renumberParts(grid);
+            }
+            return;
+          }
+          const rem = e.target.closest('.btn-remove-part');
+          if (rem) {
+            const card = rem.closest('.part-card');
+            const grid = rem.closest('.part-grid');
+            if (card) card.remove();
+            renumberParts(grid);
+            return;
+          }
+          const pasteBtn = e.target.closest('.btn-paste-parts');
+          if (pasteBtn) {
+            const details = pasteBtn.closest('.part-block') && pasteBtn.closest('.part-block').querySelector('details');
+            if (details) details.open = true;
+            return;
+          }
+          const apply = e.target.closest('.btn-apply-paste');
+          if (apply) {
+            const block = apply.closest('.part-block');
+            const ta = block && block.querySelector('.c-artistas-paste');
+            const grid = block && block.querySelector('.part-grid');
+            if (ta && grid) {
+              const rows = parseArtistasToRows(ta.value);
+              grid.innerHTML = rows.map(partRowHtml).join('');
+              renumberParts(grid);
+              ta.value = '';
+            }
+          }
         });
       }
+
 
 
       // Orquestas
@@ -1087,14 +1176,19 @@
         block.querySelectorAll('.concert-row').forEach((row) => {
           const presentaciones = [...row.querySelectorAll('.pres-row')].map((pr) => ({
             nombre: val(pr.querySelector('.pres-nombre')),
-                info: val(pr.querySelector('.pres-info')),
+            info: val(pr.querySelector('.pres-info')),
             foto: val(pr.querySelector('.pres-foto')),
-          })).filter((p) => p.nombre || p.foto);
+          })).filter((p) => p.nombre || p.info || p.foto);
+          const parts = [...row.querySelectorAll('.part-card')].map((card) => ({
+            nombre: val(card.querySelector('.c-part-nombre')),
+            info: val(card.querySelector('.c-part-info')),
+          })).filter((p) => p.nombre || p.info);
+          const artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
           concerts.push({
             hora: val(row.querySelector('.c-hora')),
-            artistas: val(row.querySelector('.c-artistas')),
+            artistas,
             lugar: val(row.querySelector('.c-lugar')),
-            listaDosColumnas: !!(row.querySelector('.c-dos-cols') && row.querySelector('.c-dos-cols').checked),
+            listaDosColumnas: parts.length >= 2,
             presentaciones,
           });
         });
