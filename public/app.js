@@ -283,7 +283,7 @@
         <div class="event-body">
           ${artistasBlockHtml(c)}
           <p class="venue">${escapeHtml(c.lugar || '')}</p>
-          ${presentacionesHtml(c.presentaciones)}
+          ${presentacionesHtml(c.presentaciones, { twoCols: true })}
         </div>
       </article>
     `).join('');
@@ -451,21 +451,32 @@
       lines = lines[0].split(/[,;|]+/).map((s) => s.trim()).filter(Boolean);
     }
     if (isListaDosColumnas(c) && lines.length >= 2) {
-      return `<ul class="concert-name-cols">${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join('')}</ul>`;
+      return `<ul class="concert-name-cols">${lines.map((l) => {
+        const parts = l.split(/\s*[—–|]\s*|\s+-\s+/);
+        if (parts.length >= 2) {
+          const name = parts.shift().trim();
+          const info = parts.join(' — ').trim();
+          return `<li><span class="cn-name">${escapeHtml(name)}</span><span class="cn-info">${escapeHtml(info)}</span></li>`;
+        }
+        return `<li><span class="cn-name">${escapeHtml(l)}</span></li>`;
+      }).join('')}</ul>`;
     }
     return `<h3 class="multi-lines">${multilineHtml(raw)}</h3>`;
   }
 
-  function presentacionesHtml(list) {
+  function presentacionesHtml(list, opts) {
     if (!Array.isArray(list) || !list.length) return '';
-    const items = list.filter((p) => p && (p.nombre || p.foto));
+    const items = list.filter((p) => p && (p.nombre || p.info || p.foto));
     if (!items.length) return '';
-    return `<ul class="pres-public">${items.map((p) => {
+    const twoCols = opts && opts.twoCols && items.length >= 2;
+    const cls = twoCols ? 'pres-public cols-2' : 'pres-public';
+    return `<ul class="${cls}">${items.map((p) => {
       const foto = p.foto
         ? `<img class="pres-thumb" src="${escapeAttr(p.foto)}" alt="" loading="lazy" />`
-        : `<span class="pres-thumb placeholder" aria-hidden="true"></span>`;
+        : '';
       const nombre = p.nombre ? `<span class="pres-name">${multilineHtml(p.nombre)}</span>` : '';
-      return `<li class="pres-item">${foto}${nombre}</li>`;
+      const info = p.info ? `<span class="pres-info">${multilineHtml(p.info)}</span>` : '';
+      return `<li class="pres-item">${foto}${nombre}${info}</li>`;
     }).join('')}</ul>`;
   }
 

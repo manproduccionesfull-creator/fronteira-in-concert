@@ -368,14 +368,15 @@
     }
 
     function presentacionRowHtml(p) {
-      p = p || { nombre: '', foto: '' };
+      p = p || { nombre: '', info: '', foto: '' };
       return (
         '<div class="pres-row">' +
           '<div class="form-grid compact">' +
             '<label class="full">Nombre / grupo<input type="text" class="pres-nombre" value="' + escAttr(p.nombre || '') + '" placeholder="Orquesta, solista, coro…" /></label>' +
+            '<label class="full">Información<textarea class="pres-info" rows="2" placeholder="Ciudad, escuela, instrumento…">' + escText(p.info || '') + '</textarea></label>' +
           '</div>' +
-          imageFieldHtml('Foto chica', 'pres-foto', p.foto || '', 'Subir foto') +
-          '<button type="button" class="btn outline btn-sm btn-remove-pres" title="Quitar esta presentación">✕ Quitar presentación</button>' +
+          imageFieldHtml('Foto (opcional)', 'pres-foto', p.foto || '', 'Subir foto') +
+          '<button type="button" class="btn outline btn-sm btn-remove-pres" title="Quitar este participante">✕ Quitar participante</button>' +
         '</div>'
       );
     }
@@ -384,9 +385,9 @@
       list = Array.isArray(list) ? list : [];
       return (
         '<div class="pres-block">' +
-          '<p class="section-lead" style="margin:8px 0 4px">Presentaciones con foto (una por fila)</p>' +
+          '<p class="section-lead" style="margin:8px 0 4px">Participantes (en la app se muestran de a 2 por fila: nombre + info)</p>' +
           '<div class="pres-list">' + list.map(presentacionRowHtml).join('') + '</div>' +
-          '<button type="button" class="btn outline btn-sm btn-add-pres">+ Agregar presentación con foto</button>' +
+          '<button type="button" class="btn outline btn-sm btn-add-pres">+ Agregar participante</button>' +
         '</div>'
       );
     }
@@ -1061,6 +1062,7 @@
             celdas: [...row.querySelectorAll('.ev-celda')].map((celda) => {
               const presentaciones = [...celda.querySelectorAll('.pres-row')].map((pr) => ({
                 nombre: val(pr.querySelector('.pres-nombre')),
+                info: val(pr.querySelector('.pres-info')),
                 foto: val(pr.querySelector('.pres-foto')),
               })).filter((p) => p.nombre || p.foto);
               return {
@@ -1085,6 +1087,7 @@
         block.querySelectorAll('.concert-row').forEach((row) => {
           const presentaciones = [...row.querySelectorAll('.pres-row')].map((pr) => ({
             nombre: val(pr.querySelector('.pres-nombre')),
+                info: val(pr.querySelector('.pres-info')),
             foto: val(pr.querySelector('.pres-foto')),
           })).filter((p) => p.nombre || p.foto);
           concerts.push({
