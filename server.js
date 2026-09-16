@@ -3,6 +3,7 @@
  * Sirve estáticos + API de contenido editable + subida de imágenes
  */
 const express = require('express');
+const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -257,6 +258,54 @@ app.post('/api/upload', async (req, res) => {
     let filename = `${stamp}-${rand}${ext}`;
     let dest = path.join(UPLOAD_DIR, filename);
     fs.writeFileSync(dest, buffer);
+
+    // Shrink photos/logos for cheaper bandwidth (skip video/svg)
+    const IMAGE_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif']);
+    if (IMAGE_EXT.has(ext)) {
+      let outExt = ext === '.jpeg' ? '.jpg' : ext;
+      if (ext === '.png' && String(req.query.keepPng || '') !== '1') outExt = '.jpg';
+      const outName = `${stamp}-${rand}${outExt}`;
+      const outDest = path.join(UPLOAD_DIR, outName);
+      try {
+        let pipeline = sharp(buffer, { failOn: 'none' }).rotate();
+        const meta = await pipeline.metadata();
+        const w = meta.width || 0;
+        const h = meta.height || 0;
+        if (Math.max(w, h) > 1600) {
+          pipeline = sharp(buffer, { failOn: 'none' }).rotate().resize({
+            width: 1600,
+            height: 1600,
+            fit: 'inside',
+            withoutEnlargement: true,
+          });
+        } else {
+          pipeline = sharp(buffer, { failOn: 'none' }).rotate();
+        }
+        let outBuf;
+        if (outExt === '.jpg') {
+          outBuf = await pipeline.jpeg({ quality: 78, mozjpeg: true }).toBuffer();
+        } else if (outExt === '.webp') {
+          outBuf = await pipeline.webp({ quality: 80 }).toBuffer();
+        } else if (outExt === '.png') {
+          outBuf = await pipeline.png({ compressionLevel: 8, palette: true }).toBuffer();
+        } else if (outExt === '.gif') {
+          // sharp does not optimize animated gif well — keep original
+          outBuf = buffer;
+        } else {
+          outBuf = await pipeline.toBuffer();
+        }
+        if (outBuf && outBuf.length && (outBuf.length < buffer.length || outExt !== ext)) {
+          fs.writeFileSync(outDest, outBuf);
+          try { if (outDest !== dest) fs.unlinkSync(dest); } catch (_) {}
+          filename = outName;
+          dest = outDest;
+          console.log('compress_image', originalName, buffer.length, '->', outBuf.length);
+        }
+      } catch (compressErr) {
+        console.error('compress_image failed', compressErr);
+        // keep original dest
+      }
+    }
 
     // Profes: smart square crop so the circle fills without empty gaps
     const fit = String(req.query.fit || '').toLowerCase();
