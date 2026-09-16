@@ -277,16 +277,48 @@
       list.innerHTML = html + '<p class="empty">Todavía no hay conciertos cargados para este día.</p>';
       return;
     }
-    html += concerts.map((c) => `
+    html += concerts.map((c) => {
+      const pres = Array.isArray(c.presentaciones) ? c.presentaciones : [];
+      const fotos = [];
+      if (c.fotoLugar) fotos.push({ foto: c.fotoLugar });
+      pres.forEach((p) => { if (p && p.foto) fotos.push(p); });
+      // dedupe by foto url
+      const seen = new Set();
+      const fotosUniq = fotos.filter((p) => {
+        if (!p.foto || seen.has(p.foto)) return false;
+        seen.add(p.foto);
+        return true;
+      });
+      const nombres = isListaDosColumnas(c)
+        ? pres.filter((p) => p && (p.nombre || p.info) && !p.foto)
+        : pres;
+      const namesFromArtistas = artistasBlockHtml(c);
+      const namesFromPres = (isListaDosColumnas(c) && !String(c.artistas || '').trim())
+        ? presentacionesHtml(nombres, { twoCols: true })
+        : (!isListaDosColumnas(c) ? presentacionesHtml(pres.filter((p) => p && (p.nombre || p.info || p.foto) && !(fotosUniq.length && p.foto && !p.nombre && !p.info)), { twoCols: false }) : '');
+      // Non-grid concerts: keep classic Duo layout (text + photo presentaciones)
+      if (!isListaDosColumnas(c)) {
+        return `
       <article class="event-card concert-card">
         ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
         <div class="event-body">
           ${artistasBlockHtml(c)}
-          <p class="venue">${escapeHtml(c.lugar || '')}</p>
-          ${presentacionesHtml(c.presentaciones, { twoCols: isListaDosColumnas(c) })}
+          ${c.lugar ? `<p class="venue">${escapeHtml(c.lugar || '')}</p>` : ''}
+          ${presentacionesHtml(pres, { twoCols: false })}
         </div>
-      </article>
-    `).join('');
+      </article>`;
+      }
+      return `
+      <article class="event-card concert-card">
+        ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
+        <div class="event-body">
+          ${presentacionesHtml(fotosUniq, { twoCols: false })}
+          ${c.lugar ? `<p class="venue">${escapeHtml(c.lugar || '')}</p>` : ''}
+          ${namesFromArtistas}
+          ${namesFromPres}
+        </div>
+      </article>`;
+    }).join('');
     list.innerHTML = html;
   }
 

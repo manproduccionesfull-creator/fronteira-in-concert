@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=87" />
+  <link rel="stylesheet" href="/styles.css?v=88" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -528,8 +528,12 @@
           .filter(Boolean)
           .join('\n');
       }
+      const fotoLugar = c.fotoLugar || (photoPres[0] && photoPres[0].foto) || '';
       const body = useGrid
-        ? (participantesBlockHtml(artistasText) + presentacionesBlockHtml(photoPres))
+        ? (
+            imageFieldHtml('Foto del lugar (igual que Duo)', 'c-foto-lugar', fotoLugar, 'Subir foto del lugar') +
+            participantesBlockHtml(artistasText)
+          )
         : (
             '<div class="form-grid compact">' +
               '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Texto del concierto">' + escText(c.artistas || '') + '</textarea></label>' +
@@ -1209,23 +1213,26 @@
           const wantGrid = row.dataset.dosCols === '1' || !!(row.querySelector('.c-dos-cols') && row.querySelector('.c-dos-cols').checked) || parts.length >= 2;
           let artistas;
           let presentaciones;
+          const fotoLugarVal = val(row.querySelector('.c-foto-lugar'));
           if (parts.length) {
             artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
-            const fotosSueltas = photoPres.filter((p) => p.foto && !p.nombre && !p.info);
-            presentaciones = parts.map((p) => ({ nombre: p.nombre, info: p.info, foto: '' })).concat(fotosSueltas);
+            presentaciones = parts.map((p) => ({ nombre: p.nombre, info: p.info, foto: '' }));
+            if (fotoLugarVal) presentaciones.push({ nombre: '', info: '', foto: fotoLugarVal });
           } else {
             artistas = ta ? val(ta) : '';
             presentaciones = photoPres;
           }
-          concerts.push({
+          const item = {
             hora: val(row.querySelector('.c-hora')),
             artistas,
             lugar: val(row.querySelector('.c-lugar')),
             listaDosColumnas: wantGrid && ((parts.length >= 2) || (String(artistas).split(/\n+/).filter(Boolean).length >= 2)),
             presentaciones,
-          });
+          };
+          if (fotoLugarVal) item.fotoLugar = fotoLugarVal;
+          concerts.push(item);
         });
-        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || (c.presentaciones && c.presentaciones.length));
+        out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || c.fotoLugar || (c.presentaciones && c.presentaciones.length));
       });
       applyAutoPtCronograma(out.cronograma);
 
