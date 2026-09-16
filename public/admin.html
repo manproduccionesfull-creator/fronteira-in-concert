@@ -124,7 +124,7 @@
         <!-- CONCIERTOS -->
         <section class="admin-section" id="sec-conciertos">
           <h2>Conciertos</h2>
-          <p class="section-lead">Quiénes tocan cada día, hora, lugar y fotos. Esto es lo que se ve en la pestaña Conciertos de la app.</p>
+          <p class="section-lead">Acá van los conciertos de la app (noche y mediodía). Para mediodía: hora 13:00, un grupo por línea en «Quiénes tocan» y marcá «Lista en 2 columnas».</p>
           <div id="conciertos-days"></div>
         </section>
 
@@ -465,10 +465,10 @@
       return (
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
-            '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 / 20:30" /></label>' +
-            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="6" placeholder="Un grupo o presentación por línea (en mediodía se ve en 2 columnas)">' + escText(c.artistas) + '</textarea></label>' +
+            '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
+            '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="8" placeholder="Un grupo por línea">' + escText(c.artistas) + '</textarea></label>' +
+            '<label class="check-label full" style="display:block;margin:8px 0;padding:10px;border:1px solid rgba(212,175,55,.45);border-radius:10px;background:rgba(212,175,55,.08)"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> <strong>Lista en 2 columnas</strong> (para mediodía)</label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
-            '<label class="check-label full"><input type="checkbox" class="c-dos-cols"' + (twoCol ? ' checked' : '') + ' /> Lista en 2 columnas (mediodía)</label>' +
           '</div>' +
           presentacionesBlockHtml(presentaciones) +
           '<div class="row-footer">' +
@@ -879,6 +879,18 @@
       }
       concEl.querySelectorAll('.day-concerts').forEach(bindRemoveButtons);
       bindAllImageFields(concEl);
+      if (!concEl.dataset.dosColsHook) {
+        concEl.dataset.dosColsHook = '1';
+        concEl.addEventListener('input', (e) => {
+          const hora = e.target.closest && e.target.classList.contains('c-hora') ? e.target : null;
+          if (!hora) return;
+          const row = hora.closest('.concert-row');
+          const box = row && row.querySelector('.c-dos-cols');
+          if (!box) return;
+          const h = String(hora.value || '').toLowerCase();
+          if (/\b13\b|13:|13\s*a\s*14|mediod/.test(h)) box.checked = true;
+        });
+      }
 
 
       // Orquestas

@@ -445,7 +445,11 @@
   function artistasBlockHtml(c) {
     const raw = String((c && c.artistas) || '').trim();
     if (!raw) return '';
-    const lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+    let lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+    // If pasted as one line with commas/semicolons, split those too
+    if (lines.length === 1 && /[,;|]/.test(lines[0])) {
+      lines = lines[0].split(/[,;|]+/).map((s) => s.trim()).filter(Boolean);
+    }
     if (isListaDosColumnas(c) && lines.length >= 2) {
       return `<ul class="concert-name-cols">${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join('')}</ul>`;
     }
