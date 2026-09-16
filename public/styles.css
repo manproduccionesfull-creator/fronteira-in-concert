@@ -998,12 +998,14 @@ body.on-inicio .inicio-links .btn {
   flex-direction: column;
 }
 .inicio-explore-title {
-  font-size: 0.78rem;
-  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.55rem;
   border-bottom: none;
   padding-bottom: 0;
   color: var(--gold);
-  font-weight: 600;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 .inicio-explore-grid {
   display: grid;
@@ -1036,7 +1038,7 @@ body.on-inicio .inicio-links .btn {
 .inicio-explore-card:active { transform: scale(0.98); opacity: 0.92; }
 
 @media (max-height: 680px) {
-  body.on-inicio .hero-video-wrap { width: min(88px, 24vw); }
-  body.on-inicio .blurb { -webkit-line-clamp: 2; }
-  body.on-inicio .inicio-links .btn { min-height: 42px; padding: 0.55rem 0.35rem; }
+  body.on-inicio .hero-video-wrap { width: min(120px, 32vw); }
+  body.on-inicio .blurb { -webkit-line-clamp: 3; }
+  body.on-inicio .inicio-explore-title { font-size: 1.05rem; }
 }
