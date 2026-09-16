@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=84" />
+  <link rel="stylesheet" href="/styles.css?v=86" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -514,14 +514,25 @@
     function concertRowHtml(c) {
       c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: true };
       const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
+      let artistasText = c.artistas || '';
+      // If names were saved as presentaciones (common), show them in the 2-col grid
+      if (!String(artistasText).trim()) {
+        const fromPres = presentaciones
+          .filter((p) => p && (p.nombre || p.info))
+          .map((p) => (p.info ? ((p.nombre || '') + ' — ' + p.info) : (p.nombre || '')).trim())
+          .filter(Boolean);
+        if (fromPres.length) artistasText = fromPres.join('\n');
+      }
+      // Presentaciones con foto aparte (sin duplicar nombres ya mostrados en la grilla)
+      const presentacionesFoto = presentaciones.filter((p) => p && p.foto);
       return (
         '<div class="row-card concert-row">' +
           '<div class="form-grid compact">' +
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
-          participantesBlockHtml(c.artistas) +
-          presentacionesBlockHtml(presentaciones) +
+          participantesBlockHtml(artistasText) +
+          presentacionesBlockHtml(presentacionesFoto) +
           '<div class="row-footer">' +
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
             '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
@@ -1174,7 +1185,7 @@
         const day = block.dataset.day;
         const concerts = [];
         block.querySelectorAll('.concert-row').forEach((row) => {
-          const presentaciones = [...row.querySelectorAll('.pres-row')].map((pr) => ({
+          const photoPres = [...row.querySelectorAll('.pres-row')].map((pr) => ({
             nombre: val(pr.querySelector('.pres-nombre')),
             info: val(pr.querySelector('.pres-info')),
             foto: val(pr.querySelector('.pres-foto')),
@@ -1184,11 +1195,19 @@
             info: val(card.querySelector('.c-part-info')),
           })).filter((p) => p.nombre || p.info);
           const artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
+          // Prefer grilla de participantes; adjuntar fotos sueltas sin nombre
+          let presentaciones;
+          if (parts.length) {
+            const fotosSueltas = photoPres.filter((p) => p.foto && !p.nombre && !p.info);
+            presentaciones = parts.map((p) => ({ nombre: p.nombre, info: p.info, foto: '' })).concat(fotosSueltas);
+          } else {
+            presentaciones = photoPres;
+          }
           concerts.push({
             hora: val(row.querySelector('.c-hora')),
             artistas,
             lugar: val(row.querySelector('.c-lugar')),
-            listaDosColumnas: parts.length >= 2,
+            listaDosColumnas: parts.length >= 2 || presentaciones.length >= 2,
             presentaciones,
           });
         });

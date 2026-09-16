@@ -444,48 +444,48 @@
       "origen": "Chapecó, Brasil",
       "descripcion": "La Orquesta Sinfónica de Chapecó (OSC) de Brasil fundado en 2009 en la ciudad de Chapecó, Santa Catarina. \n Inició sus actividades en 2009 con apoyo de la municipalidad y otras entidades locales.\n Está administrada por la Associação Amigos da Orquestra Sinfónica de Chapecó (AAOSC) y cuenta con el respaldo de la Secretaría de Cultura del municipio. Propósito: Funciona como un proyecto educativo y cultural que ofrece formación en teoría musical, práctica instrumental y canto coral  Se encuentra en el Centro de Cultura y Eventos Plínio Arlindo de Nes.",
       "ejemplo": false,
-      "logo": "",
-      "imagen": "/uploads/mu403rif-2b64f0d0.jpg"
+      "imagen": "/uploads/mu403rif-2b64f0d0.jpg",
+      "logo": ""
     },
     {
       "nombre": "Camareta -Chapecó, Santa Catarina.",
       "origen": "Chapecó, Santa Catarina, Brasil",
       "descripcion": "Formación : Profesores de la Orquesta (OSC)",
       "ejemplo": false,
-      "logo": "",
-      "imagen": "/uploads/mu403srw-e2c15ed0.jpg"
+      "imagen": "/uploads/mu403srw-e2c15ed0.jpg",
+      "logo": ""
     },
     {
       "nombre": "Orquesta Municipal",
       "origen": "Puerto Esperanza Misiones",
       "descripcion": "conjunto musical y proyecto cultural de la localidad de Puerto Esperanza, en la provincia de Misiones,",
       "ejemplo": false,
-      "logo": "",
-      "imagen": "/uploads/mu403u5n-803ce511.jpg"
+      "imagen": "/uploads/mu403u5n-803ce511.jpg",
+      "logo": ""
     },
     {
       "nombre": "Ensamble Gruppetto",
       "origen": "Ruiz de montoya, Misiones,Argentina",
       "descripcion": "",
       "ejemplo": false,
-      "logo": "",
-      "imagen": "/uploads/mu403v29-f4a141e7.jpg"
+      "imagen": "/uploads/mu403v29-f4a141e7.jpg",
+      "logo": ""
     },
     {
       "nombre": "Orquesta  Luzamor",
       "origen": "Maringá-PR-BR",
       "descripcion": "",
       "ejemplo": true,
-      "logo": "",
-      "imagen": "/uploads/mu403w1a-1d06663a.jpg"
+      "imagen": "/uploads/mu403w1a-1d06663a.jpg",
+      "logo": ""
     },
     {
       "nombre": "Orquesta Binacional",
       "origen": "Bdo de Irigoyen,Misiones",
       "descripcion": "",
       "ejemplo": false,
-      "logo": "",
-      "imagen": "/uploads/mu403x3e-6b38a6b0.jpg"
+      "imagen": "/uploads/mu403x3e-6b38a6b0.jpg",
+      "logo": ""
     }
   ],
   "apoyan": [
@@ -643,12 +643,62 @@
   "conciertos": {
     "2026-10-08": [
       {
+        "hora": "13:00",
+        "artistas": "",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "Nazareno Riveros",
+            "info": "Por una cabeza",
+            "foto": ""
+          },
+          {
+            "nombre": "Gabriel Arayon",
+            "info": "CONCERTINO op 14\nPortnoff",
+            "foto": ""
+          },
+          {
+            "nombre": "Milagros Chagas",
+            "info": "CONCERTINO  Op11\nAllegro\nF. Küchle",
+            "foto": ""
+          },
+          {
+            "nombre": "Louyze Tonin Schmitz",
+            "info": "Minueto 2\nJ. S. Bach",
+            "foto": ""
+          },
+          {
+            "nombre": "Emily Isabela Preghiera",
+            "info": "S. Rachmaninov / F Kreisler",
+            "foto": ""
+          },
+          {
+            "nombre": "Briana De Almeida Nitsch",
+            "info": "Lightly Row",
+            "foto": ""
+          },
+          {
+            "nombre": "Benjamin Rosa Rodrigues Bourrée Anglaise G. F. Haendel",
+            "info": "Bourrée Anglaise\nG. F. Haendel",
+            "foto": ""
+          },
+          {
+            "nombre": "Nayla Bobato y Matheus Vinicius de Souza",
+            "info": "El cisne C. Saint-Saens",
+            "foto": ""
+          }
+        ]
+      },
+      {
         "hora": "19:30",
-        "artistas": "Duo de cuerdas\nOSC\n                                                             Profesores:\n                                                         Endryk Casagrande (violín)\n                                                     Mateus Berns (violonchelo)",
+        "artistas": "Duo de cuerdas\nOSC\nProfesores:\nEndryk Casagrande (violín)\nMateus Berns (violonchelo)",
         "lugar": "Escuela de Frontera 604",
+        "listaDosColumnas": true,
         "presentaciones": [
           {
             "nombre": "",
+            "info": "",
             "foto": "/uploads/mu403y3d-eeba8792.jpg"
           }
         ]
@@ -657,9 +707,11 @@
         "hora": "",
         "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
         "lugar": "",
+        "listaDosColumnas": true,
         "presentaciones": [
           {
             "nombre": "",
+            "info": "",
             "foto": "/uploads/mu403z7l-fbb8700f.jpg"
           }
         ]
@@ -668,9 +720,11 @@
         "hora": "",
         "artistas": "ENSAMBLE GRUPPETTO\nRuiz de Montoya · Misiones",
         "lugar": "Escuela Frontera 604",
+        "listaDosColumnas": true,
         "presentaciones": [
           {
-            "nombre": "Ensamble Gruppetto",
+            "nombre": "",
+            "info": "",
             "foto": "/uploads/mu403v29-f4a141e7.jpg"
           }
         ]
@@ -678,12 +732,32 @@
     ],
     "2026-10-09": [
       {
+        "hora": "13:00",
+        "artistas": "",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "Milagros Chagas",
+            "info": "CONCERTINO  Op11 Allegro F. Küchle",
+            "foto": ""
+          },
+          {
+            "nombre": "Nazareno Riveros",
+            "info": "Por una cabeza",
+            "foto": ""
+          }
+        ]
+      },
+      {
         "hora": "19:00",
         "artistas": "CAMERATA OSC",
         "lugar": "Auditorio Escola de Educação Básica Dr. Theodureto",
+        "listaDosColumnas": false,
         "presentaciones": [
           {
             "nombre": "",
+            "info": "",
             "foto": "/uploads/mu403zyf-6629ad1c.jpg"
           }
         ]
