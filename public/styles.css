@@ -1204,3 +1204,17 @@ body.on-inicio .inicio-links .btn {
 @media (max-width: 700px) {
   .admin-editor .part-grid { grid-template-columns: 1fr; }
 }
+
+
+.concert-card .venue-foto {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  margin: 0 auto 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
