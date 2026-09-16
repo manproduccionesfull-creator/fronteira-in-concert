@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=89" />
+  <link rel="stylesheet" href="/styles.css?v=90" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -369,25 +369,25 @@
 
     function presentacionRowHtml(p) {
       p = p || { nombre: '', info: '', foto: '' };
+      // Concierto noche: solo foto (como Duo). Sin cuadros de nombre/info.
       return (
         '<div class="pres-row">' +
-          '<div class="form-grid compact">' +
-            '<label class="full">Nombre / grupo<input type="text" class="pres-nombre" value="' + escAttr(p.nombre || '') + '" placeholder="Orquesta, solista, coro…" /></label>' +
-            '<label class="full">Información<textarea class="pres-info" rows="2" placeholder="Ciudad, escuela, instrumento…">' + escText(p.info || '') + '</textarea></label>' +
-          '</div>' +
-          imageFieldHtml('Foto (opcional)', 'pres-foto', p.foto || '', 'Subir foto') +
-          '<button type="button" class="btn outline btn-sm btn-remove-pres" title="Quitar este participante">✕ Quitar participante</button>' +
+          imageFieldHtml('Foto', 'pres-foto', p.foto || '', 'Subir foto') +
+          '<input type="hidden" class="pres-nombre" value="' + escAttr(p.nombre || '') + '" />' +
+          '<input type="hidden" class="pres-info" value="' + escAttr(p.info || '') + '" />' +
+          '<button type="button" class="btn outline btn-sm btn-remove-pres" title="Quitar foto">✕ Quitar foto</button>' +
         '</div>'
       );
     }
 
     function presentacionesBlockHtml(list) {
       list = Array.isArray(list) ? list : [];
+      if (!list.length) list = [{ nombre: '', info: '', foto: '' }];
       return (
         '<div class="pres-block">' +
-          '<p class="section-lead" style="margin:8px 0 4px">Participantes (en la app se muestran de a 2 por fila: nombre + info)</p>' +
+          '<p class="section-lead" style="margin:8px 0 4px">Foto del concierto (como Duo)</p>' +
           '<div class="pres-list">' + list.map(presentacionRowHtml).join('') + '</div>' +
-          '<button type="button" class="btn outline btn-sm btn-add-pres">+ Agregar participante</button>' +
+          '<button type="button" class="btn outline btn-sm btn-add-pres">+ Agregar otra foto</button>' +
         '</div>'
       );
     }
@@ -517,12 +517,10 @@
       let artistasText = c.artistas || '';
       const namedPres = presentaciones.filter((p) => p && (p.nombre || p.info));
       const photoPres = presentaciones.filter((p) => p && p.foto);
-      // Lista mediodía: nombres en grilla 2 cols + foto lugar. Noche: texto + foto tipo Duo.
-      const horaMid = /\b13\b|13:|13\s*a\s*14|mediod/.test(String(c.hora || '').toLowerCase());
-      let useGrid = !!c.listaDosColumnas || horaMid;
-      if (!useGrid && !String(artistasText).trim() && namedPres.length >= 2 && photoPres.length === 0) {
-        useGrid = true;
-      }
+      // SOLO horario 13hs: grilla de a 2 + foto lugar. El resto: texto + foto como Duo (sin cuadros).
+      const horaMid = /(?:^|\b)(13:00|13:|13\s*a\s*14|mediod)/i.test(String(c.hora || ''))
+        || /^13$/.test(String(c.hora || '').trim());
+      const useGrid = horaMid;
       if (useGrid && !String(artistasText).trim() && namedPres.length) {
         artistasText = namedPres
           .map((p) => (p.info ? ((p.nombre || '') + ' — ' + p.info) : (p.nombre || '')).trim())
@@ -538,7 +536,7 @@
         : (
             '<div class="form-grid compact">' +
               '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Texto del concierto">' + escText(c.artistas || '') + '</textarea></label>' +
-              '<label class="check-label full"><input type="checkbox" class="c-dos-cols" /> Pasar a lista de a 2</label>' +
+              
             '</div>' +
             presentacionesBlockHtml(presentaciones)
           );
@@ -1219,7 +1217,8 @@
             info: val(card.querySelector('.c-part-info')),
           })).filter((p) => p.nombre || p.info);
           const ta = row.querySelector('.c-artistas');
-          const wantGrid = row.dataset.dosCols === '1' || !!(row.querySelector('.c-dos-cols') && row.querySelector('.c-dos-cols').checked) || parts.length >= 2;
+          const horaVal = val(row.querySelector('.c-hora'));
+          const isMidday = /(?:^|\b)(13:00|13:|13\s*a\s*14|mediod)/i.test(horaVal) || /^13$/.test(String(horaVal).trim());
           let artistas;
           let presentaciones;
           const fotoLugarVal = val(row.querySelector('.c-foto-lugar'));
@@ -1235,7 +1234,7 @@
             hora: val(row.querySelector('.c-hora')),
             artistas,
             lugar: val(row.querySelector('.c-lugar')),
-            listaDosColumnas: wantGrid && ((parts.length >= 2) || (String(artistas).split(/\n+/).filter(Boolean).length >= 2)),
+            listaDosColumnas: isMidday,
             presentaciones,
           };
           if (fotoLugarVal) item.fotoLugar = fotoLugarVal;

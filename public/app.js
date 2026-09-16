@@ -462,10 +462,9 @@
 
   function isListaDosColumnas(c) {
     if (!c) return false;
-    if (c.listaDosColumnas) return true;
-    const h = String(c.hora || '').toLowerCase();
-    const t = String(c.titulo || c.artistas || '').toLowerCase();
-    return /\b13\b|mediod[ií]a|13\s*a\s*14|13:/.test(h) || /mediod/.test(t);
+    const h = String(c.hora || '').toLowerCase().trim();
+    // Solo conciertos de las 13hs
+    return /^(13:00|13)\b/.test(h) || /^13\s*a\s*14/.test(h) || /mediod/.test(h);
   }
 
   function isMediodiaEvent(ev) {
