@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=86" />
+  <link rel="stylesheet" href="/styles.css?v=87" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -512,27 +512,38 @@
     }
 
     function concertRowHtml(c) {
-      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: true };
+      c = c || { hora: '', artistas: '', lugar: '', presentaciones: [], listaDosColumnas: false };
       const presentaciones = Array.isArray(c.presentaciones) ? c.presentaciones : [];
       let artistasText = c.artistas || '';
-      // If names were saved as presentaciones (common), show them in the 2-col grid
-      if (!String(artistasText).trim()) {
-        const fromPres = presentaciones
-          .filter((p) => p && (p.nombre || p.info))
-          .map((p) => (p.info ? ((p.nombre || '') + ' — ' + p.info) : (p.nombre || '')).trim())
-          .filter(Boolean);
-        if (fromPres.length) artistasText = fromPres.join('\n');
+      const namedPres = presentaciones.filter((p) => p && (p.nombre || p.info));
+      const photoPres = presentaciones.filter((p) => p && p.foto);
+      // Lista mediodía: nombres en grilla 2 cols. Conciertos con foto: texto + fotos, sin cuadros.
+      let useGrid = !!c.listaDosColumnas;
+      if (!useGrid && !String(artistasText).trim() && namedPres.length >= 2 && photoPres.length === 0) {
+        useGrid = true;
       }
-      // Presentaciones con foto aparte (sin duplicar nombres ya mostrados en la grilla)
-      const presentacionesFoto = presentaciones.filter((p) => p && p.foto);
+      if (useGrid && !String(artistasText).trim() && namedPres.length) {
+        artistasText = namedPres
+          .map((p) => (p.info ? ((p.nombre || '') + ' — ' + p.info) : (p.nombre || '')).trim())
+          .filter(Boolean)
+          .join('\n');
+      }
+      const body = useGrid
+        ? (participantesBlockHtml(artistasText) + presentacionesBlockHtml(photoPres))
+        : (
+            '<div class="form-grid compact">' +
+              '<label class="full">Quiénes tocan<textarea class="c-artistas" rows="5" placeholder="Texto del concierto">' + escText(c.artistas || '') + '</textarea></label>' +
+              '<label class="check-label full"><input type="checkbox" class="c-dos-cols" /> Pasar a lista de a 2</label>' +
+            '</div>' +
+            presentacionesBlockHtml(presentaciones)
+          );
       return (
-        '<div class="row-card concert-row">' +
+        '<div class="row-card concert-row" data-dos-cols="' + (useGrid ? '1' : '0') + '">' +
           '<div class="form-grid compact">' +
             '<label>Hora<input type="text" class="c-hora" value="' + escAttr(c.hora) + '" placeholder="13:00 mediodía / 20:30 noche" /></label>' +
             '<label class="full">Lugar<input type="text" class="c-lugar" value="' + escAttr(c.lugar) + '" placeholder="Sala, parque…" /></label>' +
           '</div>' +
-          participantesBlockHtml(artistasText) +
-          presentacionesBlockHtml(presentacionesFoto) +
+          body +
           '<div class="row-footer">' +
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
             '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
@@ -1194,20 +1205,23 @@
             nombre: val(card.querySelector('.c-part-nombre')),
             info: val(card.querySelector('.c-part-info')),
           })).filter((p) => p.nombre || p.info);
-          const artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
-          // Prefer grilla de participantes; adjuntar fotos sueltas sin nombre
+          const ta = row.querySelector('.c-artistas');
+          const wantGrid = row.dataset.dosCols === '1' || !!(row.querySelector('.c-dos-cols') && row.querySelector('.c-dos-cols').checked) || parts.length >= 2;
+          let artistas;
           let presentaciones;
           if (parts.length) {
+            artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
             const fotosSueltas = photoPres.filter((p) => p.foto && !p.nombre && !p.info);
             presentaciones = parts.map((p) => ({ nombre: p.nombre, info: p.info, foto: '' })).concat(fotosSueltas);
           } else {
+            artistas = ta ? val(ta) : '';
             presentaciones = photoPres;
           }
           concerts.push({
             hora: val(row.querySelector('.c-hora')),
             artistas,
             lugar: val(row.querySelector('.c-lugar')),
-            listaDosColumnas: parts.length >= 2 || presentaciones.length >= 2,
+            listaDosColumnas: wantGrid && ((parts.length >= 2) || (String(artistas).split(/\n+/).filter(Boolean).length >= 2)),
             presentaciones,
           });
         });

@@ -646,7 +646,7 @@
         "hora": "13:00",
         "artistas": "",
         "lugar": "",
-        "listaDosColumnas": false,
+        "listaDosColumnas": true,
         "presentaciones": [
           {
             "nombre": "Nazareno Riveros",
@@ -694,7 +694,7 @@
         "hora": "19:30",
         "artistas": "Duo de cuerdas\nOSC\nProfesores:\nEndryk Casagrande (violín)\nMateus Berns (violonchelo)",
         "lugar": "Escuela de Frontera 604",
-        "listaDosColumnas": true,
+        "listaDosColumnas": false,
         "presentaciones": [
           {
             "nombre": "",
@@ -707,7 +707,7 @@
         "hora": "",
         "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
         "lugar": "",
-        "listaDosColumnas": true,
+        "listaDosColumnas": false,
         "presentaciones": [
           {
             "nombre": "",
@@ -720,7 +720,7 @@
         "hora": "",
         "artistas": "ENSAMBLE GRUPPETTO\nRuiz de Montoya · Misiones",
         "lugar": "Escuela Frontera 604",
-        "listaDosColumnas": true,
+        "listaDosColumnas": false,
         "presentaciones": [
           {
             "nombre": "",
@@ -735,7 +735,7 @@
         "hora": "13:00",
         "artistas": "",
         "lugar": "",
-        "listaDosColumnas": false,
+        "listaDosColumnas": true,
         "presentaciones": [
           {
             "nombre": "Milagros Chagas",

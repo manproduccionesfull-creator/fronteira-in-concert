@@ -283,7 +283,7 @@
         <div class="event-body">
           ${artistasBlockHtml(c)}
           <p class="venue">${escapeHtml(c.lugar || '')}</p>
-          ${presentacionesHtml(c.presentaciones, { twoCols: true })}
+          ${presentacionesHtml(c.presentaciones, { twoCols: isListaDosColumnas(c) })}
         </div>
       </article>
     `).join('');
@@ -474,7 +474,8 @@
     if (!Array.isArray(list) || !list.length) return '';
     const items = list.filter((p) => p && (p.nombre || p.info || p.foto));
     if (!items.length) return '';
-    const twoCols = opts && opts.twoCols && items.length >= 2;
+    const allPhotos = items.every((p) => p.foto);
+    const twoCols = opts && opts.twoCols && items.length >= 2 && !allPhotos;
     const cls = twoCols ? 'pres-public cols-2' : 'pres-public';
     return `<ul class="${cls}">${items.map((p, i) => {
       const foto = p.foto
