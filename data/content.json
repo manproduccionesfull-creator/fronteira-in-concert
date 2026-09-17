@@ -644,7 +644,7 @@
     "2026-10-08": [
       {
         "hora": "13:00",
-        "artistas": "",
+        "artistas": "Nazareno Riveros — Por una cabeza\nGabriel Arayon — CONCERTINO op 14 · Portnoff\nMilagros Chagas — CONCERTINO Op11 · Allegro · F. Küchle\nLouyze Tonin Schmitz — Minueto 2 · J. S. Bach\nEmily Isabela Preghiera — S. Rachmaninov / F Kreisler\nBriana De Almeida Nitsch — Lightly Row\nBenjamin Rosa Rodrigues — Bourrée Anglaise · G. F. Haendel\nNayla Bobato y Matheus Vinicius de Souza — El cisne C. Saint-Saens",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
@@ -655,17 +655,17 @@
           },
           {
             "nombre": "Gabriel Arayon",
-            "info": "CONCERTINO op 14\nPortnoff",
+            "info": "CONCERTINO op 14 · Portnoff",
             "foto": ""
           },
           {
             "nombre": "Milagros Chagas",
-            "info": "CONCERTINO  Op11\nAllegro\nF. Küchle",
+            "info": "CONCERTINO Op11 · Allegro · F. Küchle",
             "foto": ""
           },
           {
             "nombre": "Louyze Tonin Schmitz",
-            "info": "Minueto 2\nJ. S. Bach",
+            "info": "Minueto 2 · J. S. Bach",
             "foto": ""
           },
           {
@@ -679,16 +679,22 @@
             "foto": ""
           },
           {
-            "nombre": "Benjamin Rosa Rodrigues Bourrée Anglaise G. F. Haendel",
-            "info": "Bourrée Anglaise\nG. F. Haendel",
+            "nombre": "Benjamin Rosa Rodrigues",
+            "info": "Bourrée Anglaise · G. F. Haendel",
             "foto": ""
           },
           {
             "nombre": "Nayla Bobato y Matheus Vinicius de Souza",
             "info": "El cisne C. Saint-Saens",
             "foto": ""
+          },
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu5f9p29-dc7bc537.jpg"
           }
-        ]
+        ],
+        "fotoLugar": "/uploads/mu5f9p29-dc7bc537.jpg"
       },
       {
         "hora": "19:30",
@@ -733,7 +739,7 @@
     "2026-10-09": [
       {
         "hora": "13:00",
-        "artistas": "",
+        "artistas": "Milagros Chagas — CONCERTINO  Op11 Allegro F. Küchle\nNazareno Riveros — Por una cabeza",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [

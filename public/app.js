@@ -463,8 +463,8 @@
   function isListaDosColumnas(c) {
     if (!c) return false;
     const h = String(c.hora || '').toLowerCase().trim();
-    // Solo conciertos de las 13hs
-    return /^(13:00|13)\b/.test(h) || /^13\s*a\s*14/.test(h) || /mediod/.test(h);
+    // Solo conciertos de las 13hs (permite "13:00" o "13:00 Horas")
+    return /(?:^|\b)13:00\b/.test(h) || /^(13)\b/.test(h) || /^13\s*a\s*14/.test(h) || /mediod/.test(h);
   }
 
   function isMediodiaEvent(ev) {

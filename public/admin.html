@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=92" />
+  <link rel="stylesheet" href="/styles.css?v=93" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -467,13 +467,14 @@
     function parseArtistasToRows(artistas) {
       const raw = String(artistas || '').trim();
       if (!raw) return [{ nombre: '', info: '' }, { nombre: '', info: '' }];
-      let lines = raw.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+      // One participant per line; never split info across lines
+      let lines = raw.split(/\n+/).map((s) => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
       if (lines.length === 1 && /[,;|]/.test(lines[0])) {
         lines = lines[0].split(/[,;|]+/).map((s) => s.trim()).filter(Boolean);
       }
       const rows = lines.map((l) => {
         let s = String(l || '').trim().replace(/^\d+[.)\-:]\s*/, '');
-        const parts = s.split(/\s*[—–|]\s*|\s+-\s+/);
+        const parts = s.split(/\s*[—–|]\s*/);
         if (parts.length >= 2) {
           return { nombre: parts.shift().trim(), info: parts.join(' — ').trim() };
         }
@@ -527,7 +528,11 @@
       const useGrid = horaMid;
       if (useGrid && !String(artistasText).trim() && namedPres.length) {
         artistasText = namedPres
-          .map((p) => (p.info ? ((p.nombre || '') + ' — ' + p.info) : (p.nombre || '')).trim())
+          .map((p) => {
+            const nom = String(p.nombre || '').replace(/\s+/g, ' ').trim();
+            const info = String(p.info || '').replace(/\s*\n+\s*/g, ' · ').replace(/\s+/g, ' ').trim();
+            return info ? (nom + ' — ' + info) : nom;
+          })
           .filter(Boolean)
           .join('\n');
       }
@@ -1227,8 +1232,13 @@
           let presentaciones;
           const fotoLugarVal = val(row.querySelector('.c-foto-lugar'));
           if (parts.length) {
-            artistas = parts.map((p) => p.info ? (p.nombre + ' — ' + p.info) : p.nombre).join('\n');
-            presentaciones = parts.map((p) => ({ nombre: p.nombre, info: p.info, foto: '' }));
+            const clean = (s) => String(s || '').replace(/\s*\n+\s*/g, ' · ').replace(/\s+/g, ' ').trim();
+            artistas = parts.map((p) => {
+              const nom = clean(p.nombre);
+              const info = clean(p.info);
+              return info ? (nom + ' — ' + info) : nom;
+            }).join('\n');
+            presentaciones = parts.map((p) => ({ nombre: clean(p.nombre), info: clean(p.info), foto: '' }));
             if (fotoLugarVal) presentaciones.push({ nombre: '', info: '', foto: fotoLugarVal });
           } else {
             artistas = ta ? val(ta) : '';
