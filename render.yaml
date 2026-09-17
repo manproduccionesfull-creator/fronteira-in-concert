@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: fronteira-in-concert
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: GITHUB_REPO
+        value: manproduccionesfull-creator/fronteira-in-concert
+      - key: GITHUB_BRANCH
+        value: main
+      - key: PERSIST_DIR
+        value: /var/data
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: fronteira-data
+      mountPath: /var/data
+      sizeGB: 2

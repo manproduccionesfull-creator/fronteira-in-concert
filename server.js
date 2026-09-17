@@ -24,23 +24,67 @@ function stripOrquestaLogos(data) {
 
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'fronteira2026';
-const CONTENT_PATH = path.join(__dirname, 'data', 'content.json');
 const PUBLIC_DIR = path.join(__dirname, 'public');
-const UPLOAD_DIR = path.join(PUBLIC_DIR, 'uploads');
+const BUNDLE_CONTENT = path.join(__dirname, 'data', 'content.json');
+const BUNDLE_UPLOADS = path.join(PUBLIC_DIR, 'uploads');
+
+// Prefer Render persistent disk (/var/data) when mounted; else app directory.
+const PERSIST_ROOT = (() => {
+  const fromEnv = process.env.PERSIST_DIR || process.env.RENDER_DISK_PATH;
+  if (fromEnv && fs.existsSync(fromEnv)) return fromEnv;
+  if (fs.existsSync('/var/data')) return '/var/data';
+  return __dirname;
+})();
+const DATA_DIR = path.join(PERSIST_ROOT, 'data');
+const CONTENT_PATH = path.join(DATA_DIR, 'content.json');
+const UPLOAD_DIR = path.join(PERSIST_ROOT, PERSIST_ROOT === __dirname ? path.join('public', 'uploads') : 'uploads');
 
 const ALLOWED_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.mp4']);
 const MAX_UPLOAD_BYTES = 12 * 1024 * 1024; // 12 MB
 
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+function ensureDir(p) {
+  if (!fs.existsSync(p)) fs.mkdirSync(p, { recursive: true });
 }
+ensureDir(DATA_DIR);
+ensureDir(UPLOAD_DIR);
+
+function seedPersistFromBundle() {
+  // Copy repo content/uploads onto disk only when missing (never clobber newer live data).
+  try {
+    if (!fs.existsSync(CONTENT_PATH) && fs.existsSync(BUNDLE_CONTENT)) {
+      fs.copyFileSync(BUNDLE_CONTENT, CONTENT_PATH);
+      console.log('seed_content', CONTENT_PATH);
+    }
+  } catch (err) {
+    console.error('seed_content failed', err);
+  }
+  try {
+    if (!fs.existsSync(BUNDLE_UPLOADS)) return;
+    for (const name of fs.readdirSync(BUNDLE_UPLOADS)) {
+      if (name === '.gitkeep') continue;
+      const dest = path.join(UPLOAD_DIR, name);
+      if (fs.existsSync(dest)) continue;
+      const src = path.join(BUNDLE_UPLOADS, name);
+      try {
+        fs.copyFileSync(src, dest);
+      } catch (e) {
+        console.error('seed_upload failed', name, e.message);
+      }
+    }
+  } catch (err) {
+    console.error('seed_uploads failed', err);
+  }
+}
+seedPersistFromBundle();
+console.log('persist_root', PERSIST_ROOT, 'content', CONTENT_PATH, 'uploads', UPLOAD_DIR);
 
 const app = express();
 app.use(express.json({ limit: '2mb' }));
 
 // Estáticos
 app.use(express.static(PUBLIC_DIR));
-app.use('/data', express.static(path.join(__dirname, 'data')));
+app.use('/uploads', express.static(UPLOAD_DIR));
+app.use('/data', express.static(DATA_DIR));
 
 function readContent() {
   const raw = fs.readFileSync(CONTENT_PATH, 'utf8');
@@ -56,7 +100,9 @@ const GH_BRANCH = process.env.GITHUB_BRANCH || 'main';
 
 async function persistToGithub(relPath, buffer, message) {
   const token = process.env.GITHUB_TOKEN;
-  if (!token) return;
+  if (!token) {
+    throw new Error('Falta GITHUB_TOKEN en Render: sin eso las fotos y el contenido se borran al redesplegar');
+  }
   const api = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + relPath.split('/').map(encodeURIComponent).join('/');
   const headers = {
     Authorization: 'Bearer ' + token,
@@ -70,7 +116,7 @@ async function persistToGithub(relPath, buffer, message) {
     sha = (await current.json()).sha;
   } else if (current.status !== 404) {
     const err = await current.text();
-    throw new Error('No se pudo guardar en GitHub (' + current.status + ')');
+    throw new Error('No se pudo guardar en GitHub (' + current.status + '): ' + String(err).slice(0, 180));
   }
   const body = {
     message,
@@ -80,8 +126,14 @@ async function persistToGithub(relPath, buffer, message) {
   if (sha) body.sha = sha;
   const put = await fetch(api, { method: 'PUT', headers, body: JSON.stringify(body) });
   if (!put.ok) {
-    throw new Error('No se pudo guardar en GitHub (' + put.status + ')');
+    const err = await put.text();
+    throw new Error('No se pudo guardar en GitHub (' + put.status + '): ' + String(err).slice(0, 180));
   }
+  return true;
+}
+
+function hasPersistDisk() {
+  return PERSIST_ROOT !== __dirname;
 }
 
 function checkAdmin(req, res) {
@@ -238,12 +290,40 @@ app.post('/api/content', async (req, res) => {
       payload.conciertos = previous.conciertos;
     }
     writeContent(payload);
+    const durable = { disk: hasPersistDisk(), github: false };
+    const warnings = [];
     try {
       await persistToGithub('data/content.json', fs.readFileSync(CONTENT_PATH), 'Guardar contenido del festival');
+      durable.github = true;
     } catch (err) {
-      console.error(err);
+      console.error('persist_content', err);
+      warnings.push(err.message || String(err));
     }
-    res.json({ ok: true, message: 'Contenido guardado', content: payload });
+    // Also mirror into repo bundle path when using external disk (helps next build)
+    try {
+      if (hasPersistDisk() && BUNDLE_CONTENT !== CONTENT_PATH) {
+        ensureDir(path.dirname(BUNDLE_CONTENT));
+        fs.copyFileSync(CONTENT_PATH, BUNDLE_CONTENT);
+      }
+    } catch (err) {
+      console.error('mirror_bundle_content', err);
+    }
+    if (!durable.github && !durable.disk) {
+      return res.status(503).json({
+        error: 'Se guardó en el servidor temporal, pero NO de forma permanente. Configurá GITHUB_TOKEN o un disco en Render, si no se pierde al redesplegar.',
+        warnings,
+        durable,
+      });
+    }
+    res.json({
+      ok: true,
+      message: durable.github
+        ? 'Contenido guardado (también en GitHub)'
+        : 'Contenido guardado en disco persistente',
+      content: payload,
+      durable,
+      warnings,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'No se pudo guardar' });
@@ -342,12 +422,35 @@ app.post('/api/upload', async (req, res) => {
     }
 
     const url = '/uploads/' + filename;
+    const durable = { disk: hasPersistDisk(), github: false };
+    const warnings = [];
     try {
       await persistToGithub('public/uploads/' + filename, fs.readFileSync(dest), 'Guardar imagen ' + filename);
+      durable.github = true;
     } catch (err) {
-      console.error(err);
+      console.error('persist_upload', err);
+      warnings.push(err.message || String(err));
     }
-    res.json({ ok: true, url, filename });
+    try {
+      if (hasPersistDisk()) {
+        const bundleDest = path.join(BUNDLE_UPLOADS, filename);
+        ensureDir(BUNDLE_UPLOADS);
+        if (bundleDest !== dest) fs.copyFileSync(dest, bundleDest);
+      }
+    } catch (err) {
+      console.error('mirror_bundle_upload', err);
+    }
+    if (!durable.github && !durable.disk) {
+      // Keep file for this instance but tell admin it will vanish on redeploy
+      return res.status(503).json({
+        error: 'La foto se subió acá, pero NO quedó guardada de forma permanente. Configurá GITHUB_TOKEN o un disco en Render.',
+        url,
+        filename,
+        durable,
+        warnings,
+      });
+    }
+    res.json({ ok: true, url, filename, durable, warnings });
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: err.message || 'No se pudo subir el archivo' });
@@ -359,7 +462,18 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
+app.get('/api/health', (_req, res) => {
+  res.json({
+    ok: true,
+    persistRoot: PERSIST_ROOT,
+    disk: hasPersistDisk(),
+    githubToken: !!process.env.GITHUB_TOKEN,
+    contentExists: fs.existsSync(CONTENT_PATH),
+  });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log('Fronteira in Concert -> http://localhost:' + PORT);
   console.log('Admin: http://localhost:' + PORT + '/admin.html');
+  console.log('Persistencia:', hasPersistDisk() ? 'disco ' + PERSIST_ROOT : 'solo efímero + GitHub');
 });
