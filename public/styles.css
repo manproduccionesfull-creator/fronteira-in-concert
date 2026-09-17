@@ -1201,9 +1201,18 @@ body.on-inicio .inicio-links .btn {
   align-self: flex-end;
   margin-top: 0.15rem;
 }
-@media (max-width: 700px) {
-  .admin-editor .part-grid { grid-template-columns: 1fr; }
+/* Keep 2 columns even on narrow admin windows */
+.admin-editor .part-grid,
+.admin-editor .instr-part-grid {
+  grid-template-columns: 1fr 1fr !important;
 }
+.admin-editor .part-card {
+  min-width: 0;
+}
+.admin-editor .part-card input {
+  font-size: 0.85rem;
+}
+
 
 
 .instr-public { margin-top: 0.65rem; display: flex; flex-direction: column; gap: 0.65rem; }
@@ -1216,7 +1225,9 @@ body.on-inicio .inicio-links .btn {
 .instr-title { margin: 0 0 0.35rem; font-size: 0.92rem; font-weight: 700; color: var(--gold); text-align: center; }
 .instr-names {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 0.55rem;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.25rem 0.55rem;
 }
 .instr-names li { font-size: 0.82rem; line-height: 1.3; text-align: left; }
 .admin-editor .instr-block {
