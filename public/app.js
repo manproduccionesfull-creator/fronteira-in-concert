@@ -238,6 +238,7 @@
           <p class="venue">${escapeHtml(ev.sede)}</p>
           ${ptLine(ev.tituloPt, ev.sedePt)}
           ${ejemploBadge(ev.ejemplo)}
+          ${instrumentosHtml(ev.instrumentos)}
           ${celdasHtml}
         </div>
       </article>`;
@@ -245,6 +246,26 @@
     list.innerHTML = html;
   }
 
+
+
+  function instrumentosHtml(list) {
+    if (!Array.isArray(list) || !list.length) return '';
+    const groups = list.filter((g) => g && (g.instrumento || g.participantes));
+    if (!groups.length) return '';
+    return `<div class="instr-public">${groups.map((g) => {
+      const names = String(g.participantes || '')
+        .split(/\n+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      const namesHtml = names.length
+        ? `<ul class="instr-names">${names.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
+        : '';
+      const title = g.instrumento
+        ? `<h4 class="instr-title">${escapeHtml(g.instrumento)}</h4>`
+        : '';
+      return `<section class="instr-group">${title}${namesHtml}</section>`;
+    }).join('')}</div>`;
+  }
 
   let selectedConcertDay = selectedDay;
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=93" />
+  <link rel="stylesheet" href="/styles.css?v=94" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -117,7 +117,7 @@
         <!-- CRONOGRAMA -->
         <section class="admin-section" id="sec-cronograma">
           <h2>Cronograma por día</h2>
-          <p class="section-lead">Agregá las actividades de cada día. En «CONCIERTOS AL MEDIODIA», usá «+ Agregar celda» y poné un grupo por celda: en la app se ven en 2 columnas. Los conciertos de la noche se editan abajo en Conciertos.</p>
+          <p class="section-lead">Agregá las actividades de cada día. En MASTER CLASS cargá participantes por instrumento. Los conciertos de noche van abajo en Conciertos.</p>
           <div id="cronograma-days"></div>
         </section>
 
@@ -431,9 +431,37 @@
       );
     }
 
+
+    function instrGroupRowHtml(g) {
+      g = g || { instrumento: '', participantes: '' };
+      return (
+        '<div class="instr-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Instrumento<input type="text" class="ev-instr-nombre" value="' + escAttr(g.instrumento || '') + '" placeholder="Violín, viola, cello…" /></label>' +
+            '<label class="full">Participantes (uno por renglón)<textarea class="ev-instr-parts" rows="4" placeholder="Nombre apellido">' + escText(g.participantes || '') + '</textarea></label>' +
+          '</div>' +
+          '<button type="button" class="btn outline btn-sm btn-remove-instr">✕ Quitar instrumento</button>' +
+        '</div>'
+      );
+    }
+
+    function instrumentosBlockHtml(list) {
+      list = Array.isArray(list) ? list : [];
+      if (!list.length) list = [{ instrumento: '', participantes: '' }];
+      return (
+        '<div class="instr-block">' +
+          '<p class="section-lead" style="margin:8px 0 4px">Master Class — participantes por instrumento</p>' +
+          '<div class="instr-list">' + list.map(instrGroupRowHtml).join('') + '</div>' +
+          '<button type="button" class="btn outline btn-sm btn-add-instr">+ Agregar instrumento</button>' +
+        '</div>'
+      );
+    }
+
     function eventRowHtml(ev) {
-      ev = ev || { hora: '', titulo: '', sede: '', tituloPt: '', sedePt: '', ejemplo: false, celdas: [] };
+      ev = ev || { hora: '', titulo: '', sede: '', tituloPt: '', sedePt: '', ejemplo: false, celdas: [], instrumentos: [] };
       const celdas = Array.isArray(ev.celdas) ? ev.celdas : [];
+      const instrumentos = Array.isArray(ev.instrumentos) ? ev.instrumentos : [];
+      const isMaster = /master\s*class/i.test(String(ev.titulo || ''));
       return (
         '<div class="row-card event-row">' +
           '<div class="form-grid compact">' +
@@ -448,10 +476,14 @@
             '<label class="full">Título (português)<textarea class="ev-titulo-pt" rows="3" placeholder="Tradução em português">' + escText(ev.tituloPt || '') + '</textarea></label>' +
             '<label class="full">Sede (português)<input type="text" class="ev-sede-pt" value="' + escAttr(ev.sedePt || '') + '" placeholder="Tradução da sede" /></label>' +
           '</div>' +
+          (isMaster || instrumentos.length ? instrumentosBlockHtml(instrumentos) : '') +
           '<div class="ev-celdas">' +
             celdas.map((c) => celdaRowHtml(c)).join('') +
           '</div>' +
           '<button type="button" class="btn outline btn-sm btn-add-celda">+ Agregar celda</button>' +
+          (!isMaster && !instrumentos.length
+            ? '<button type="button" class="btn outline btn-sm btn-enable-instr" style="margin-left:8px">+ Participantes por instrumento</button>'
+            : '') +
           '<div class="row-footer">' +
             checkboxHtml(!!ev.ejemplo, 'ev-ejemplo') +
             '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
@@ -917,6 +949,28 @@
             }
             return;
           }
+          const addInstr = e.target.closest('.btn-add-instr');
+          if (addInstr) {
+            const block = addInstr.closest('.instr-block');
+            const list = block && block.querySelector('.instr-list');
+            if (list) list.insertAdjacentHTML('beforeend', instrGroupRowHtml());
+            return;
+          }
+          const remInstr = e.target.closest('.btn-remove-instr');
+          if (remInstr) {
+            const ir = remInstr.closest('.instr-row');
+            if (ir) ir.remove();
+            return;
+          }
+          const enableInstr = e.target.closest('.btn-enable-instr');
+          if (enableInstr) {
+            const evRow = enableInstr.closest('.event-row');
+            if (evRow && !evRow.querySelector('.instr-block')) {
+              enableInstr.insertAdjacentHTML('beforebegin', instrumentosBlockHtml([]));
+            }
+            enableInstr.remove();
+            return;
+          }
           const add = e.target.closest('.btn-add-celda');
           if (!add) return;
           const row = add.closest('.event-row');
@@ -1184,6 +1238,10 @@
         const day = block.dataset.day;
         const events = [];
         block.querySelectorAll('.event-row').forEach((row) => {
+          const instrumentos = [...row.querySelectorAll('.instr-row')].map((ir) => ({
+            instrumento: val(ir.querySelector('.ev-instr-nombre')),
+            participantes: val(ir.querySelector('.ev-instr-parts')),
+          })).filter((g) => g.instrumento || g.participantes);
           events.push({
             hora: val(row.querySelector('.ev-hora')),
             titulo: val(row.querySelector('.ev-titulo')),
@@ -1205,6 +1263,7 @@
                 presentaciones,
               };
             }).filter((c) => c.hora || c.sede || c.titulo || c.tituloPt || c.sedePt || (c.presentaciones && c.presentaciones.length)),
+            instrumentos,
             ejemplo: !!row.querySelector('.ev-ejemplo').checked,
           });
         });
