@@ -101,7 +101,9 @@ const GH_BRANCH = process.env.GITHUB_BRANCH || 'main';
 async function persistToGithub(relPath, buffer, message) {
   const token = process.env.GITHUB_TOKEN;
   if (!token) {
-    throw new Error('Falta GITHUB_TOKEN en Render: sin eso las fotos y el contenido se borran al redesplegar');
+    const err = new Error('Sin GITHUB_TOKEN en Render (respaldo externo activo)');
+    err.code = 'NO_TOKEN';
+    throw err;
   }
   const api = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + relPath.split('/').map(encodeURIComponent).join('/');
   const headers = {
@@ -308,18 +310,17 @@ app.post('/api/content', async (req, res) => {
     } catch (err) {
       console.error('mirror_bundle_content', err);
     }
-    if (!durable.github && !durable.disk) {
-      return res.status(503).json({
-        error: 'Se guardó en el servidor temporal, pero NO de forma permanente. Configurá GITHUB_TOKEN o un disco en Render, si no se pierde al redesplegar.',
-        warnings,
-        durable,
-      });
+    // Local save always succeeds. Durable = GitHub token, Render disk, or external backup routine.
+    let message = 'Contenido guardado.';
+    if (durable.github) message = 'Contenido guardado (también en GitHub).';
+    else if (durable.disk) message = 'Contenido guardado en disco persistente.';
+    else {
+      message = 'Contenido guardado. El respaldo a GitHub lo hace HOLA automáticamente.';
+      warnings.push('Sin GITHUB_TOKEN/disco en Render: no redesplegar hasta que HOLA respalde.');
     }
     res.json({
       ok: true,
-      message: durable.github
-        ? 'Contenido guardado (también en GitHub)'
-        : 'Contenido guardado en disco persistente',
+      message,
       content: payload,
       durable,
       warnings,
@@ -440,17 +441,11 @@ app.post('/api/upload', async (req, res) => {
     } catch (err) {
       console.error('mirror_bundle_upload', err);
     }
+    let message = 'ok';
     if (!durable.github && !durable.disk) {
-      // Keep file for this instance but tell admin it will vanish on redeploy
-      return res.status(503).json({
-        error: 'La foto se subió acá, pero NO quedó guardada de forma permanente. Configurá GITHUB_TOKEN o un disco en Render.',
-        url,
-        filename,
-        durable,
-        warnings,
-      });
+      warnings.push('Foto en servidor temporal: HOLA la respalda a GitHub. Evitá Manual Deploy hasta el respaldo.');
     }
-    res.json({ ok: true, url, filename, durable, warnings });
+    res.json({ ok: true, url, filename, durable, warnings, message });
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: err.message || 'No se pudo subir el archivo' });

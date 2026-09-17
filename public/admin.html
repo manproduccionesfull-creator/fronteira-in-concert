@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=91" />
+  <link rel="stylesheet" href="/styles.css?v=92" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -198,7 +198,7 @@
       </form>
 
       <div class="admin-actions sticky-actions">
-        <p id="persist-hint" class="section-lead" style="margin:0 0 8px">Importante: para que nada se borre al redesplegar hace falta <strong>GITHUB_TOKEN</strong> en Render (o un disco en /var/data).</p>
+        <p id="persist-hint" class="section-lead" style="margin:0 0 8px">Tus cambios se guardan acá. HOLA respalda solo a GitHub para que no se borren al redesplegar.</p>
         <button type="button" id="btn-save" class="btn gold">Guardar cambios</button>
         <button type="button" id="btn-reload" class="btn outline">Recargar</button>
         <button type="button" id="btn-logout" class="btn outline">Salir</button>
@@ -277,9 +277,6 @@
       if (!res.ok) throw new Error(body.error || 'Error al subir');
       if (body.warnings && body.warnings.length) {
         console.warn('upload_warnings', body.warnings);
-      }
-      if (body.durable && !body.durable.github && !body.durable.disk) {
-        throw new Error(body.error || 'La foto no quedó guardada de forma permanente');
       }
       return body.url;
     }
