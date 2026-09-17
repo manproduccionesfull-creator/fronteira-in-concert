@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0a0a" />
   <title>Admin — Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=94" />
+  <link rel="stylesheet" href="/styles.css?v=95" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -432,15 +432,40 @@
     }
 
 
+    function instrPartCardHtml(nombre, idx) {
+      const n = (idx == null ? 0 : idx) + 1;
+      return (
+        '<div class="part-card instr-part-card">' +
+          '<span class="part-num">' + n + '</span>' +
+          '<label>Nombre<input type="text" class="ev-instr-part-nombre" value="' + escAttr(nombre || '') + '" placeholder="Participante" /></label>' +
+          '<button type="button" class="btn outline btn-sm btn-remove-instr-part" title="Quitar">✕</button>' +
+        '</div>'
+      );
+    }
+
+    function instrPartsFromText(text) {
+      return String(text || '')
+        .split(/\n+/)
+        .map((s) => s.replace(/\s+/g, ' ').trim())
+        .filter(Boolean);
+    }
+
     function instrGroupRowHtml(g) {
       g = g || { instrumento: '', participantes: '' };
+      let names = Array.isArray(g.nombres) ? g.nombres.filter(Boolean) : instrPartsFromText(g.participantes);
+      if (!names.length) names = ['', ''];
+      if (names.length % 2 === 1) names = names.concat(['']);
       return (
         '<div class="instr-row">' +
           '<div class="form-grid compact">' +
             '<label class="full">Instrumento<input type="text" class="ev-instr-nombre" value="' + escAttr(g.instrumento || '') + '" placeholder="Violín, viola, cello…" /></label>' +
-            '<label class="full">Participantes (uno por renglón)<textarea class="ev-instr-parts" rows="4" placeholder="Nombre apellido">' + escText(g.participantes || '') + '</textarea></label>' +
           '</div>' +
-          '<button type="button" class="btn outline btn-sm btn-remove-instr">✕ Quitar instrumento</button>' +
+          '<p class="section-lead" style="margin:6px 0 4px">Participantes (de a 2)</p>' +
+          '<div class="part-grid instr-part-grid">' + names.map(instrPartCardHtml).join('') + '</div>' +
+          '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">' +
+            '<button type="button" class="btn outline btn-sm btn-add-instr-parts">+ Agregar 2</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove-instr">✕ Quitar instrumento</button>' +
+          '</div>' +
         '</div>'
       );
     }
@@ -450,7 +475,7 @@
       if (!list.length) list = [{ instrumento: '', participantes: '' }];
       return (
         '<div class="instr-block">' +
-          '<p class="section-lead" style="margin:8px 0 4px">Master Class — participantes por instrumento</p>' +
+          '<p class="section-lead" style="margin:8px 0 4px">Master Class — por instrumento, nombres de a 2 (como conciertos 13hs)</p>' +
           '<div class="instr-list">' + list.map(instrGroupRowHtml).join('') + '</div>' +
           '<button type="button" class="btn outline btn-sm btn-add-instr">+ Agregar instrumento</button>' +
         '</div>'
@@ -949,11 +974,37 @@
             }
             return;
           }
+          const renumberInstrParts = (grid) => {
+            if (!grid) return;
+            [...grid.querySelectorAll('.instr-part-card')].forEach((card, i) => {
+              const num = card.querySelector('.part-num');
+              if (num) num.textContent = String(i + 1);
+            });
+          };
           const addInstr = e.target.closest('.btn-add-instr');
           if (addInstr) {
             const block = addInstr.closest('.instr-block');
             const list = block && block.querySelector('.instr-list');
             if (list) list.insertAdjacentHTML('beforeend', instrGroupRowHtml());
+            return;
+          }
+          const addParts = e.target.closest('.btn-add-instr-parts');
+          if (addParts) {
+            const row = addParts.closest('.instr-row');
+            const grid = row && row.querySelector('.instr-part-grid');
+            if (grid) {
+              const start = grid.querySelectorAll('.instr-part-card').length;
+              grid.insertAdjacentHTML('beforeend', instrPartCardHtml('', start) + instrPartCardHtml('', start + 1));
+              renumberInstrParts(grid);
+            }
+            return;
+          }
+          const remPart = e.target.closest('.btn-remove-instr-part');
+          if (remPart) {
+            const card = remPart.closest('.instr-part-card');
+            const grid = remPart.closest('.instr-part-grid');
+            if (card) card.remove();
+            renumberInstrParts(grid);
             return;
           }
           const remInstr = e.target.closest('.btn-remove-instr');
@@ -1238,10 +1289,16 @@
         const day = block.dataset.day;
         const events = [];
         block.querySelectorAll('.event-row').forEach((row) => {
-          const instrumentos = [...row.querySelectorAll('.instr-row')].map((ir) => ({
-            instrumento: val(ir.querySelector('.ev-instr-nombre')),
-            participantes: val(ir.querySelector('.ev-instr-parts')),
-          })).filter((g) => g.instrumento || g.participantes);
+          const instrumentos = [...row.querySelectorAll('.instr-row')].map((ir) => {
+            const names = [...ir.querySelectorAll('.ev-instr-part-nombre')]
+              .map((inp) => val(inp))
+              .filter(Boolean);
+            return {
+              instrumento: val(ir.querySelector('.ev-instr-nombre')),
+              participantes: names.join('\n'),
+              nombres: names,
+            };
+          }).filter((g) => g.instrumento || (g.nombres && g.nombres.length));
           events.push({
             hora: val(row.querySelector('.ev-hora')),
             titulo: val(row.querySelector('.ev-titulo')),
