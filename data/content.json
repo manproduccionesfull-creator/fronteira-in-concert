@@ -645,7 +645,7 @@
       {
         "hora": "13:00 Horas",
         "artistas": "Nazareno Riveros — Por una cabeza\nGabriel Arayon — CONCERTINO op 14 · Portnoff\nMilagros Chagas — CONCERTINO Op11 · Allegro · F. Küchle\nLouyze Tonin Schmitz — Minueto 2 · J. S. Bach\nEmily Isabela Preghiera — S. Rachmaninov / F Kreisler\nBriana De Almeida Nitsch — Lightly Row\nBenjamin Rosa Rodrigues — Bourrée Anglaise · G. F. Haendel\nNayla Bobato y Matheus Vinicius de Souza — El cisne C. Saint-Saens",
-        "lugar": "Altos de Irigoyen Hotel",
+        "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
           {
@@ -691,10 +691,10 @@
           {
             "nombre": "",
             "info": "",
-            "foto": "/uploads/mu9oeeir-87d14e5d.jpg"
+            "foto": "/uploads/mu5h53sf-a72d794a.jpg"
           }
         ],
-        "fotoLugar": "/uploads/mu9oeeir-87d14e5d.jpg"
+        "fotoLugar": "/uploads/mu5h53sf-a72d794a.jpg"
       },
       {
         "hora": "19:30 Horas",
@@ -740,7 +740,7 @@
       {
         "hora": "13:00 Horas",
         "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nCandela Puebla — CONCERTINO E. Mahle\nSofía Monzon — Suite 1 Preludio J. S. Bach",
-        "lugar": "Altos de Irigoyen Hotel",
+        "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
           {
@@ -771,10 +771,10 @@
           {
             "nombre": "",
             "info": "",
-            "foto": "/uploads/mu9oeeir-87d14e5d.jpg"
+            "foto": "/uploads/mu5h6sta-57e85ccb.jpg"
           }
         ],
-        "fotoLugar": "/uploads/mu9oeeir-87d14e5d.jpg"
+        "fotoLugar": "/uploads/mu5h6sta-57e85ccb.jpg"
       },
       {
         "hora": "19:00",
@@ -816,22 +816,7 @@
         ]
       }
     ],
-    "2026-10-10": [
-      {
-        "hora": "13:00 Horas",
-        "artistas": "",
-        "lugar": "Altos de Irigoyen Hotel",
-        "listaDosColumnas": true,
-        "presentaciones": [
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mu9oeeir-87d14e5d.jpg"
-          }
-        ],
-        "fotoLugar": "/uploads/mu9oeeir-87d14e5d.jpg"
-      }
-    ],
+    "2026-10-10": [],
     "2026-10-11": []
   }
 }
