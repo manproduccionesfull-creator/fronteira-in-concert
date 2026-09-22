@@ -643,6 +643,47 @@
   "conciertos": {
     "2026-10-08": [
       {
+        "hora": "19:30 Horas",
+        "artistas": "Duo de cuerdas\nOSC\nProfesores:\nEndryk Casagrande (violín)\nMateus Berns (violonchelo)",
+        "lugar": "Escuela de Frontera 604",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403y3d-eeba8792.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
+        "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403z7l-fbb8700f.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
+        "artistas": "ENSAMBLE GRUPPETTO\nRuiz de Montoya · Misiones",
+        "lugar": "Escuela Frontera 604",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403v29-f4a141e7.jpg"
+          }
+        ]
+      }
+    ],
+    "2026-10-09": [
+      {
         "hora": "13:00 Horas",
         "artistas": "Nazareno Riveros — Por una cabeza\nGabriel Arayon — CONCERTINO op 14 · Portnoff\nMilagros Chagas — CONCERTINO Op11 · Allegro · F. Küchle\nLouyze Tonin Schmitz — Minueto 2 · J. S. Bach\nEmily Isabela Preghiera — S. Rachmaninov / F Kreisler\nBriana De Almeida Nitsch — Lightly Row\nBenjamin Rosa Rodrigues — Bourrée Anglaise · G. F. Haendel\nNayla Bobato y Matheus Vinicius de Souza — El cisne C. Saint-Saens",
         "lugar": "",
@@ -697,86 +738,6 @@
         "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
       },
       {
-        "hora": "19:30 Horas",
-        "artistas": "Duo de cuerdas\nOSC\nProfesores:\nEndryk Casagrande (violín)\nMateus Berns (violonchelo)",
-        "lugar": "Escuela de Frontera 604",
-        "listaDosColumnas": false,
-        "presentaciones": [
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mu403y3d-eeba8792.jpg"
-          }
-        ]
-      },
-      {
-        "hora": "",
-        "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
-        "lugar": "",
-        "listaDosColumnas": false,
-        "presentaciones": [
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mu403z7l-fbb8700f.jpg"
-          }
-        ]
-      },
-      {
-        "hora": "",
-        "artistas": "ENSAMBLE GRUPPETTO\nRuiz de Montoya · Misiones",
-        "lugar": "Escuela Frontera 604",
-        "listaDosColumnas": false,
-        "presentaciones": [
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mu403v29-f4a141e7.jpg"
-          }
-        ]
-      }
-    ],
-    "2026-10-09": [
-      {
-        "hora": "13:00 Horas",
-        "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nCandela Puebla — CONCERTINO E. Mahle\nSofía Monzon — Suite 1 Preludio J. S. Bach",
-        "lugar": "",
-        "listaDosColumnas": true,
-        "presentaciones": [
-          {
-            "nombre": "Samuel Rosa Rodrigues",
-            "info": "Sonata en C. Allegro J.B. Breval",
-            "foto": ""
-          },
-          {
-            "nombre": "Thais Mai",
-            "info": "Humoresque A. Dvorak",
-            "foto": ""
-          },
-          {
-            "nombre": "Pablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko",
-            "info": "Gavotte F. J. Gossec",
-            "foto": ""
-          },
-          {
-            "nombre": "Candela Puebla",
-            "info": "CONCERTINO E. Mahle",
-            "foto": ""
-          },
-          {
-            "nombre": "Sofía Monzon",
-            "info": "Suite 1 Preludio J. S. Bach",
-            "foto": ""
-          },
-          {
-            "nombre": "",
-            "info": "",
-            "foto": ""
-          }
-        ],
-        "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
-      },
-      {
         "hora": "19:00",
         "artistas": "CAMERATA OSC",
         "lugar": "Auditorio Escola de Educação Básica Dr. Theodureto",
@@ -816,7 +777,47 @@
         ]
       }
     ],
-    "2026-10-10": [],
+    "2026-10-10": [
+      {
+        "hora": "13:00 Horas",
+        "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nCandela Puebla — CONCERTINO E. Mahle\nSofía Monzon — Suite 1 Preludio J. S. Bach",
+        "lugar": "",
+        "listaDosColumnas": true,
+        "presentaciones": [
+          {
+            "nombre": "Samuel Rosa Rodrigues",
+            "info": "Sonata en C. Allegro J.B. Breval",
+            "foto": ""
+          },
+          {
+            "nombre": "Thais Mai",
+            "info": "Humoresque A. Dvorak",
+            "foto": ""
+          },
+          {
+            "nombre": "Pablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko",
+            "info": "Gavotte F. J. Gossec",
+            "foto": ""
+          },
+          {
+            "nombre": "Candela Puebla",
+            "info": "CONCERTINO E. Mahle",
+            "foto": ""
+          },
+          {
+            "nombre": "Sofía Monzon",
+            "info": "Suite 1 Preludio J. S. Bach",
+            "foto": ""
+          },
+          {
+            "nombre": "",
+            "info": "",
+            "foto": ""
+          }
+        ],
+        "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
+      }
+    ],
     "2026-10-11": []
   }
 }
