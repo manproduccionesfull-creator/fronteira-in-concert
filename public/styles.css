@@ -755,6 +755,7 @@ img, svg, video {
   color: var(--gold-logo, var(--gold));
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-align: center;
 }
 .apoyan-group + .apoyan-group {
   padding-top: 0.4rem;
