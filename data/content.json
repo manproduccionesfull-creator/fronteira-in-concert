@@ -588,6 +588,13 @@
       "foto": "/uploads/mtofu8kd-b699ddc3.jpg"
     },
     {
+      "nombre": "Alfredo Benitez Monzón",
+      "instrumento": "Profesor",
+      "bio": "",
+      "ejemplo": false,
+      "foto": "/uploads/mudz2icz-b045f1a2.jpg"
+    },
+    {
       "nombre": "Mateus Berns",
       "instrumento": "Profesor de Violonchelo",
       "bio": "",
@@ -628,13 +635,6 @@
       "bio": "",
       "ejemplo": false,
       "foto": "/uploads/mu2vjrim-35bc1f71.jpg"
-    },
-    {
-      "nombre": "Alfredo Benitez Monzón",
-      "instrumento": "Profesor",
-      "bio": "",
-      "ejemplo": false,
-      "foto": "/uploads/mudz2icz-b045f1a2.jpg"
     }
   ],
   "videos": [
