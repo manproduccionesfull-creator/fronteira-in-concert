@@ -657,6 +657,20 @@
       },
       {
         "hora": "",
+        "lugar": "",
+        "artistas": "Presentación de los Becados 2025",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": ""
+          }
+        ],
+        "fotoLugar": "/uploads/mudy565w-ac1112a1.jpg"
+      },
+      {
+        "hora": "",
         "artistas": "DUO REALEZA:\nProfesores\nRaphael Nunes\nTonialdo de Moura",
         "lugar": "",
         "listaDosColumnas": false,
