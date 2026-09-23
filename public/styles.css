@@ -3,6 +3,7 @@
   --bg-elev: #141414;
   --bg-card: #1a1a1a;
   --gold: #d4af37;
+  --gold-logo: #d0b068;
   --gold-dim: #a8892a;
   --gold-soft: rgba(212, 175, 55, 0.15);
   --text: #f5f0e6;
@@ -175,6 +176,23 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
   font-weight: 600;
   line-height: 1.35;
   text-align: center;
+}
+.event-card h3.concert-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--gold-logo);
+  line-height: 1.3;
+}
+.event-card .concert-detail {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--text);
+  white-space: pre-line;
 }
 .event-card .venue { color: var(--muted); font-size: 0.88rem; margin: 0; text-align: center; }
 .event-card .pt-line {

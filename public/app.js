@@ -519,7 +519,12 @@
         return `<li><span class="cn-num">${i + 1}</span><span class="cn-name">${escapeHtml(nombre)}</span>${infoHtml}</li>`;
       }).join('')}</ul>`;
     }
-    return `<h3 class="multi-lines">${multilineHtml(raw)}</h3>`;
+    // First line = concert title (logo gold); rest = detail lines (cream text)
+    const title = lines[0] || '';
+    const rest = lines.slice(1);
+    const titleHtml = `<h3 class="concert-title">${escapeHtml(title)}</h3>`;
+    if (!rest.length) return titleHtml;
+    return titleHtml + `<p class="concert-detail multi-lines">${rest.map(escapeHtml).join('<br>')}</p>`;
   }
 
   function presentacionesHtml(list, opts) {
