@@ -428,15 +428,35 @@
     }).join('');
   }
 
-  function renderApoyan(apoyan) {
-    $('#apoyan-grid').innerHTML = apoyan.map((a) => `
+  function isAuspicia(a) {
+    const t = String((a && a.tipo) || '').toUpperCase();
+    return t.includes('AUSPIC');
+  }
+
+  function sponsorCardHtml(a) {
+    return `
       <div class="sponsor">
         ${a.imagen ? `<img class="sponsor-img" src="${escapeAttr(a.imagen)}" alt="${escapeAttr(a.nombre)}" loading="lazy" />` : ''}
         <strong>${escapeHtml(a.nombre)}</strong>
-        <span>${escapeHtml(a.tipo || '')}</span>
         ${ejemploBadge(a.ejemplo)}
       </div>
-    `).join('');
+    `;
+  }
+
+  function renderApoyan(apoyan) {
+    const list = apoyan || [];
+    const apoyo = list.filter((a) => !isAuspicia(a));
+    const auspicia = list.filter(isAuspicia);
+    const block = (title, items) => {
+      if (!items.length) return '';
+      return `
+        <div class="apoyan-group">
+          <h3 class="apoyan-subhead">${escapeHtml(title)}</h3>
+          <div class="sponsor-grid">${items.map(sponsorCardHtml).join('')}</div>
+        </div>
+      `;
+    };
+    $('#apoyan-grid').innerHTML = block('Apoyan', apoyo) + block('Auspician', auspicia);
   }
 
   function renderContacto(c, f) {

@@ -742,9 +742,28 @@ img, svg, video {
   }
 }
 
+
+/* Apoyan / Auspician subsections */
+.apoyan-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.apoyan-group .apoyan-subhead {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  color: var(--gold-logo, var(--gold));
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.apoyan-group + .apoyan-group {
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(208, 176, 104, 0.35);
+}
+
 /* Celular: Quiénes apoyan en dos columnas, igual que Profes */
 @media (max-width: 900px) {
-  #apoyan-grid.sponsor-grid {
+  #apoyan-grid .sponsor-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
