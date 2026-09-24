@@ -895,6 +895,24 @@
     ],
     "2026-10-10": [
       {
+        "hora": "10:00 Horas",
+        "artistas": "ORQUESTA MUNICIPAL\nPuerto Esperanza · Misiones",
+        "lugar": "Supermercado Verdurão",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403u5n-803ce511.jpg"
+          },
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mug6pz0g-9c3e809a.jpg"
+          }
+        ]
+      },
+      {
         "hora": "13:00 Horas",
         "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nCandela Puebla — CONCERTINO E. Mahle\nSofía Monzon — Suite 1 Preludio J. S. Bach",
         "lugar": "",
