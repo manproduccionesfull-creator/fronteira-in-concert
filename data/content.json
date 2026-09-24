@@ -950,6 +950,45 @@
           }
         ],
         "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
+      },
+      {
+        "hora": "19:30 Horas",
+        "artistas": "ORQUESTA Y CORO LUZAMOR\nMaringá · PR · Brasil",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403w1a-1d06663a.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
+        "artistas": "CAMERATA OSC\nChapecó · SC · Brasil",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403zyf-6629ad1c.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
+        "artistas": "ORQUESTA BINACIONAL\nBernardo de Irigoyen · Misiones",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403x3e-6b38a6b0.jpg"
+          }
+        ]
       }
     ],
     "2026-10-11": []
