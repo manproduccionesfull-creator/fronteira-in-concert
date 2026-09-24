@@ -542,6 +542,24 @@
       "tipo": "AUSPICIA",
       "ejemplo": false,
       "imagen": "/uploads/mudziv7e-206d9003.jpg"
+    },
+    {
+      "nombre": "Masterfarma",
+      "tipo": "AUSPICIA",
+      "ejemplo": false,
+      "imagen": "/uploads/mufut50w-eec86822.jpg"
+    },
+    {
+      "nombre": "IVESS",
+      "tipo": "AUSPICIA",
+      "ejemplo": false,
+      "imagen": "/uploads/mufut647-ac661fe7.jpg"
+    },
+    {
+      "nombre": "El Tigre Estaciones de Servicio",
+      "tipo": "AUSPICIA",
+      "ejemplo": false,
+      "imagen": "/uploads/mufut6h6-b00a1ba0.jpg"
     }
   ],
   "inscripcion": {
@@ -683,7 +701,7 @@
       {
         "hora": "",
         "lugar": "",
-        "artistas": "Presentación de los Becados 2025\nCandela Puebla\nSofía Monzón",
+        "artistas": "Presentación de los Becados 2025\nCandela Puebla\nSofía Monzón\nFiama Jauregui",
         "listaDosColumnas": false,
         "presentaciones": [
           {
