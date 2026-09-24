@@ -54,6 +54,7 @@
         "tituloPt": "chegada - Credenciamento e boas-vindas",
         "sedePt": "Escola de Fronteira 604",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -63,6 +64,7 @@
         "tituloPt": "Café da manhã",
         "sedePt": "",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -72,6 +74,7 @@
         "tituloPt": "Acondicionamento e organização dos espaços de hospedagem.",
         "sedePt": "ESCOLAS: EPET 26 - ESPECIAL - FRONTEIRA 604 - E.F.A 0706",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -98,6 +101,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -116,6 +120,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -134,6 +139,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -143,6 +149,7 @@
         "tituloPt": "Lanche e descanso",
         "sedePt": "higiene pessoal",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -152,6 +159,7 @@
         "tituloPt": "Apresentação das delegações-Professores-Apresentação",
         "sedePt": "",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -161,6 +169,7 @@
         "tituloPt": "Jantar - Descanso",
         "sedePt": "",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       }
     ],
@@ -181,6 +190,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -207,6 +217,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -216,6 +227,7 @@
         "tituloPt": "ALMOÇO",
         "sedePt": "",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -225,6 +237,7 @@
         "tituloPt": "CONCERTOS AO MEIO-DIA",
         "sedePt": "Altos de Irigoyen Hotel",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -243,6 +256,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -252,6 +266,7 @@
         "tituloPt": "LANCHE",
         "sedePt": "higiene pessoal - Preparação para o concerto",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -261,6 +276,7 @@
         "tituloPt": "CONCERTO",
         "sedePt": "Escola de Educação Básica Dr. Theodureto",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -270,6 +286,7 @@
         "tituloPt": "JANTAR - DESCANSO",
         "sedePt": "Depois cada delegação para suas hospedagens",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       }
     ],
@@ -290,6 +307,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -308,6 +326,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -317,6 +336,7 @@
         "tituloPt": "MASTER CLASS",
         "sedePt": "Alunos inscritos",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -326,6 +346,7 @@
         "tituloPt": "ALMOÇO",
         "sedePt": "",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -335,6 +356,7 @@
         "tituloPt": "CONCERTOS AO MEIO-DIA",
         "sedePt": "Altos de Irigoyen Hotel",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -361,6 +383,7 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -370,6 +393,7 @@
         "tituloPt": "LANCHE",
         "sedePt": "higiene pessoal - Preparação para o concerto",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -379,6 +403,7 @@
         "tituloPt": "CONCERTO",
         "sedePt": "Escuela Frontera 604",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -388,6 +413,7 @@
         "tituloPt": "JANTAR - DESCANSO",
         "sedePt": "Depois cada delegação para suas hospedagens",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       }
     ],
@@ -399,6 +425,7 @@
         "tituloPt": "Matinê familiar",
         "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -408,6 +435,7 @@
         "tituloPt": "Concerto de encerramento",
         "sedePt": "Parque Temático e Ambiental da Integração",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       },
       {
@@ -417,6 +445,7 @@
         "tituloPt": "Brinde e encerramento",
         "sedePt": "Escola de Fronteira 604",
         "celdas": [],
+        "instrumentos": [],
         "ejemplo": false
       }
     ]
@@ -700,17 +729,16 @@
       },
       {
         "hora": "",
+        "artistas": "Presentación de los Becados 2025\nCandela Puebla\nSofía Monzón\nFiama Jauregui\nMaximo Sequeira\nSantiago Escobar",
         "lugar": "",
-        "artistas": "Presentación de los Becados 2025\nCandela Puebla\nSofía Monzón\nFiama Jauregui",
         "listaDosColumnas": false,
         "presentaciones": [
           {
             "nombre": "",
             "info": "",
-            "foto": "/uploads/mudy565w-ac1112a1.jpg"
+            "foto": "/uploads/mug5v8qa-b55017ac.jpg"
           }
-        ],
-        "fotoLugar": "/uploads/mudy565w-ac1112a1.jpg"
+        ]
       },
       {
         "hora": "",
@@ -753,6 +781,19 @@
       }
     ],
     "2026-10-09": [
+      {
+        "hora": "10:00 Horas",
+        "artistas": "ENSAMBLE GRUPPETTO\nRuiz de Montoya · Misiones",
+        "lugar": "Supermercado Verdurão",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mu403v29-f4a141e7.jpg"
+          }
+        ]
+      },
       {
         "hora": "13:00 Horas",
         "artistas": "Nazareno Riveros — Por una cabeza\nGabriel Arayon — CONCERTINO op 14 · Portnoff\nMilagros Chagas — CONCERTINO Op11 · Allegro · F. Küchle\nLouyze Tonin Schmitz — Minueto 2 · J. S. Bach\nEmily Isabela Preghiera — S. Rachmaninov / F Kreisler\nBriana De Almeida Nitsch — Lightly Row\nBenjamin Rosa Rodrigues — Bourrée Anglaise · G. F. Haendel\nNayla Bobato y Matheus Vinicius de Souza — El cisne C. Saint-Saens",
@@ -802,7 +843,7 @@
           {
             "nombre": "",
             "info": "",
-            "foto": ""
+            "foto": "/uploads/mubfe6qp-3f4ea30a.jpg"
           }
         ],
         "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
@@ -882,7 +923,7 @@
           {
             "nombre": "",
             "info": "",
-            "foto": ""
+            "foto": "/uploads/mubfe6qp-3f4ea30a.jpg"
           }
         ],
         "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
