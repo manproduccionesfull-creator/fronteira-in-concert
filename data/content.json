@@ -980,6 +980,19 @@
       },
       {
         "hora": "",
+        "artistas": "UNILA\nSeminario de Música Latinoamericana",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mug936jo-ef0dba55.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "",
         "artistas": "ORQUESTA BINACIONAL\nBernardo de Irigoyen · Misiones",
         "lugar": "",
         "listaDosColumnas": false,
