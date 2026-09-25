@@ -954,6 +954,19 @@
       },
       {
         "hora": "19:00 Horas",
+        "artistas": "UNILA\nSeminario de Música Latinoamericana",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mug936jo-ef0dba55.jpg"
+          }
+        ]
+      },
+      {
+        "hora": "19:30 Horas",
         "artistas": "ORQUESTA Y CORO LUZAMOR\nMaringá · PR · Brasil",
         "lugar": "",
         "listaDosColumnas": false,
@@ -975,19 +988,6 @@
             "nombre": "",
             "info": "",
             "foto": "/uploads/mu403zyf-6629ad1c.jpg"
-          }
-        ]
-      },
-      {
-        "hora": "",
-        "artistas": "UNILA\nSeminario de Música Latinoamericana",
-        "lugar": "",
-        "listaDosColumnas": false,
-        "presentaciones": [
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mug936jo-ef0dba55.jpg"
           }
         ]
       },
