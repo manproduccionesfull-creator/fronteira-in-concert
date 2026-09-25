@@ -920,7 +920,7 @@
       },
       {
         "hora": "13:00 Horas",
-        "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nCandela Puebla — CONCERTINO E. Mahle\nSofía Monzon — Suite 1 Preludio J. S. Bach",
+        "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nSofía Monzon — Suite 1 Preludio J. S. Bach",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
@@ -937,11 +937,6 @@
           {
             "nombre": "Pablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko",
             "info": "Gavotte F. J. Gossec",
-            "foto": ""
-          },
-          {
-            "nombre": "Candela Puebla",
-            "info": "CONCERTINO E. Mahle",
             "foto": ""
           },
           {
