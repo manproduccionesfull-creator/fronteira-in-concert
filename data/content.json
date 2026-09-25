@@ -992,6 +992,20 @@
         ]
       }
     ],
-    "2026-10-11": []
+    "2026-10-11": [
+      {
+        "hora": "18:00 Horas",
+        "artistas": "CONCIERTO FINAL\nFestival Fronteira in Concert 2026",
+        "lugar": "",
+        "listaDosColumnas": false,
+        "presentaciones": [
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mug7fsh8-30a1cf54.jpg"
+          }
+        ]
+      }
+    ]
   }
 }
