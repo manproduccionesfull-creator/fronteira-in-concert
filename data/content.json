@@ -589,6 +589,12 @@
       "tipo": "AUSPICIA",
       "ejemplo": false,
       "imagen": "/uploads/mug5ki0h-51d3e1b6.jpg"
+    },
+    {
+      "nombre": "Farmacia San Expedito",
+      "tipo": "AUSPICIA",
+      "ejemplo": false,
+      "imagen": "/uploads/mug77c2r-9bd60831.jpg"
     }
   ],
   "inscripcion": {
