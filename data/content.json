@@ -143,6 +143,16 @@
         "ejemplo": false
       },
       {
+        "hora": "16:00",
+        "titulo": "ACTIVIDAD LÚDICA",
+        "sede": "Fronterita",
+        "tituloPt": "ACTIVIDAD LÚDICA",
+        "sedePt": "Fronterita",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
         "hora": "17:00",
         "titulo": "Merienda y descanso",
         "sede": "aseo personal",
