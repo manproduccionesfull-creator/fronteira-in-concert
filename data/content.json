@@ -272,6 +272,14 @@
             "tituloPt": "FRONTERITA",
             "sedePt": "Salas de instrumentos",
             "presentaciones": []
+          },
+          {
+            "hora": "16 a 17 hs",
+            "sede": "",
+            "titulo": "Clases de Canto\nProf. UNILA",
+            "tituloPt": "Clases de Canto\nProf. UNILA",
+            "sedePt": "",
+            "presentaciones": []
           }
         ],
         "instrumentos": [],
@@ -353,7 +361,16 @@
         "sede": "Alumnos inscriptos",
         "tituloPt": "MASTER CLASS",
         "sedePt": "Alunos inscritos",
-        "celdas": [],
+        "celdas": [
+          {
+            "hora": "11 a 12 hs",
+            "sede": "",
+            "titulo": "FRONTERITA\nPráctica coral \nProf. Unila",
+            "tituloPt": "FRONTERITA\nPráctica coral\nProf. Unila",
+            "sedePt": "",
+            "presentaciones": []
+          }
+        ],
         "instrumentos": [],
         "ejemplo": false
       },
@@ -401,6 +418,16 @@
             "presentaciones": []
           }
         ],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "16 a 17",
+        "titulo": "ENSAYO CORO",
+        "sede": "Fronterita\nProf. Fundación Luz Amor",
+        "tituloPt": "ENSAIO CORAL",
+        "sedePt": "Fronterita\nProf. Fundação Luz Amor",
+        "celdas": [],
         "instrumentos": [],
         "ejemplo": false
       },
