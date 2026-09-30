@@ -1203,6 +1203,50 @@
     ],
     "2026-10-11": [
       {
+        "hora": "13:00 Horas",
+        "artistas": "Prof. Gabriel Brusso y Xiomara Chala — UNILA (2 canciones)\nKiara Anahí De Matos Rüssel — Sonatina en sol M Clementi 1er movimiento\nMagalí Spaciuk — Concierto Rieding Op 35 2do movimiento\nNayla Guadalupe Bobato y Matheus Vinicius de Souza Alencar — É the Swan\nPablo Pereira, Olivia Duarte, Carol Klosko, Leticia Buratti — Gavotte y May Song\nEmily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo — Lago de los Cisnes- Chaikovski",
+        "lugar": "Altos de Irigoyen Hotel",
+        "listaDosColumnas": true,
+        "presentaciones": [
+          {
+            "nombre": "Prof. Gabriel Brusso y Xiomara Chala",
+            "info": "UNILA (2 canciones)",
+            "foto": ""
+          },
+          {
+            "nombre": "Kiara Anahí De Matos Rüssel",
+            "info": "Sonatina en sol M Clementi 1er movimiento",
+            "foto": ""
+          },
+          {
+            "nombre": "Magalí Spaciuk",
+            "info": "Concierto Rieding Op 35 2do movimiento",
+            "foto": ""
+          },
+          {
+            "nombre": "Nayla Guadalupe Bobato y Matheus Vinicius de Souza Alencar",
+            "info": "É the Swan",
+            "foto": ""
+          },
+          {
+            "nombre": "Pablo Pereira, Olivia Duarte, Carol Klosko, Leticia Buratti",
+            "info": "Gavotte y May Song",
+            "foto": ""
+          },
+          {
+            "nombre": "Emily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo",
+            "info": "Lago de los Cisnes- Chaikovski",
+            "foto": ""
+          },
+          {
+            "nombre": "",
+            "info": "",
+            "foto": "/uploads/mubfe6qp-3f4ea30a.jpg"
+          }
+        ],
+        "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
+      },
+      {
         "hora": "18:00 Horas",
         "artistas": "CONCIERTO FINAL\nFestival Fronteira in Concert 2026",
         "lugar": "",
