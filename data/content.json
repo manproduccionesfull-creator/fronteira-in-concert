@@ -79,16 +79,16 @@
       },
       {
         "hora": "10:00",
-        "titulo": "Clases parciales  instrumentales (ORQUESTA FINC)",
+        "titulo": "ORQUESTA FINC\n Clases parciales  instrumentales",
         "sede": "Aulas",
-        "tituloPt": "Aulas parciais instrumentais (ORQUESTRA FINC)",
+        "tituloPt": "ORQUESTRA FINC\nAulas parciais  instrumentais",
         "sedePt": "Salas",
         "celdas": [
           {
             "hora": "",
             "sede": "",
-            "titulo": "Ensayo general (Orquesta Fronterita)",
-            "tituloPt": "Ensaio geral (Orquestra Fronterita)",
+            "titulo": "Orquesta Fronterita\nEnsayo general",
+            "tituloPt": "Orquestra Fronterita\nEnsaio geral",
             "sedePt": "",
             "presentaciones": []
           },
@@ -112,11 +112,11 @@
         "sedePt": "Refeitório",
         "celdas": [
           {
-            "hora": "13 a 14",
-            "sede": "Altos de Irigoyen Hotel",
-            "titulo": "CONCIERTOS AL MEDIODIA",
-            "tituloPt": "CONCERTOS AO MEIO-DIA",
-            "sedePt": "Altos de Irigoyen Hotel",
+            "hora": "13:00 hs",
+            "sede": "",
+            "titulo": "Bienvenida\n\"Presentación\"\nCoro Municipal de Niños",
+            "tituloPt": "Bienvenida\n\"Apresentação\"\nCoro Municipal de Niños",
+            "sedePt": "",
             "presentaciones": []
           }
         ],
@@ -125,16 +125,16 @@
       },
       {
         "hora": "14:00",
-        "titulo": "Ensayo general (ORQUESTA FINC )",
+        "titulo": "ORQUESTA FINC\nEnsayo general",
         "sede": "Sala mayor",
-        "tituloPt": "Ensaio geral (ORQUESTRA FINC)",
+        "tituloPt": "ORQUESTRA FINC\nEnsaio geral",
         "sedePt": "Sala principal",
         "celdas": [
           {
             "hora": "",
             "sede": "",
-            "titulo": "Aulas de Instrumentos (Fronterita)",
-            "tituloPt": "Salas de instrumentos (Fronterita)",
+            "titulo": "Fronterita\nAulas de Instrumentos",
+            "tituloPt": "Fronterita\nSalas de instrumentos",
             "sedePt": "",
             "presentaciones": []
           }
