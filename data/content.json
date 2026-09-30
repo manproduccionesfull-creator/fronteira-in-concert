@@ -1096,28 +1096,48 @@
       },
       {
         "hora": "13:00 Horas",
-        "artistas": "Samuel Rosa Rodrigues — Sonata en C. Allegro J.B. Breval\nThais Mai — Humoresque A. Dvorak\nPablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko — Gavotte F. J. Gossec\nSofía Monzon — Suite 1 Preludio J. S. Bach",
+        "artistas": "Nazareno Riveros — Por una Cabeza\nMaia da Silva — Minuet 3 J.S.Bach\nGabriel Alayon — Portnoff Concertino Op 14\nThais Mai — Humoresque Dvorak\nVanessa Francisca Petters — O Passeio do Urso (Ernst Mahle) - As Melodias da Cecília\nMaribel Solís — Concierto Rieding Op. 35 3er movimiento\nEmilly Isabela — S. Rachmaninov / F. Kreisler - \"Preghiera\" from Piano Concerto no. 2\nSantiago Ayala — Concertino in g-dur Kuchler",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
           {
-            "nombre": "Samuel Rosa Rodrigues",
-            "info": "Sonata en C. Allegro J.B. Breval",
+            "nombre": "Nazareno Riveros",
+            "info": "Por una Cabeza",
+            "foto": ""
+          },
+          {
+            "nombre": "Maia da Silva",
+            "info": "Minuet 3 J.S.Bach",
+            "foto": ""
+          },
+          {
+            "nombre": "Gabriel Alayon",
+            "info": "Portnoff Concertino Op 14",
             "foto": ""
           },
           {
             "nombre": "Thais Mai",
-            "info": "Humoresque A. Dvorak",
+            "info": "Humoresque Dvorak",
             "foto": ""
           },
           {
-            "nombre": "Pablo Pereira, Olivia Duarte, Leticia Buratti, Carol Klosko",
-            "info": "Gavotte F. J. Gossec",
+            "nombre": "Vanessa Francisca Petters",
+            "info": "O Passeio do Urso (Ernst Mahle) - As Melodias da Cecília",
             "foto": ""
           },
           {
-            "nombre": "Sofía Monzon",
-            "info": "Suite 1 Preludio J. S. Bach",
+            "nombre": "Maribel Solís",
+            "info": "Concierto Rieding Op. 35 3er movimiento",
+            "foto": ""
+          },
+          {
+            "nombre": "Emilly Isabela",
+            "info": "S. Rachmaninov / F. Kreisler - \"Preghiera\" from Piano Concerto no. 2",
+            "foto": ""
+          },
+          {
+            "nombre": "Santiago Ayala",
+            "info": "Concertino in g-dur Kuchler",
             "foto": ""
           },
           {
