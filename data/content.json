@@ -117,7 +117,13 @@
             "titulo": "Bienvenida\n\"Presentación\"\nCoro Municipal de Niños",
             "tituloPt": "Bienvenida\n\"Apresentação\"\nCoro Municipal de Niños",
             "sedePt": "",
-            "presentaciones": []
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muoc2e9s-298c1c18.jpg"
+              }
+            ]
           }
         ],
         "instrumentos": [],
@@ -232,7 +238,13 @@
             "titulo": "FRONTERITA\nPráctica coral\nProf. Fundación Luzamor",
             "tituloPt": "FRONTERITA\nPráctica coral\nProf. Fundación Luzamor",
             "sedePt": "",
-            "presentaciones": []
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muocey8h-eb688bb9.jpg"
+              }
+            ]
           }
         ],
         "instrumentos": [],
@@ -276,10 +288,16 @@
           {
             "hora": "16 a 17 hs",
             "sede": "",
-            "titulo": "Clases de Canto\nProf. UNILA",
-            "tituloPt": "Clases de Canto\nProf. UNILA",
+            "titulo": "Clases de Canto\nProf.Gabriel Busso",
+            "tituloPt": "Clases de Canto\nProf.Gabriel Busso",
             "sedePt": "",
-            "presentaciones": []
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muocg4oa-fcd8c834.jpg"
+              }
+            ]
           }
         ],
         "instrumentos": [],
@@ -368,7 +386,13 @@
             "titulo": "FRONTERITA\nPráctica coral \nProf. Unila",
             "tituloPt": "FRONTERITA\nPráctica coral\nProf. Unila",
             "sedePt": "",
-            "presentaciones": []
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muocmd0o-6702e80c.jpg"
+              }
+            ]
           }
         ],
         "instrumentos": [],
@@ -415,7 +439,13 @@
             "titulo": "FRONTERITA -\nEnsayo de coro\nProf. Fundación Luzamor",
             "tituloPt": "FRONTERITA -\nEnsaio de coro\nProf. Fundación Luzamor",
             "sedePt": "",
-            "presentaciones": []
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muocn2eq-cfb022d5.jpg"
+              }
+            ]
           }
         ],
         "instrumentos": [],
@@ -433,11 +463,26 @@
       },
       {
         "hora": "19:00",
-        "titulo": "CONCIERTO",
+        "titulo": "CHARLA SOBRE MÚSICA LATINO AMERICANA\nProfesores: Xiomara Chala\n y\n Gabriel Brusso",
         "sede": "Escuela Frontera 604",
-        "tituloPt": "CONCERTO",
+        "tituloPt": "CHARLA SOBRE MÚSICA LATINO AMERICANA\nProfessores: Xiomara Chala\ny\nGabriel Brusso",
         "sedePt": "Escuela Frontera 604",
-        "celdas": [],
+        "celdas": [
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "",
+            "tituloPt": "",
+            "sedePt": "",
+            "presentaciones": [
+              {
+                "nombre": "",
+                "info": "",
+                "foto": "/uploads/muocvey7-08706143.jpg"
+              }
+            ]
+          }
+        ],
         "instrumentos": [],
         "ejemplo": false
       },
@@ -464,21 +509,91 @@
         "ejemplo": false
       },
       {
-        "hora": "17:00",
-        "titulo": "Concierto de clausura",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "tituloPt": "Concerto de encerramento",
-        "sedePt": "Parque Temático e Ambiental da Integração",
+        "hora": "08:30 a 09:00",
+        "titulo": "ALISTAMIENTO\nPreparacion de materiales",
+        "sede": "",
+        "tituloPt": "ALISTAMIENTO\nPreparacion de materiales",
+        "sedePt": "",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
       },
       {
-        "hora": "19:30",
-        "titulo": "Brindis y cierre",
-        "sede": "Escuela de Frontera 604",
-        "tituloPt": "Brinde e encerramento",
-        "sedePt": "Escola de Fronteira 604",
+        "hora": "09:00 a 11:00 hs",
+        "titulo": "ORQUESTA FINC\nORQUESTA FRONTERITA\nEnsayo general",
+        "sede": "",
+        "tituloPt": "ORQUESTRA FINC\nORQUESTRA FRONTERITA\nEnsaio geral",
+        "sedePt": "",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "11 a 12 hs",
+        "titulo": "FRONTERITA\nEnsayo de coro\nProf.Fundación Luzamor",
+        "sede": "",
+        "tituloPt": "FRONTERITA\nEnsaio de coro\nProf.Fundación Luzamor",
+        "sedePt": "",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "12:00 hs",
+        "titulo": "ALMUERZO",
+        "sede": "",
+        "tituloPt": "ALMOÇO",
+        "sedePt": "",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "13:00 hs",
+        "titulo": "CONCIERTOS AL MEDIODIA",
+        "sede": "Altos de Irigoyen Hotel",
+        "tituloPt": "CONCERTOS AO MEIO-DIA",
+        "sedePt": "Altos de Irigoyen Hotel",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "14:00 hs",
+        "titulo": "FOTOS GRUPALES\nEntrega de Certificados",
+        "sede": "Escuela Frontera",
+        "tituloPt": "FOTOS GRUPALES\nEntrega de Certificados",
+        "sedePt": "Escuela Frontera",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "15:00 hs",
+        "titulo": "MONTAJE EN EL PARQUE",
+        "sede": "",
+        "tituloPt": "MONTAJE EN EL PARQUE",
+        "sedePt": "",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "17:00",
+        "titulo": "PRUEBA DE SONIDO",
+        "sede": "POARQUE",
+        "tituloPt": "PRUEBA DE SONIDO",
+        "sedePt": "POARQUE",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
+        "hora": "18:00 hs",
+        "titulo": "CONCIERTO FINAL",
+        "sede": "",
+        "tituloPt": "CONCERTO FINAL",
+        "sedePt": "",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
