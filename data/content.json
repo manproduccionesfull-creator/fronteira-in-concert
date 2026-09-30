@@ -410,24 +410,14 @@
             "presentaciones": []
           },
           {
-            "hora": "16:00",
-            "sede": "Parque Turístico Ambiental de Integración",
-            "titulo": "FRONTERITA -Ensayo al aire libre y momento ecológico",
-            "tituloPt": "FRONTERITA -Ensaio al aire libre y momento ecológico",
-            "sedePt": "Parque Turístico Ambiental de Integración",
+            "hora": "16 a 17 hs",
+            "sede": "",
+            "titulo": "FRONTERITA -\nEnsayo de coro\nProf. Fundación Luzamor",
+            "tituloPt": "FRONTERITA -\nEnsaio de coro\nProf. Fundación Luzamor",
+            "sedePt": "",
             "presentaciones": []
           }
         ],
-        "instrumentos": [],
-        "ejemplo": false
-      },
-      {
-        "hora": "16 a 17",
-        "titulo": "ENSAYO CORO",
-        "sede": "Fronterita\nProf. Fundación Luz Amor",
-        "tituloPt": "ENSAIO CORAL",
-        "sedePt": "Fronterita\nProf. Fundação Luz Amor",
-        "celdas": [],
         "instrumentos": [],
         "ejemplo": false
       },
@@ -464,11 +454,11 @@
     ],
     "2026-10-11": [
       {
-        "hora": "11:00",
-        "titulo": "Matiné familiar",
-        "sede": "Parque Temático y Ambiental de la Integración",
-        "tituloPt": "Matinê familiar",
-        "sedePt": "Parque Temático e Ambiental da Integração",
+        "hora": "07:30 a 08:30",
+        "titulo": "DESAYUNO",
+        "sede": "",
+        "tituloPt": "CAFÉ DA MANHÃ",
+        "sedePt": "",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
