@@ -87,8 +87,8 @@
           {
             "hora": "",
             "sede": "",
-            "titulo": "Orquesta Fronterita\nEnsayo general",
-            "tituloPt": "Orquestra Fronterita\nEnsaio geral",
+            "titulo": "Orquesta Fronterita\nEnsayo general\nProf. Mateus y Daniel",
+            "tituloPt": "Orquestra Fronterita\nEnsaio geral\nProf. Mateus y Daniel",
             "sedePt": "",
             "presentaciones": []
           },
@@ -200,8 +200,8 @@
           {
             "hora": "8:30 a 9:00",
             "sede": "",
-            "titulo": "PRÁCTICA INDIVIDUAL",
-            "tituloPt": "PRÁTICA INDIVIDUAL",
+            "titulo": "ALISTAMIENTO\nPreparación de materiales para el ensayo",
+            "tituloPt": "ALISTAMIENTO\nPreparación de materiales para el ensaio",
             "sedePt": "",
             "presentaciones": []
           }
@@ -383,14 +383,14 @@
           {
             "hora": "11 a 12 hs",
             "sede": "",
-            "titulo": "FRONTERITA\nPráctica coral \nProf. Unila",
-            "tituloPt": "FRONTERITA\nPráctica coral\nProf. Unila",
+            "titulo": "FRONTERITA\nPráctica coral \nProf. Gabriel Brusso",
+            "tituloPt": "FRONTERITA\nPráctica coral\nProf. Gabriel Brusso",
             "sedePt": "",
             "presentaciones": [
               {
                 "nombre": "",
                 "info": "",
-                "foto": "/uploads/muocmd0o-6702e80c.jpg"
+                "foto": "/uploads/muod0rj8-7db6508a.jpg"
               }
             ]
           }
@@ -478,7 +478,7 @@
               {
                 "nombre": "",
                 "info": "",
-                "foto": "/uploads/muocvey7-08706143.jpg"
+                "foto": "/uploads/muod1txn-39debf1b.jpg"
               }
             ]
           }
@@ -487,11 +487,21 @@
         "ejemplo": false
       },
       {
+        "hora": "19:30 hs",
+        "titulo": "CONCIERTO",
+        "sede": "Escuela de Frontera 604",
+        "tituloPt": "CONCERTO",
+        "sedePt": "Escola de Fronteira 604",
+        "celdas": [],
+        "instrumentos": [],
+        "ejemplo": false
+      },
+      {
         "hora": "21:30",
-        "titulo": "CENA - DESCANSO",
-        "sede": "Luego cada delagación a sus hospedajes",
-        "tituloPt": "JANTAR - DESCANSO",
-        "sedePt": "Depois cada delegação para suas hospedagens",
+        "titulo": "CENA-DESCANSO",
+        "sede": "",
+        "tituloPt": "JANTAR-DESCANSO",
+        "sedePt": "",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
