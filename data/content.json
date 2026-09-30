@@ -144,10 +144,10 @@
       },
       {
         "hora": "16:00",
-        "titulo": "ACTIVIDAD LÚDICA",
-        "sede": "Fronterita",
-        "tituloPt": "ACTIVIDAD LÚDICA",
-        "sedePt": "Fronterita",
+        "titulo": "FRONTERITA\nACTIVIDAD LÚDICA",
+        "sede": "",
+        "tituloPt": "FRONTERITA\nACTIVIDAD LÚDICA",
+        "sedePt": "",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
@@ -192,7 +192,7 @@
         "sedePt": "Escola de Fronteira 604",
         "celdas": [
           {
-            "hora": "8:30  9:00",
+            "hora": "8:30 a 9:00",
             "sede": "",
             "titulo": "PRÁCTICA INDIVIDUAL",
             "tituloPt": "PRÁTICA INDIVIDUAL",
@@ -204,7 +204,7 @@
         "ejemplo": false
       },
       {
-        "hora": "09:00",
+        "hora": "09:00 a 11:00 hs",
         "titulo": "ORQUESTA FINC",
         "sede": "Parciales de intrumentos",
         "tituloPt": "ORQUESTRA FINC",
@@ -224,6 +224,14 @@
             "titulo": "MASTER CLASS",
             "tituloPt": "MASTER CLASS",
             "sedePt": "Alunos inscritos",
+            "presentaciones": []
+          },
+          {
+            "hora": "",
+            "sede": "",
+            "titulo": "FRONTERITA\nPráctica coral\nProf. Fundación Luzamor",
+            "tituloPt": "FRONTERITA\nPráctica coral\nProf. Fundación Luzamor",
+            "sedePt": "",
             "presentaciones": []
           }
         ],
