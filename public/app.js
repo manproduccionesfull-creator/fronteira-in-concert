@@ -157,14 +157,25 @@
 
   let mcSelectedDay = '2026-10-08';
 
+  function masterclassDay(raw) {
+    if (Array.isArray(raw)) return { hora: '', grupos: raw };
+    if (raw && typeof raw === 'object') {
+      const grupos = Array.isArray(raw.grupos) ? raw.grupos : (Array.isArray(raw) ? raw : []);
+      return { hora: String(raw.hora || '').trim(), grupos };
+    }
+    return { hora: '', grupos: [] };
+  }
+
   function renderMasterclass(masterclass) {
     const tabs = $('#mc-day-tabs');
     const body = $('#mc-body');
     if (!tabs || !body) return;
     const mc = masterclass && typeof masterclass === 'object' ? masterclass : {};
-    const days = Object.keys(DAY_LABELS).filter((d) => Array.isArray(mc[d]) && mc[d].length);
-    Object.keys(mc).forEach((d) => {
-      if (!days.includes(d) && Array.isArray(mc[d]) && mc[d].length) days.push(d);
+    const dayKeys = Object.keys(DAY_LABELS).concat(Object.keys(mc).filter((d) => !(d in DAY_LABELS)));
+    const days = [];
+    dayKeys.forEach((d) => {
+      if (days.includes(d)) return;
+      if (masterclassDay(mc[d]).grupos.length) days.push(d);
     });
     if (!days.length) {
       tabs.innerHTML = '';
@@ -190,7 +201,9 @@
       };
     }
     const L = DAY_LABELS[mcSelectedDay] || { full: mcSelectedDay };
-    const grupos = mc[mcSelectedDay] || [];
+    const day = masterclassDay(mc[mcSelectedDay]);
+    const grupos = day.grupos;
+    const hora = day.hora;
     const cards = grupos.map((g) => {
       const clases = (g.clases || []).map((c) => {
         const bits = [];
@@ -212,7 +225,8 @@
         ${clases}
       </section>`;
     }).join('');
-    body.innerHTML = `<p class="muted mc-day">${escapeHtml(L.full)}</p>${cards}`;
+    const horaHtml = hora ? `<p class="mc-hora">${escapeHtml(hora)}</p>` : '';
+    body.innerHTML = `<p class="muted mc-day">${escapeHtml(L.full)}</p>${horaHtml}${cards}`;
   }
 
   function renderCronograma(cronograma) {

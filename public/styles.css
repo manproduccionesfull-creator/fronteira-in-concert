@@ -1311,6 +1311,14 @@ body.on-inicio .inicio-links .inicio-link {
   justify-content: center;
 }
 .mc-day { margin: 0 0 0.85rem; text-align: center; }
+.mc-hora {
+  margin: -0.35rem 0 0.85rem;
+  text-align: center;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
 .mc-grupo { margin: 0 0 1.15rem; }
 .mc-instrumento {
   margin: 0 0 0.45rem;
