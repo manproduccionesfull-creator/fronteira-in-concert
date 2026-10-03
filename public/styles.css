@@ -1290,13 +1290,25 @@ body.on-inicio .inicio-links .btn {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.mc-day { margin: 0 0 0.85rem; }
+#masterclass > h2,
+#masterclass .section-lead,
+#masterclass .mc-day,
+#masterclass .mc-instrumento,
+#masterclass .mc-prof,
+#masterclass .day-tab {
+  text-align: center;
+}
+#masterclass .day-tabs {
+  justify-content: center;
+}
+.mc-day { margin: 0 0 0.85rem; text-align: center; }
 .mc-grupo { margin: 0 0 1.15rem; }
 .mc-instrumento {
   margin: 0 0 0.45rem;
   font-size: 1.05rem;
   color: var(--gold);
   letter-spacing: 0.02em;
+  text-align: center;
 }
 .mc-clase {
   background: var(--bg-card);
@@ -1310,6 +1322,7 @@ body.on-inicio .inicio-links .btn {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text);
+  text-align: center;
 }
 .mc-alumnos {
   margin: 0.2rem 0 0;
