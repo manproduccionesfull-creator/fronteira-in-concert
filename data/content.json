@@ -18,14 +18,7 @@
       "org": true
     },
     "lineas": [],
-    "botones": [
-      {
-        "texto": "Inscripcion a Master Class",
-        "tipo": "link",
-        "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
-        "estilo": "gold"
-      }
-    ],
+    "botones": [],
     "video": "/uploads/inicio-15s.mp4"
   },
   "contacto": {
