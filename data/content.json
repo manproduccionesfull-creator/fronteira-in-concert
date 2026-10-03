@@ -18,7 +18,14 @@
       "org": true
     },
     "lineas": [],
-    "botones": [],
+    "botones": [
+      {
+        "texto": "Contacto",
+        "tipo": "pagina",
+        "destino": "contacto",
+        "estilo": "gold"
+      }
+    ],
     "video": "/uploads/inicio-15s.mp4"
   },
   "contacto": {
