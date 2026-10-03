@@ -1396,6 +1396,128 @@
             ]
           }
         ]
+      },
+      {
+        "instrumento": "Piano",
+        "clases": [
+          {
+            "profesor": "Prof. Julia",
+            "alumnos": [
+              "Leticia"
+            ]
+          }
+        ]
+      }
+    ],
+    "2026-10-09": [
+      {
+        "instrumento": "Violines y violas",
+        "clases": [
+          {
+            "profesor": "Prof. Alfredo",
+            "alumnos": [
+              "Gabriel"
+            ]
+          },
+          {
+            "profesor": "Prof. Tiago",
+            "alumnos": [
+              "Maia",
+              "Santiago"
+            ]
+          },
+          {
+            "profesor": "Prof. Endrick",
+            "alumnos": [
+              "Maribel"
+            ]
+          },
+          {
+            "profesor": "Prof. Davi",
+            "alumnos": [],
+            "conjuntos": [
+              {
+                "nombre": "Cuarteto",
+                "integrantes": [
+                  "Teresa",
+                  "Emily",
+                  "Nahuel",
+                  "María"
+                ]
+              }
+            ]
+          },
+          {
+            "profesor": "Prof. Daniel",
+            "alumnos": [
+              "Ángel"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Violonchelos y Contrabajos",
+        "clases": [
+          {
+            "profesor": "Prof. Melani",
+            "alumnos": [
+              "Sofía"
+            ]
+          },
+          {
+            "profesor": "Prof. Mateus",
+            "alumnos": [
+              "Nayla y Matheus"
+            ]
+          },
+          {
+            "profesor": "Prof. Plinio",
+            "alumnos": [
+              "Candela"
+            ]
+          },
+          {
+            "profesor": "Prof. Douglas",
+            "alumnos": [
+              "Nazareno (guitarra)"
+            ]
+          },
+          {
+            "profesor": "Prof. Kariny",
+            "alumnos": [],
+            "conjuntos": [
+              {
+                "nombre": "Cuarteto",
+                "integrantes": [
+                  "Pablo",
+                  "Olivia",
+                  "Carol",
+                  "Leticia"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Vientos",
+        "clases": [
+          {
+            "profesor": "Prof. Raphael y Prof. Tonialdo",
+            "alumnos": [
+              "Amonrá",
+              "Joao",
+              "Moyses"
+            ]
+          },
+          {
+            "profesor": "Prof. Adilson y Prof. Francisco",
+            "alumnos": [
+              "Santiago",
+              "Víctor"
+            ]
+          }
+        ]
       }
     ]
   }
