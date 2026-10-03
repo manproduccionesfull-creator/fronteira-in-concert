@@ -263,9 +263,9 @@
       {
         "hora": "13 a 14",
         "titulo": "CONCIERTOS AL MEDIODIA",
-        "sede": "Altos de Irigoyen Hotel",
+        "sede": "Escuela de Frontera 604",
         "tituloPt": "CONCERTOS AO MEIO-DIA",
-        "sedePt": "Altos de Irigoyen Hotel",
+        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
@@ -411,9 +411,9 @@
       {
         "hora": "13 a 14",
         "titulo": "CONCIERTOS AL MEDIODIA",
-        "sede": "Altos de Irigoyen Hotel",
+        "sede": "Escuela de Frontera 604",
         "tituloPt": "CONCERTOS AO MEIO-DIA",
-        "sedePt": "Altos de Irigoyen Hotel",
+        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
@@ -561,9 +561,9 @@
       {
         "hora": "13:00 hs",
         "titulo": "CONCIERTOS AL MEDIODIA",
-        "sede": "Altos de Irigoyen Hotel",
+        "sede": "Escuela de Frontera 604",
         "tituloPt": "CONCERTOS AO MEIO-DIA",
-        "sedePt": "Altos de Irigoyen Hotel",
+        "sedePt": "Escola de Fronteira 604",
         "celdas": [],
         "instrumentos": [],
         "ejemplo": false
@@ -986,7 +986,7 @@
       {
         "hora": "13:00 Horas",
         "artistas": "Milagros Chagas — Concertino. Kuchler op11 1er movimiento\nSamuel Rosa Rodrigues Vieira Ribeiro — Sonata en Do M. Breval 1er movimiento\nAmonrá Pivetta — C-Dur Etüde 2\nMayara da Silva de Olivera — Longo Long ago\nLuzmila Acevedo — Hunters chorus\nBriana De Almeida — Lightly Row\nAnna Julia Guerrero — May Song\nMoyses Kalleb Krause de Oliveira — Menuet in G. J.S. Bach\nLouyze Tonin Schmitz — Minueto 2 J. S. Bach\nBenjamin Rosa Rodrigues Ribeiro — Bourrée G. F. Handel\nLucía Leguizamón — Allegro",
-        "lugar": "",
+        "lugar": "Escuela de Frontera 604",
         "listaDosColumnas": true,
         "presentaciones": [
           {
@@ -1043,14 +1043,9 @@
             "nombre": "Lucía Leguizamón",
             "info": "Allegro",
             "foto": ""
-          },
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mubfe6qp-3f4ea30a.jpg"
           }
         ],
-        "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
+        "fotoLugar": ""
       },
       {
         "hora": "19:00",
@@ -1114,7 +1109,7 @@
       {
         "hora": "13:00 Horas",
         "artistas": "Nazareno Riveros — Por una Cabeza\nMaia da Silva — Minuet 3 J.S.Bach\nGabriel Alayon — Portnoff Concertino Op 14\nThais Mai — Humoresque Dvorak\nVanessa Francisca Petters — O Passeio do Urso (Ernst Mahle) - As Melodias da Cecília\nMaribel Solís — Concierto Rieding Op. 35 3er movimiento\nVictor Antunes Moreira — Theme from up\nSantiago Ayala — Concertino in g-dur Kuchler",
-        "lugar": "",
+        "lugar": "Escuela de Frontera 604",
         "listaDosColumnas": true,
         "presentaciones": [
           {
@@ -1156,14 +1151,9 @@
             "nombre": "Santiago Ayala",
             "info": "Concertino in g-dur Kuchler",
             "foto": ""
-          },
-          {
-            "nombre": "",
-            "info": "",
-            "foto": "/uploads/mubfe6qp-3f4ea30a.jpg"
           }
         ],
-        "fotoLugar": "/uploads/mubfe6qp-3f4ea30a.jpg"
+        "fotoLugar": ""
       },
       {
         "hora": "19:00 Horas",
@@ -1222,7 +1212,7 @@
       {
         "hora": "13:00 Horas",
         "artistas": "Prof. Gabriel Brusso y Xiomara Chala — UNILA (2 canciones)\nKiara Anahí De Matos Rüssel — Sonatina en sol M Clementi 1er movimiento\nMagalí Spaciuk — Concierto Rieding Op 35 2do movimiento\nNayla Guadalupe Bobato y Matheus Vinicius de Souza Alencar — É the Swan\nPablo Pereira, Olivia Duarte, Carol Klosko, Leticia Buratti — Gavotte y May Song\nEmily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo — Lago de los Cisnes- Chaikovski\nArthur Cabral — Concierto Rieding-op 35",
-        "lugar": "Altos de Irigoyen Hotel",
+        "lugar": "Escuela de Frontera 604",
         "listaDosColumnas": true,
         "presentaciones": [
           {
