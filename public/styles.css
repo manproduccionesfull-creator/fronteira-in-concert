@@ -1289,3 +1289,39 @@ body.on-inicio .inicio-links .btn {
   margin-bottom: 0.55rem; padding-bottom: 0.55rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+
+.mc-day { margin: 0 0 0.85rem; }
+.mc-grupo { margin: 0 0 1.15rem; }
+.mc-instrumento {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.mc-clase {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  margin: 0 0 0.45rem;
+}
+.mc-prof {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.mc-alumnos {
+  margin: 0.2rem 0 0;
+  line-height: 1.45;
+}
+.mc-alumno { color: var(--text); }
+.mc-alumno + .mc-alumno::before {
+  content: " · ";
+  color: var(--gold);
+}
+.nav-item[data-goto="masterclass"] span:last-child {
+  text-align: center;
+  line-height: 1.1;
+  max-width: 4.6rem;
+}

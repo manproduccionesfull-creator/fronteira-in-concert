@@ -154,6 +154,67 @@
     return 'https://' + s;
   }
 
+
+  let mcSelectedDay = '2026-10-08';
+
+  function renderMasterclass(masterclass) {
+    const tabs = $('#mc-day-tabs');
+    const body = $('#mc-body');
+    if (!tabs || !body) return;
+    const mc = masterclass && typeof masterclass === 'object' ? masterclass : {};
+    const days = Object.keys(DAY_LABELS).filter((d) => Array.isArray(mc[d]) && mc[d].length);
+    Object.keys(mc).forEach((d) => {
+      if (!days.includes(d) && Array.isArray(mc[d]) && mc[d].length) days.push(d);
+    });
+    if (!days.length) {
+      tabs.innerHTML = '';
+      body.innerHTML = '<p class="empty">Todavía no hay master classes cargadas.</p>';
+      return;
+    }
+    if (!days.includes(mcSelectedDay)) mcSelectedDay = days[0];
+    if (days.length < 2) {
+      tabs.innerHTML = '';
+    } else {
+      tabs.innerHTML = days.map((d) => {
+        const L = DAY_LABELS[d] || { dia: d, num: '', full: d };
+        const active = d === mcSelectedDay ? 'active' : '';
+        return `<button type="button" class="day-tab ${active}" role="tab" aria-selected="${d === mcSelectedDay}" data-mc-day="${d}">
+          ${L.dia} <strong>${L.num}</strong><small>oct</small>
+        </button>`;
+      }).join('');
+      tabs.onclick = (e) => {
+        const btn = e.target.closest('[data-mc-day]');
+        if (!btn) return;
+        mcSelectedDay = btn.dataset.mcDay;
+        renderMasterclass(masterclass);
+      };
+    }
+    const L = DAY_LABELS[mcSelectedDay] || { full: mcSelectedDay };
+    const grupos = mc[mcSelectedDay] || [];
+    const cards = grupos.map((g) => {
+      const clases = (g.clases || []).map((c) => {
+        const bits = [];
+        (c.alumnos || []).forEach((a) => {
+          if (String(a || '').trim()) bits.push(`<span class="mc-alumno">${escapeHtml(a)}</span>`);
+        });
+        (c.conjuntos || []).forEach((cj) => {
+          const nombres = (cj.integrantes || []).filter((n) => String(n || '').trim());
+          const label = [cj.nombre, nombres.join(', ')].filter(Boolean).join(': ');
+          if (label) bits.push(`<span class="mc-alumno">${escapeHtml(label)}</span>`);
+        });
+        return `<article class="mc-clase">
+          <h4 class="mc-prof">${escapeHtml(c.profesor || '')}</h4>
+          ${bits.length ? `<p class="mc-alumnos">${bits.join('')}</p>` : ''}
+        </article>`;
+      }).join('');
+      return `<section class="mc-grupo">
+        <h3 class="mc-instrumento">${escapeHtml(g.instrumento || '')}</h3>
+        ${clases}
+      </section>`;
+    }).join('');
+    body.innerHTML = `<p class="muted mc-day">${escapeHtml(L.full)}</p>${cards}`;
+  }
+
   function renderCronograma(cronograma) {
     const tabs = $('#day-tabs');
     const days = Object.keys(DAY_LABELS);
@@ -635,6 +696,7 @@
     renderCronograma(content.cronograma);
     renderOrquestas(content.orquestas);
     renderProfesores(content.profesores);
+    renderMasterclass(content.masterclass);
     renderConciertos(content.conciertos);
     renderApoyan(content.apoyan);
     // Videos panel removed from nav (data kept for later)
@@ -651,7 +713,7 @@
     bindNav();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
+    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'masterclass', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();
