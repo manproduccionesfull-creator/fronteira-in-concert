@@ -478,7 +478,7 @@
               {
                 "nombre": "",
                 "info": "",
-                "foto": "/uploads/musg42zq-f9ea0856.jpg"
+                "foto": "/uploads/muod1txn-39debf1b.jpg"
               }
             ]
           }
@@ -725,12 +725,6 @@
       "tipo": "APOYO",
       "ejemplo": false,
       "imagen": "/uploads/muohvzvt-11c10aaa.png"
-    },
-    {
-      "nombre": "UNILA | PROEX",
-      "tipo": "APOYO",
-      "ejemplo": false,
-      "imagen": "/uploads/musgb3rd-90387a31.png"
     },
     {
       "nombre": "PS Comercio Exterior",
@@ -1114,7 +1108,7 @@
       },
       {
         "hora": "13:00 Horas",
-        "artistas": "Nazareno Riveros — Por una Cabeza\nMaia da Silva — Minuet 3 J.S.Bach\nGabriel Alayon — Portnoff Concertino Op 14\nThais Mai — Humoresque Dvorak\nVanessa Francisca Petters — O Passeio do Urso (Ernst Mahle) - As Melodias da Cecília\nMaribel Solís — Concierto Rieding Op. 35 3er movimiento\nEmilly Isabela — S. Rachmaninov / F. Kreisler - \"Preghiera\" from Piano Concerto no. 2\nSantiago Ayala — Concertino in g-dur Kuchler",
+        "artistas": "Nazareno Riveros — Por una Cabeza\nMaia da Silva — Minuet 3 J.S.Bach\nGabriel Alayon — Portnoff Concertino Op 14\nThais Mai — Humoresque Dvorak\nVanessa Francisca Petters — O Passeio do Urso (Ernst Mahle) - As Melodias da Cecília\nMaribel Solís — Concierto Rieding Op. 35 3er movimiento\nVictor Antunes Moreira — Theme from up\nSantiago Ayala — Concertino in g-dur Kuchler",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
@@ -1149,8 +1143,8 @@
             "foto": ""
           },
           {
-            "nombre": "Emilly Isabela",
-            "info": "S. Rachmaninov / F. Kreisler - \"Preghiera\" from Piano Concerto no. 2",
+            "nombre": "Victor Antunes Moreira",
+            "info": "Theme from up",
             "foto": ""
           },
           {
@@ -1222,7 +1216,7 @@
     "2026-10-11": [
       {
         "hora": "13:00 Horas",
-        "artistas": "Prof. Gabriel Brusso y Xiomara Chala — UNILA (2 canciones)\nKiara Anahí De Matos Rüssel — Sonatina en sol M Clementi 1er movimiento\nMagalí Spaciuk — Concierto Rieding Op 35 2do movimiento\nNayla Guadalupe Bobato y Matheus Vinicius de Souza Alencar — É the Swan\nPablo Pereira, Olivia Duarte, Carol Klosko, Leticia Buratti — Gavotte y May Song\nEmily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo — Lago de los Cisnes- Chaikovski",
+        "artistas": "Prof. Gabriel Brusso y Xiomara Chala — UNILA (2 canciones)\nKiara Anahí De Matos Rüssel — Sonatina en sol M Clementi 1er movimiento\nMagalí Spaciuk — Concierto Rieding Op 35 2do movimiento\nNayla Guadalupe Bobato y Matheus Vinicius de Souza Alencar — É the Swan\nPablo Pereira, Olivia Duarte, Carol Klosko, Leticia Buratti — Gavotte y May Song\nEmily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo — Lago de los Cisnes- Chaikovski\nArthur Cabral — Concierto Rieding-op 35",
         "lugar": "Altos de Irigoyen Hotel",
         "listaDosColumnas": true,
         "presentaciones": [
@@ -1254,6 +1248,11 @@
           {
             "nombre": "Emily Arzamendia, Kisiel Teresa, Nahuel Olivera, Maria Figueredo",
             "info": "Lago de los Cisnes- Chaikovski",
+            "foto": ""
+          },
+          {
+            "nombre": "Arthur Cabral",
+            "info": "Concierto Rieding-op 35",
             "foto": ""
           }
         ]
