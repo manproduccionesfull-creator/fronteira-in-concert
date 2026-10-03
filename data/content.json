@@ -20,12 +20,6 @@
     "lineas": [],
     "botones": [
       {
-        "texto": "Ver cronograma",
-        "tipo": "pagina",
-        "destino": "cronograma",
-        "estilo": "gold"
-      },
-      {
         "texto": "Inscripcion a Master Class",
         "tipo": "link",
         "destino": "https://forms.gle/PLpEZ9F4keQSBXcA7",
