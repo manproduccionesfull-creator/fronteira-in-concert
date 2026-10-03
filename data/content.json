@@ -1519,6 +1519,94 @@
           }
         ]
       }
+    ],
+    "2026-10-10": [
+      {
+        "instrumento": "Violines y violas",
+        "clases": [
+          {
+            "profesor": "Prof. Alfredo",
+            "alumnos": [
+              "Arthur",
+              "Davi"
+            ]
+          },
+          {
+            "profesor": "Prof. Tiago",
+            "alumnos": [
+              "Olivia"
+            ]
+          },
+          {
+            "profesor": "Prof. Endrick",
+            "alumnos": [
+              "Magalí"
+            ]
+          },
+          {
+            "profesor": "Prof. Davi",
+            "alumnos": [
+              "Pablo"
+            ]
+          },
+          {
+            "profesor": "Prof. Daniel",
+            "alumnos": [
+              "Ángel",
+              "Luzmila"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Violonchelos y Contrabajos",
+        "clases": [
+          {
+            "profesor": "Prof. Melani",
+            "alumnos": [
+              "Leticia"
+            ]
+          },
+          {
+            "profesor": "Prof. Plinio",
+            "alumnos": [
+              "Candela"
+            ]
+          },
+          {
+            "profesor": "Prof. Douglas",
+            "alumnos": [
+              "Vanessa"
+            ]
+          },
+          {
+            "profesor": "Prof. Kariny",
+            "alumnos": [],
+            "conjuntos": [
+              {
+                "nombre": "Cuarteto",
+                "integrantes": [
+                  "Teresa",
+                  "Emily",
+                  "Nahuel",
+                  "María"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Piano",
+        "clases": [
+          {
+            "profesor": "Prof. Julia",
+            "alumnos": [
+              "Anahí"
+            ]
+          }
+        ]
+      }
     ]
   }
 }
