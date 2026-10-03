@@ -985,7 +985,7 @@
       },
       {
         "hora": "13:00 Horas",
-        "artistas": "Milagros Chagas — Concertino. Kuchler op11 1er movimiento\nSamuel Rosa Rodrigues Vieira Ribeiro — Sonata en Do M. Breval 1er movimiento\nAmonrá Pivetta — C-Dur Etüde 2\nMayara da Silva de Olivera — Longo Long ago\nLuzmila Acevedo — Hunters chorus\nBriana De Almeida — Lightly Row\nAnna Julia Guerrero — May Song\nMoyses Kalleb Krause de Oliveira — Menuet in G. J.S. Bach\nLouyze Tonin Schmitz — Minueto 2 J. S. Bach\nBenjamin Rosa Rodrigues Ribeiro — Bourrée G. F. Handel",
+        "artistas": "Milagros Chagas — Concertino. Kuchler op11 1er movimiento\nSamuel Rosa Rodrigues Vieira Ribeiro — Sonata en Do M. Breval 1er movimiento\nAmonrá Pivetta — C-Dur Etüde 2\nMayara da Silva de Olivera — Longo Long ago\nLuzmila Acevedo — Hunters chorus\nBriana De Almeida — Lightly Row\nAnna Julia Guerrero — May Song\nMoyses Kalleb Krause de Oliveira — Menuet in G. J.S. Bach\nLouyze Tonin Schmitz — Minueto 2 J. S. Bach\nBenjamin Rosa Rodrigues Ribeiro — Bourrée G. F. Handel\nLucía Leguizamón — Toa Allegro",
         "lugar": "",
         "listaDosColumnas": true,
         "presentaciones": [
@@ -1037,6 +1037,11 @@
           {
             "nombre": "Benjamin Rosa Rodrigues Ribeiro",
             "info": "Bourrée G. F. Handel",
+            "foto": ""
+          },
+          {
+            "nombre": "Lucía Leguizamón",
+            "info": "Toa Allegro",
             "foto": ""
           },
           {
