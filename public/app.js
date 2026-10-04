@@ -239,7 +239,7 @@
       body.innerHTML = '<p class="empty">Todavía no hay clases por instrumento.</p>';
       return;
     }
-    body.innerHTML = grupos.map((g) => {
+    body.innerHTML = `<h3 class="inst-orquesta">Orquesta FiNC</h3>${grupos.map((g) => {
       let n = 0;
       const bloques = (g.bloques || []).map((b) => {
         const subs = Array.isArray(b.subgrupos) ? b.subgrupos : [];
@@ -269,7 +269,7 @@
         <h3 class="inst-instrumento">${escapeHtml(g.instrumento || '')}</h3>
         ${bloques}
       </section>`;
-    }).join('');
+    }).join('')}`;
   }
 
   function renderCronograma(cronograma) {
