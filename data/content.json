@@ -1418,7 +1418,8 @@
             {
               "profesor": "Prof. Alfredo",
               "alumnos": [
-                "Gabriel"
+                "Gabriel",
+                "Beatriz"
               ]
             },
             {
@@ -1431,7 +1432,8 @@
             {
               "profesor": "Prof. Endrick",
               "alumnos": [
-                "Maribel"
+                "Maribel",
+                "Bianca"
               ]
             },
             {
@@ -1452,7 +1454,8 @@
             {
               "profesor": "Prof. Daniel",
               "alumnos": [
-                "Ángel"
+                "Ángel",
+                "Rodrigo"
               ]
             }
           ]
@@ -1463,7 +1466,8 @@
             {
               "profesor": "Prof. Melani",
               "alumnos": [
-                "Sofía"
+                "Sofía",
+                "Julia"
               ]
             },
             {
@@ -1475,7 +1479,7 @@
             {
               "profesor": "Prof. Plinio",
               "alumnos": [
-                "Candela"
+                "Tahuan"
               ]
             },
             {
@@ -1505,18 +1509,26 @@
           "instrumento": "Vientos",
           "clases": [
             {
-              "profesor": "Prof. Raphael y Prof. Tonialdo",
+              "profesor": "Prof. Tonialdo y Prof. Matheus Simões Machado",
               "alumnos": [
-                "Amonrá",
-                "Joao",
-                "Moyses"
+                "Isaque"
               ]
             },
             {
               "profesor": "Prof. Adilson y Prof. Francisco",
               "alumnos": [
-                "Santiago",
-                "Víctor"
+                "Felipe"
+              ]
+            }
+          ]
+        },
+        {
+          "instrumento": "Percusión",
+          "clases": [
+            {
+              "profesor": "Prof. Nadji",
+              "alumnos": [
+                "Thiago"
               ]
             }
           ]
