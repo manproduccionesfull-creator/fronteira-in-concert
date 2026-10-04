@@ -335,17 +335,17 @@ h2 { font-size: 1.45rem; color: var(--gold); border-bottom: 1px solid var(--bord
 }
 .nav-item {
   flex: 1 1 0;
-  min-width: 48px;
-  max-width: 90px;
+  min-width: 0;
+  max-width: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
-  padding: 0.35rem 0.2rem;
+  gap: 0.1rem;
+  padding: 0.3rem 0.05rem;
   background: transparent;
   border: none;
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.56rem;
   cursor: pointer;
   min-height: 52px;
 }
@@ -1355,5 +1355,63 @@ body.on-inicio .inicio-links .inicio-link {
 .nav-item[data-goto="masterclass"] span:last-child {
   text-align: center;
   line-height: 1.1;
+  max-width: 4.6rem;
+}
+
+#instrumentos,
+#instrumentos * {
+  text-align: center;
+}
+#instrumentos ul,
+#instrumentos ol,
+#instrumentos .inst-alumnos {
+  list-style: none;
+  padding-left: 0;
+  padding-inline-start: 0;
+  margin-left: 0;
+}
+.inst-grupo { margin: 0 0 1.15rem; }
+.inst-instrumento {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.inst-bloque {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  margin: 0 0 0.45rem;
+}
+.inst-prof {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+}
+.inst-sub {
+  margin: 0.55rem 0 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+}
+.inst-alumnos {
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+.inst-alumno {
+  color: var(--text);
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+}
+.inst-num { color: var(--text); }
+.nav-item[data-goto="instrumentos"] span:last-child {
+  text-align: center;
+  line-height: 1.05;
   max-width: 4.6rem;
 }

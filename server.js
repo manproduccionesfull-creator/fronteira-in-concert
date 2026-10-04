@@ -291,6 +291,9 @@ app.post('/api/content', async (req, res) => {
     if (!payload.conciertos && previous && previous.conciertos) {
       payload.conciertos = previous.conciertos;
     }
+    if (!payload.instrumentos && previous && previous.instrumentos) {
+      payload.instrumentos = previous.instrumentos;
+    }
     writeContent(payload);
     const durable = { disk: hasPersistDisk(), github: false };
     const warnings = [];

@@ -1638,5 +1638,193 @@
         }
       ]
     }
+  },
+  "instrumentos": {
+    "grupos": [
+      {
+        "instrumento": "Violines 1",
+        "bloques": [
+          {
+            "profesor": "Profesor: DAVI DE OLIVERA / MARY DA CRUZ MOREIRA",
+            "alumnos": [
+              "Aldana Bosing",
+              "Anastasia Figueroa",
+              "André Luiz Martins de Léo",
+              "Arthur Cabral Rosa",
+              "Camila Angely Hernández Cobis",
+              "Cindy Spaciuk",
+              "Emily Angeline Arzamendia",
+              "Maribel Solís",
+              "Thais Mai"
+            ]
+          },
+          {
+            "profesor": "PROFESOR ENDRICK CASAGRANDE",
+            "alumnos": [
+              "Beatriz Silva Franzão de Souza",
+              "Bianca Lopez Marques",
+              "Gabriel Alayon",
+              "Ismael Oliveira Miranda",
+              "Máximo Sequeira",
+              "Milagros Chagas",
+              "Nahuel Olivera",
+              "Pablo Pereira",
+              "Pedro Café Barroso Filho",
+              "Tarja Cukla",
+              "Teresa Agustina Kisiel"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Violines 2",
+        "bloques": [
+          {
+            "profesor": "Profesor TIAGO LUIS ATAIDE",
+            "alumnos": [
+              "Ana Laura Andreguetto Holanda",
+              "Ana Luísa Andreguetto Holanda",
+              "Anna Julia Guerrero",
+              "Brianyelly Del Valle Zaraza Boada",
+              "Gabriel Gonçalves",
+              "Gustavo Krause Otranto dos Santos",
+              "Louyze Tonin Schmitz",
+              "Maia Da Silva",
+              "María Clara Matos Agnoletto",
+              "Mayara Da Silva",
+              "Nicolas Oliveira Bratifiche",
+              "Olivia Duarte",
+              "Santiago Rafael Ayala Arias"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Violas",
+        "bloques": [
+          {
+            "profesor": "Profesor ALFREDO BENITEZ MONZON",
+            "alumnos": [
+              "Ángel Fedán",
+              "Jessé Ferreira dos Santos",
+              "Luzmila Acevedo",
+              "Maily Gonzales",
+              "Marianela Monzon",
+              "Rodrigo Ryu Anzai",
+              "Carol Klosko"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Violonchelos",
+        "bloques": [
+          {
+            "profesor": "Profesora MELANI GRENZEL",
+            "alumnos": [
+              "Agustina Avalos",
+              "Davi Rodrigues de Lima",
+              "Gladeannys Sofía Gil Calzadilla",
+              "Jhathzi Jhazeelithnor Acosta Ruiz",
+              "Keitlyn Mattos (M)",
+              "Leticia Buratti",
+              "Luis Eduardo Solorzano Labrador",
+              "María Figueredo",
+              "Matheus Vinicius de Souza Alencar (M)",
+              "Nayla Bobato",
+              "Paulo Cesar Camilo",
+              "Sofía Monzón",
+              "Tahuan Cândido Peres"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Contrabajos",
+        "bloques": [
+          {
+            "profesor": "Profesor: DOUGLAS LEMES / PLINIO ZURASKI",
+            "alumnos": [
+              "Adriano Diego Zortea",
+              "Arnoldo Junior de Morais Neves",
+              "Candela Puebla",
+              "Nazareno Gael Riveros",
+              "Vanessa Francisca Petters"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Percusión",
+        "bloques": [
+          {
+            "profesor": "Profesor: NADJI AYEL REGINI VIEIRA DA SILVA / LUCAS GAINO MONTEIRO",
+            "alumnos": [
+              "Francisco Britez",
+              "Letícia Gabriela Winter",
+              "Nataly Melo",
+              "Noelia Soledad Galarza",
+              "Thiago Betancourt",
+              "Kyara Ignez Vicentino Tapia"
+            ]
+          }
+        ]
+      },
+      {
+        "instrumento": "Vientos maderas",
+        "bloques": [
+          {
+            "profesor": "Profesor: Wellington Tangi",
+            "subgrupos": [
+              {
+                "nombre": "Flautas",
+                "alumnos": [
+                  "Benjamín Hugo Figueredo",
+                  "Alejandro Matias Kisiel",
+                  "Emanuele Alcarria Andrioni",
+                  "Bianca Domingues",
+                  "Mika Sato",
+                  "Tiago Henrique Rodrígues Junior",
+                  "João Elias Fitel Araújo Días"
+                ]
+              },
+              {
+                "nombre": "Oboes",
+                "alumnos": [
+                  "Moyses Kalleb Krause de Oliveira"
+                ]
+              }
+            ]
+          },
+          {
+            "profesor": "Profesor: Adilson Alves / Yamila Woitschach",
+            "subgrupos": [
+              {
+                "nombre": "Clarinetes",
+                "alumnos": [
+                  "Sofia Celeste Dominguez",
+                  "Nycolas Veron Reis",
+                  "Amonrá Pivetta Zimermann",
+                  "Victória Pivetta Carneiro",
+                  "Marcos Noguera",
+                  "Victor Antunez"
+                ]
+              },
+              {
+                "nombre": "Saxos",
+                "alumnos": [
+                  "Santiago Rafael Escobar",
+                  "Felipe Arzamendia",
+                  "Abilio José de Mattos",
+                  "Felipe Veron Reis",
+                  "Filipe Krummenauer Oliveira",
+                  "Nataly Isabele da Silva Neves"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

@@ -229,6 +229,49 @@
     body.innerHTML = `<p class="muted mc-day">${escapeHtml(L.full)}</p>${horaHtml}${cards}`;
   }
 
+
+  function renderInstrumentos(instrumentos) {
+    const body = $('#inst-body');
+    if (!body) return;
+    const src = instrumentos && typeof instrumentos === 'object' ? instrumentos : {};
+    const grupos = Array.isArray(src.grupos) ? src.grupos : [];
+    if (!grupos.length) {
+      body.innerHTML = '<p class="empty">Todavía no hay clases por instrumento.</p>';
+      return;
+    }
+    body.innerHTML = grupos.map((g) => {
+      let n = 0;
+      const bloques = (g.bloques || []).map((b) => {
+        const subs = Array.isArray(b.subgrupos) ? b.subgrupos : [];
+        let alumnosHtml = '';
+        if (subs.length) {
+          alumnosHtml = subs.map((s) => {
+            const names = (s.alumnos || []).map((a) => String(a || '').trim()).filter(Boolean);
+            const list = names.map((a) => `<li class="inst-alumno">${escapeHtml(a)}</li>`).join('');
+            return `<div class="inst-subgrupo">
+              <h5 class="inst-sub">${escapeHtml(s.nombre || '')}</h5>
+              ${list ? `<ul class="inst-alumnos inst-plain">${list}</ul>` : ''}
+            </div>`;
+          }).join('');
+        } else {
+          const names = (b.alumnos || []).map((a) => String(a || '').trim()).filter(Boolean);
+          const start = n;
+          n += names.length;
+          const list = names.map((a, i) => `<li class="inst-alumno"><span class="inst-num">${start + i + 1}</span> ${escapeHtml(a)}</li>`).join('');
+          alumnosHtml = list ? `<ol class="inst-alumnos">${list}</ol>` : '';
+        }
+        return `<article class="inst-bloque">
+          <h4 class="inst-prof">${escapeHtml(b.profesor || '')}</h4>
+          ${alumnosHtml}
+        </article>`;
+      }).join('');
+      return `<section class="inst-grupo">
+        <h3 class="inst-instrumento">${escapeHtml(g.instrumento || '')}</h3>
+        ${bloques}
+      </section>`;
+    }).join('');
+  }
+
   function renderCronograma(cronograma) {
     const tabs = $('#day-tabs');
     const days = Object.keys(DAY_LABELS);
@@ -711,6 +754,7 @@
     renderOrquestas(content.orquestas);
     renderProfesores(content.profesores);
     renderMasterclass(content.masterclass);
+    renderInstrumentos(content.instrumentos);
     renderConciertos(content.conciertos);
     renderApoyan(content.apoyan);
     // Videos panel removed from nav (data kept for later)
@@ -727,7 +771,7 @@
     bindNav();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'masterclass', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
+    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'masterclass', 'instrumentos', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();
