@@ -1337,7 +1337,8 @@
             {
               "profesor": "Prof. Mateus",
               "alumnos": [
-                "Sofía"
+                "Sofía",
+                "Daví"
               ]
             },
             {
@@ -1379,7 +1380,7 @@
           "instrumento": "Vientos",
           "clases": [
             {
-              "profesor": "Prof. Raphael y Prof. Tonialdo",
+              "profesor": "Prof. Tonialdo",
               "alumnos": [
                 "Amonrá",
                 "Joao",
@@ -1387,7 +1388,7 @@
               ]
             },
             {
-              "profesor": "Prof. Adilson y Prof. Francisco",
+              "profesor": "Prof. Adilson",
               "alumnos": [
                 "Santiago",
                 "Víctor"
