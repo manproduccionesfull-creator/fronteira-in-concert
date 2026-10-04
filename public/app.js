@@ -230,16 +230,8 @@
   }
 
 
-  function renderInstrumentos(instrumentos) {
-    const body = $('#inst-body');
-    if (!body) return;
-    const src = instrumentos && typeof instrumentos === 'object' ? instrumentos : {};
-    const grupos = Array.isArray(src.grupos) ? src.grupos : [];
-    if (!grupos.length) {
-      body.innerHTML = '<p class="empty">Todavía no hay clases por instrumento.</p>';
-      return;
-    }
-    body.innerHTML = `<h3 class="inst-orquesta">Orquesta FiNC</h3>${grupos.map((g) => {
+  function renderInstGrupos(grupos) {
+    return (grupos || []).map((g) => {
       let n = 0;
       const bloques = (g.bloques || []).map((b) => {
         const subs = Array.isArray(b.subgrupos) ? b.subgrupos : [];
@@ -266,10 +258,32 @@
         </article>`;
       }).join('');
       return `<section class="inst-grupo">
-        <h3 class="inst-instrumento">${escapeHtml(g.instrumento || '')}</h3>
+        <h4 class="inst-instrumento">${escapeHtml(g.instrumento || '')}</h4>
         ${bloques}
       </section>`;
-    }).join('')}`;
+    }).join('');
+  }
+
+  function renderInstApartado(titulo, grupos) {
+    const list = Array.isArray(grupos) ? grupos : [];
+    return `<section class="inst-apartado">
+      <h3 class="inst-orquesta">${escapeHtml(titulo)}</h3>
+      ${list.length ? renderInstGrupos(list) : ''}
+    </section>`;
+  }
+
+  function renderInstrumentos(instrumentos) {
+    const body = $('#inst-body');
+    if (!body) return;
+    const src = instrumentos && typeof instrumentos === 'object' ? instrumentos : {};
+    const finc = Array.isArray(src.grupos)
+      ? src.grupos
+      : (src.finc && Array.isArray(src.finc.grupos) ? src.finc.grupos : []);
+    const fr = src.fronterita;
+    const fronterita = Array.isArray(fr)
+      ? fr
+      : (fr && Array.isArray(fr.grupos) ? fr.grupos : []);
+    body.innerHTML = renderInstApartado('Orquesta FiNC', finc) + renderInstApartado('Orquesta Fronterita', fronterita);
   }
 
   function renderCronograma(cronograma) {

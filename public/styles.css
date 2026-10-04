@@ -1370,11 +1370,20 @@ body.on-inicio .inicio-links .inicio-link {
   padding-inline-start: 0;
   margin-left: 0;
 }
+.inst-apartado {
+  margin: 0 0 0.5rem;
+}
+.inst-apartado + .inst-apartado {
+  margin-top: 1.6rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.45);
+}
 .inst-orquesta {
   margin: 0 0 1rem;
   color: var(--gold);
-  font-size: 1.2rem;
-  letter-spacing: 0.02em;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-align: center;
 }
 .inst-grupo { margin: 0 0 1.15rem; }
@@ -1411,12 +1420,12 @@ body.on-inicio .inicio-links .inicio-link {
   padding: 0;
 }
 .inst-alumno {
-  color: var(--text);
+  color: #f5f0e6;
   font-weight: 400;
   line-height: 1.45;
   text-align: center;
 }
-.inst-num { color: var(--text); }
+.inst-num { color: #f5f0e6; }
 .nav-item[data-goto="instrumentos"] span:last-child {
   text-align: center;
   line-height: 1.05;
