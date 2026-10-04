@@ -1544,8 +1544,8 @@
             {
               "profesor": "Prof. Alfredo",
               "alumnos": [
-                "Arthur",
-                "Davi"
+                "Pedro",
+                "Davi Da Luz"
               ]
             },
             {
@@ -1557,13 +1557,15 @@
             {
               "profesor": "Prof. Endrick",
               "alumnos": [
-                "Magalí"
+                "Magalí",
+                "Nicolas"
               ]
             },
             {
-              "profesor": "Prof. Davi",
+              "profesor": "Prof. Mary",
               "alumnos": [
-                "Pablo"
+                "Pablo",
+                "Arthur"
               ]
             },
             {
@@ -1586,18 +1588,6 @@
             },
             {
               "profesor": "Prof. Plinio",
-              "alumnos": [
-                "Candela"
-              ]
-            },
-            {
-              "profesor": "Prof. Douglas",
-              "alumnos": [
-                "Vanessa"
-              ]
-            },
-            {
-              "profesor": "Prof. Kariny",
               "alumnos": [],
               "conjuntos": [
                 {
@@ -1610,6 +1600,19 @@
                   ]
                 }
               ]
+            },
+            {
+              "profesor": "Prof. Douglas",
+              "alumnos": [
+                "Vanessa"
+              ]
+            },
+            {
+              "profesor": "Prof. Kariny",
+              "alumnos": [
+                "Gabriel Goncalves",
+                "Ismael"
+              ]
             }
           ]
         },
@@ -1621,6 +1624,15 @@
               "alumnos": [
                 "Anahí"
               ]
+            }
+          ]
+        },
+        {
+          "instrumento": "Vientos maderas",
+          "clases": [
+            {
+              "profesor": "Prof. Adilson y Prof. Francisco",
+              "alumnos": []
             }
           ]
         }
