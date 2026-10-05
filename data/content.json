@@ -1827,7 +1827,97 @@
       }
     ],
     "fronterita": {
-      "grupos": []
+      "grupos": [
+        {
+          "instrumento": "Violines",
+          "bloques": [
+            {
+              "profesor": "Prof. Kariny Da Vila / Prof. Daniel Hertal",
+              "alumnos": [
+                "Amanda Viana de Oliveira",
+                "Brianna de Almeida",
+                "Everton Carniato Firmino de Oliveira",
+                "Heloisa Helena da Silva Neves",
+                "Lucia Leguizamón",
+                "María Rodriguez",
+                "Narda Bologna",
+                "Priscila da Silva Neves",
+                "Sofía Paredes",
+                "Valentina Farías",
+                "Zoe Antunez"
+              ]
+            },
+            {
+              "profesor": "Prof. Pedro Café / Douglas Lemes",
+              "alumnos": [
+                "Antoni Guilherme Macagnan Damo",
+                "Jonesvi Rafael Galea Acevedo",
+                "María Valentina Gonsales",
+                "Mariana Luiza Galinski",
+                "Fabi Wurzius",
+                "Odete de Moura"
+              ]
+            }
+          ]
+        },
+        {
+          "instrumento": "Violas",
+          "bloques": [
+            {
+              "profesor": "Prof. Daniel Kulba",
+              "alumnos": [
+                "Bautista Rodriguez",
+                "Caroline Horn",
+                "Davi Mariano da Luz",
+                "Jocimar Brandão Moraes"
+              ]
+            }
+          ]
+        },
+        {
+          "instrumento": "Violonchelo",
+          "bloques": [
+            {
+              "profesor": "Prof. Julia Elysie Amaral Pinto / Mateus Berns",
+              "alumnos": [
+                "Bela Ribeiro da Silva",
+                "Briana Ferreyra",
+                "Bruna Schoninger",
+                "Camilo Santos",
+                "Carla Da Silva",
+                "Marco Antônio Bürgel Xavier",
+                "Nicolle Fantinele da Silva",
+                "Thays Raquelly Voicolesco",
+                "Vanessa Miranda",
+                "Vinicius de Miranda Ferreira"
+              ]
+            }
+          ]
+        },
+        {
+          "instrumento": "Vientos maderas",
+          "bloques": [
+            {
+              "profesor": "Prof. Francisco Holanda",
+              "subgrupos": [
+                {
+                  "nombre": "Flauta",
+                  "alumnos": [
+                    "Kauanny Cristina Rosa Soares"
+                  ]
+                },
+                {
+                  "nombre": "Clarinete",
+                  "alumnos": [
+                    "Derick Da Silva",
+                    "Natalia Correa"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   }
 }
