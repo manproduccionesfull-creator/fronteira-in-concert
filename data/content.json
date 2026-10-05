@@ -1943,6 +1943,19 @@
               ]
             }
           ]
+        },
+        {
+          "instrumento": "Teclado",
+          "bloques": [
+            {
+              "profesor": "",
+              "alumnos": [
+                "Anahí de Mattos",
+                "Ciro Galian",
+                "Alexia Puebla"
+              ]
+            }
+          ]
         }
       ]
     }
