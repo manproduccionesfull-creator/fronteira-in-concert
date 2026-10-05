@@ -1377,10 +1377,10 @@
           ]
         },
         {
-          "instrumento": "Vientos",
+          "instrumento": "Vientos Metal",
           "clases": [
             {
-              "profesor": "Prof. Tonialdo",
+              "profesor": "Prof. Matheus Simões Machado",
               "alumnos": [
                 "Amonrá",
                 "Joao",
@@ -1506,10 +1506,10 @@
           ]
         },
         {
-          "instrumento": "Vientos",
+          "instrumento": "Vientos Metal",
           "clases": [
             {
-              "profesor": "Prof. Tonialdo y Prof. Matheus Simões Machado",
+              "profesor": "Prof. Matheus Simões Machado",
               "alumnos": [
                 "Isaque"
               ]
