@@ -1454,3 +1454,14 @@ body.on-inicio .inicio-links .inicio-link {
   line-height: 1.05;
   max-width: 4.6rem;
 }
+
+
+/* Título grande "Conciertos al mediodía" (conciertos 13hs + cronograma) */
+.event-card h3.concert-title-mediodia,
+.event-card.event-mediodia > .event-body > h3.multi-lines {
+  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--gold-logo);
+  margin: 0.15rem 0 0.5rem;
+}

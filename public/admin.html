@@ -596,6 +596,7 @@
       const fotoLugar = c.fotoLugar || (photoPres[0] && photoPres[0].foto) || '';
       const body = useGrid
         ? (
+            '<div class="form-grid compact"><label class="full">Título (grande)<input type="text" class="c-titulo" value="' + escAttr(c.titulo || 'Conciertos al mediodía') + '" placeholder="Conciertos al mediodía" /></label></div>' +
             imageFieldHtml('Foto del lugar (igual que Duo)', 'c-foto-lugar', fotoLugar, 'Subir foto del lugar') +
             participantesBlockHtml(artistasText)
           )
@@ -1368,6 +1369,8 @@
             presentaciones,
           };
           if (fotoLugarVal) item.fotoLugar = fotoLugarVal;
+          const tituloEl = row.querySelector('.c-titulo');
+          if (isMidday) item.titulo = (tituloEl ? val(tituloEl) : '') || 'Conciertos al mediodía';
           concerts.push(item);
         });
         out.conciertos[day] = concerts.filter((c) => c.hora || c.artistas || c.lugar || c.fotoLugar || (c.presentaciones && c.presentaciones.length));

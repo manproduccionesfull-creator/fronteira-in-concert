@@ -482,10 +482,12 @@
         </div>
       </article>`;
       }
+      const midTitle = String(c.titulo || '').trim() || 'Conciertos al mediodía';
       return `
-      <article class="event-card concert-card">
+      <article class="event-card concert-card concert-mediodia">
         ${c.hora ? `<div class="hora">${escapeHtml(c.hora || '')}</div>` : ''}
         <div class="event-body">
+          <h3 class="concert-title concert-title-mediodia">${escapeHtml(midTitle)}</h3>
           ${presentacionesHtml(fotosUniq, { twoCols: false })}
           ${c.lugar ? `<p class="venue">${escapeHtml(c.lugar || '')}</p>` : ''}
           ${namesFromArtistas}
