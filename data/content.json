@@ -1386,7 +1386,12 @@
                 "Joao",
                 "Moyses"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "instrumento": "Vientos maderas",
+          "clases": [
             {
               "profesor": "Prof. Adilson",
               "alumnos": [
@@ -1513,7 +1518,12 @@
               "alumnos": [
                 "Isaque"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "instrumento": "Vientos maderas",
+          "clases": [
             {
               "profesor": "Prof. Adilson y Prof. Francisco",
               "alumnos": [
