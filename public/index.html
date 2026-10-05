@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="/icons/icon-512.png" />
   <title>Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=116" />
+  <link rel="stylesheet" href="/styles.css?v=117" />
 </head>
 <body>
   <header class="topbar">
@@ -88,8 +88,12 @@
 
     <section id="instrumentos" class="panel" data-panel="instrumentos">
       <h2>Ensayo de Fila</h2>
-      <p class="section-lead">Dos apartados: Orquesta FiNC y Orquesta Fronterita. Profesor y alumnos, por instrumento.</p>
-      <div id="inst-body" class="inst-body"></div>
+      <p class="section-lead">Elegí una orquesta para ver profesores y alumnos por instrumento.</p>
+      <div class="inst-orquesta-tabs" id="inst-orquesta-tabs" role="tablist" aria-label="Orquestas de Ensayo de Fila">
+        <button type="button" class="inst-orquesta-tab active" role="tab" aria-selected="true" aria-controls="inst-body" data-inst-orquesta="finc">Orquesta FiNC</button>
+        <button type="button" class="inst-orquesta-tab" role="tab" aria-selected="false" aria-controls="inst-body" data-inst-orquesta="fronterita">Orquesta Fronterita</button>
+      </div>
+      <div id="inst-body" class="inst-body" role="tabpanel" aria-live="polite"></div>
     </section>
 
     <section id="conciertos" class="panel" data-panel="conciertos">
@@ -172,6 +176,6 @@
   </nav>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/app.js?v=111" defer></script>
+  <script src="/app.js?v=112" defer></script>
 </body>
 </html>

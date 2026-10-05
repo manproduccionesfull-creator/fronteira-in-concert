@@ -8,6 +8,7 @@
 
   let content = null;
   let selectedDay = '2026-10-08';
+  let selectedInstrumentOrquesta = 'finc';
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -283,7 +284,27 @@
     const fronterita = Array.isArray(fr)
       ? fr
       : (fr && Array.isArray(fr.grupos) ? fr.grupos : []);
-    body.innerHTML = renderInstApartado('Orquesta FiNC', finc) + renderInstApartado('Orquesta Fronterita', fronterita);
+    const isFronterita = selectedInstrumentOrquesta === 'fronterita';
+    body.innerHTML = renderInstApartado(
+      isFronterita ? 'Orquesta Fronterita' : 'Orquesta FiNC',
+      isFronterita ? fronterita : finc
+    );
+    $$('.inst-orquesta-tab').forEach((tab) => {
+      const active = tab.dataset.instOrquesta === selectedInstrumentOrquesta;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+    });
+  }
+
+  function bindInstrumentTabs() {
+    const tabs = $('#inst-orquesta-tabs');
+    if (!tabs) return;
+    tabs.addEventListener('click', (event) => {
+      const tab = event.target.closest('[data-inst-orquesta]');
+      if (!tab) return;
+      selectedInstrumentOrquesta = tab.dataset.instOrquesta === 'fronterita' ? 'fronterita' : 'finc';
+      renderInstrumentos(content && content.instrumentos);
+    });
   }
 
   function renderCronograma(cronograma) {
@@ -783,6 +804,7 @@
 
   function boot() {
     bindNav();
+    bindInstrumentTabs();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
     const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'masterclass', 'instrumentos', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];

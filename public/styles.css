@@ -1362,6 +1362,29 @@ body.on-inicio .inicio-links .inicio-link {
 #instrumentos * {
   text-align: center;
 }
+.inst-orquesta-tabs {
+  display: flex;
+  gap: 0.65rem;
+  margin: 0 0 1.25rem;
+}
+.inst-orquesta-tab {
+  flex: 1 1 0;
+  min-height: 52px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.inst-orquesta-tab.active {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+  color: var(--gold);
+}
 #instrumentos ul,
 #instrumentos ol,
 #instrumentos .inst-alumnos {
