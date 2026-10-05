@@ -1834,6 +1834,35 @@
             ]
           }
         ]
+      },
+      {
+        "instrumento": "Vientos Metal",
+        "bloques": [
+          {
+            "profesor": "Profesor: Matheus Simões Machado",
+            "subgrupos": [
+              {
+                "nombre": "Trompeta",
+                "alumnos": [
+                  "Isaque Krummenauer Oliveira",
+                  "Daniel Eduardo Ruiz Bastardo"
+                ]
+              },
+              {
+                "nombre": "Trombón",
+                "alumnos": [
+                  "Dilan Facundo Moraiz"
+                ]
+              },
+              {
+                "nombre": "Tuba",
+                "alumnos": [
+                  "Luka Gabriel Gama Sousa"
+                ]
+              }
+            ]
+          }
+        ]
       }
     ],
     "fronterita": {
