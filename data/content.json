@@ -17,7 +17,14 @@
       "blurb": true,
       "org": true
     },
-    "lineas": [],
+    "lineas": [
+      {
+        "texto": "Nos vemos en Septiembre del 2027"
+      },
+      {
+        "texto": "Nos vemos em setembro de 2027"
+      }
+    ],
     "botones": [
       {
         "texto": "Contacto",
