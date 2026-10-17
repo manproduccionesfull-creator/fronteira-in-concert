@@ -797,14 +797,15 @@
   function renderBecas(b) {
     const body = $('#becas-body');
     if (!body) return;
-    const list = (b && Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && String(g.nombre || '').trim());
+    const list = (b && Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
     if (!list.length) {
       body.innerHTML = '<p class="becas-pronto">Próximamente / Em breve</p>';
       return;
     }
     const intro = b && b.texto ? `<p class="section-lead">${escapeHtml(b.texto)}</p>` : '';
-    body.innerHTML = intro + '<ul class="becas-list">' + list.map((g) => `
-      <li class="becas-item"><strong>${escapeHtml(g.nombre)}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}${g.detalle ? `<span class="muted">${escapeHtml(g.detalle)}</span>` : ''}</li>`).join('') + '</ul>';
+    body.innerHTML = intro + '<div class="becas-grid">' + list.map((g) => `
+      <figure class="becas-item">${g.foto ? `<img class="becas-foto" src="${escapeAttr(g.foto)}" alt="${escapeAttr(g.nombre || '')}" loading="lazy" />` : ''}
+        <figcaption><strong>${escapeHtml(g.nombre || '')}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}</figcaption></figure>`).join('') + '</div>';
   }
 
   function showBecas(on) {

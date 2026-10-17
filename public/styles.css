@@ -1490,3 +1490,9 @@ body { padding-bottom: 1.5rem; }
 .becas-pronto { text-align: center; font-size: clamp(1.3rem, 6vw, 2rem); font-weight: 800; margin: 2.5rem 0; color: var(--gold); }
 .becas-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
 .becas-item { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: 12px; }
+.becas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (min-width: 700px) { .becas-grid { grid-template-columns: repeat(3, 1fr); } }
+.becas-item { margin: 0; padding: 0.5rem; border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+.becas-foto { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; display: block; }
+.becas-item figcaption { display: flex; flex-direction: column; gap: 0.1rem; margin-top: 0.4rem; }
+.becas-item figcaption span { font-size: 0.85rem; color: var(--muted); }

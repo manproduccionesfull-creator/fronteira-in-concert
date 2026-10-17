@@ -155,8 +155,9 @@
         <!-- GANADORES BECAS 2027 -->
         <section class="admin-section" id="sec-becas2027">
           <h2>Ganadores Becas 2027 / Ganhadores Bolsas 2027</h2>
-          <p class="section-lead">Un ganador por línea. Formato: Nombre — Instrumento (el instrumento es opcional). Si queda vacío, la app muestra "Próximamente / Em breve". Después Guardar cambios.</p>
-          <textarea id="becas2027-lista" rows="8" placeholder="Ej: Ana Pérez — Violín"></textarea>
+          <p class="section-lead">Un ganador por fila: foto, nombre e instrumento (opcional). Si no hay ninguno, la app muestra "Próximamente / Em breve". Después Guardar cambios.</p>
+          <div id="becas2027-list" class="rows-list"></div>
+          <button type="button" class="btn outline btn-sm" id="btn-add-becado">+ Agregar ganador/a</button>
         </section>
 
         <!-- APOYAN -->
@@ -797,6 +798,24 @@
       );
     }
 
+    function becadoRowHtml(g) {
+      g = g || { nombre: '', instrumento: '', foto: '' };
+      return (
+        '<div class="row-card becado-row">' +
+          '<div class="form-grid compact">' +
+            '<label class="full">Nombre<input type="text" class="b-nombre" value="' + escAttr(g.nombre || '') + '" /></label>' +
+            '<label>Instrumento (opcional)<input type="text" class="b-instrumento" value="' + escAttr(g.instrumento || '') + '" /></label>' +
+          '</div>' +
+          imageFieldHtml('Foto', 'b-foto', g.foto || '', 'Subir foto', 'prof') +
+          '<div class="row-footer">' +
+            '<button type="button" class="btn outline btn-sm btn-up" title="Subir">↑</button>' +
+            '<button type="button" class="btn outline btn-sm btn-down" title="Bajar">↓</button>' +
+            '<button type="button" class="btn outline btn-sm btn-remove">Quitar ganador/a</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
     function apoyaRowHtml(a) {
       a = a || { nombre: '', tipo: '', imagen: '', ejemplo: false };
       return (
@@ -1151,10 +1170,12 @@
       bindAllImageFields(profList);
 
       // Ganadores Becas 2027
-      const becasTa = document.getElementById('becas2027-lista');
-      if (becasTa) {
+      const becasList = document.getElementById('becas2027-list');
+      if (becasList) {
         const gs = (data.becas2027 && Array.isArray(data.becas2027.ganadores)) ? data.becas2027.ganadores : [];
-        becasTa.value = gs.map((g) => [g.nombre, g.instrumento].filter(Boolean).join(' — ')).join('\n');
+        becasList.innerHTML = gs.map(becadoRowHtml).join('');
+        bindRemoveButtons(becasList);
+        bindAllImageFields(becasList);
       }
 
       // Apoyan
@@ -1446,16 +1467,18 @@
       if (content && content.inscripcion) out.inscripcion = content.inscripcion;
 
       // Ganadores Becas 2027 (opcional)
-      const becasEl = document.getElementById('becas2027-lista');
-      if (becasEl) {
+      if (document.getElementById('becas2027-list')) {
         const prevB = (content && content.becas2027) || {};
-        const ganadores = becasEl.value.split('\n').map((l) => l.trim()).filter(Boolean).map((l) => {
-          const parts = l.split(/\s+[—–-]\s+/);
-          const g = { nombre: parts[0].trim() };
-          if (parts[1]) g.instrumento = parts.slice(1).join(' - ').trim();
-          return g;
+        const ganadores = [];
+        document.querySelectorAll('.becado-row').forEach((row) => {
+          const g = { nombre: val(row.querySelector('.b-nombre')) };
+          const inst = val(row.querySelector('.b-instrumento'));
+          const foto = val(row.querySelector('.b-foto'));
+          if (inst) g.instrumento = inst;
+          if (foto) g.foto = foto;
+          if (g.nombre || g.foto) ganadores.push(g);
         });
-        if (ganadores.length || content && content.becas2027) out.becas2027 = Object.assign({}, prevB, { ganadores });
+        if (ganadores.length || (content && content.becas2027)) out.becas2027 = Object.assign({}, prevB, { ganadores });
       }
 
       return out;
@@ -1596,6 +1619,13 @@
     document.getElementById('btn-add-video').addEventListener('click', () => {
       const list = document.getElementById('videos-list');
       list.insertAdjacentHTML('beforeend', videoRowHtml());
+    });
+
+    document.getElementById('btn-add-becado').addEventListener('click', () => {
+      const list = document.getElementById('becas2027-list');
+      list.insertAdjacentHTML('beforeend', becadoRowHtml());
+      const last = list.querySelector('.becado-row:last-child .image-field');
+      if (last) bindImageField(last);
     });
 
     document.getElementById('btn-add-apoya').addEventListener('click', () => {
