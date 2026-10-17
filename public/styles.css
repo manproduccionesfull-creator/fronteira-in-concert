@@ -1475,3 +1475,9 @@ body.on-inicio .inicio-links .inicio-link {
 .h27-pt { font-size: clamp(1.05rem, 4.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-top: 0.35rem !important; }
 body.on-inicio { overflow-y: auto; height: auto; min-height: 100dvh; }
 body.on-inicio #inicio.panel.active { min-height: auto; }
+
+/* Solo portada 2027 + Apoyan (sin menú) */
+body { padding-bottom: 1.5rem; }
+.solo-apoyan #apoyan { margin-top: 1.5rem; }
+.solo-apoyan #apoyan > h2 { text-align: center; }
+.solo-apoyan .hero { text-align: center; }

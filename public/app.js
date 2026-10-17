@@ -786,17 +786,9 @@
         return;
       }
     }
+    // Solo portada (2027) + Apoyan. Resto oculto del HTML; datos intactos en content.json
     renderInicio(content.festival);
-    renderCronograma(content.cronograma);
-    renderOrquestas(content.orquestas);
-    renderProfesores(content.profesores);
-    renderMasterclass(content.masterclass);
-    renderInstrumentos(content.instrumentos);
-    renderConciertos(content.conciertos);
     renderApoyan(content.apoyan);
-    // Videos panel removed from nav (data kept for later)
-    renderInscripcion(content.inscripcion);
-    renderContacto(content.contacto, content.festival);
   }
 
   function registerSW() {
@@ -805,13 +797,8 @@
   }
 
   function boot() {
-    bindNav();
-    bindInstrumentTabs();
-    bindForm();
-    const hash = (location.hash || '#inicio').slice(1);
-    // Ocultas post-festival: cronograma, instrumentos, masterclass, conciertos (datos intactos)
-    const valid = ['inicio', 'orquestas', 'profesores', 'apoyan', 'inscripcion', 'contacto'];
-    showPanel(valid.includes(hash) ? hash : 'inicio');
+    // Solo portada 2027 + Apoyan: sin menú ni navegación
+    if (location.hash) history.replaceState(null, '', location.pathname);
     loadContent();
     registerSW();
   }
