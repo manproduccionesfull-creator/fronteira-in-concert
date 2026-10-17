@@ -1978,17 +1978,17 @@
         "ganadores": [
           {
             "nombre": "Santiago Escobar",
-            "instrumento": "saxofone",
+            "instrumento": "Saxofone",
             "lugar": "Puerto Esperanza · ARG"
           },
           {
             "nombre": "Pablo Pereira",
-            "instrumento": "violin",
+            "instrumento": "Violin",
             "lugar": "Bernardo de Irigoyen · ARG"
           },
           {
             "nombre": "Pedro Café",
-            "instrumento": "violino",
+            "instrumento": "Violino",
             "lugar": "Maringá · BR"
           },
           {
@@ -2016,41 +2016,41 @@
             "lugar": "Ruiz de Montoya"
           },
           {
-            "nombre": "CHAPECÓ",
+            "nombre": "Chapecó",
             "tipo": "subtitulo"
           },
           {
             "nombre": "Daniel Eduardo Ruiz",
             "instrumento": "Trompete",
-            "lugar": "ONLINE"
+            "lugar": "Online"
           },
           {
             "nombre": "Vanessa Peters",
-            "instrumento": "contrabaixo"
+            "instrumento": "Contrabaixo"
           },
           {
             "nombre": "Arthur Cabral Rosa",
-            "instrumento": "violino"
+            "instrumento": "Violino"
           },
           {
             "nombre": "Professor Francisco Olanda"
           },
           {
-            "nombre": "Bernardo DE IRIGOYEN",
+            "nombre": "Bernardo de Irigoyen",
             "tipo": "subtitulo"
           },
           {
             "nombre": "Thais Mai",
-            "instrumento": "violino"
+            "instrumento": "Violino"
           },
           {
-            "nombre": "Maribel solis",
-            "instrumento": "violino"
+            "nombre": "Maribel Solis",
+            "instrumento": "Violino"
           },
           {
             "nombre": "Bianca Domingues",
             "instrumento": "Flauta",
-            "lugar": "ONLINE"
+            "lugar": "Online"
           }
         ]
       }
