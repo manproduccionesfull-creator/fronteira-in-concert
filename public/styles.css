@@ -1467,7 +1467,7 @@ body.on-inicio .inicio-links .inicio-link {
 }
 
 /* Secciones ocultadas post-festival (datos intactos en content.json) */
-[data-goto="cronograma"], [data-goto="instrumentos"], #cronograma, #instrumentos { display: none !important; }
+[data-goto="cronograma"], [data-goto="instrumentos"], [data-goto="masterclass"], [data-goto="conciertos"], #cronograma, #instrumentos, #masterclass, #conciertos, .concert-mediodia, .event-mediodia { display: none !important; }
 /* Cartel 2027 */
 .hasta-2027 { margin: 0.6rem auto; padding: 0.8rem 0.75rem; text-align: center; border: 3px solid currentColor; border-radius: 14px; max-width: 720px; width: 100%; box-sizing: border-box; flex: 0 0 auto; position: relative; z-index: 0; }
 .hasta-2027 p { margin: 0; overflow-wrap: anywhere; }

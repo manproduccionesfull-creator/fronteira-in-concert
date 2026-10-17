@@ -809,7 +809,8 @@
     bindInstrumentTabs();
     bindForm();
     const hash = (location.hash || '#inicio').slice(1);
-    const valid = ['inicio', 'cronograma', 'orquestas', 'profesores', 'masterclass', 'instrumentos', 'conciertos', 'apoyan', 'inscripcion', 'contacto'];
+    // Ocultas post-festival: cronograma, instrumentos, masterclass, conciertos (datos intactos)
+    const valid = ['inicio', 'orquestas', 'profesores', 'apoyan', 'inscripcion', 'contacto'];
     showPanel(valid.includes(hash) ? hash : 'inicio');
     loadContent();
     registerSW();
