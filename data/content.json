@@ -2002,6 +2002,14 @@
             "lugar": "Maringá · BR"
           }
         ]
+      },
+      {
+        "titulo": "Luzamor",
+        "logo": "/uploads/mvcywkxq-75332e18.png",
+        "logo_alt": "Fundação Luz Amor",
+        "texto_es": "Los ganadores van a la Fundación Luz Amor de Maringá",
+        "texto_pt": "Os ganhadores vão para a Fundação Luz Amor de Maringá",
+        "ganadores": []
       }
     ]
   }
