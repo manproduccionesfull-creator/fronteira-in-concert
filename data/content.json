@@ -1966,5 +1966,38 @@
         }
       ]
     }
+  },
+  "becas2027": {
+    "texto_es": "Los ganadores van a la Orquesta Sinfônica de Chapecó",
+    "texto_pt": "Os ganhadores vão para a Orquestra Sinfônica de Chapecó",
+    "logo": "/uploads/mvcyffy2-c3f60d94.jpg",
+    "logo_alt": "Orquestra Sinfônica de Chapecó",
+    "ganadores": [
+      {
+        "nombre": "Santiago Escobar",
+        "instrumento": "saxofone",
+        "lugar": "Puerto Esperanza"
+      },
+      {
+        "nombre": "Pablo Pereira",
+        "instrumento": "violin",
+        "lugar": "Bernardo"
+      },
+      {
+        "nombre": "Pedro Café",
+        "instrumento": "violino",
+        "lugar": "Maringá"
+      },
+      {
+        "nombre": "Matheus Alencar",
+        "instrumento": "Cello",
+        "lugar": "Maringá"
+      },
+      {
+        "nombre": "Bolsista Online",
+        "instrumento": "Oboé",
+        "lugar": "Mika Satto"
+      }
+    ]
   }
 }

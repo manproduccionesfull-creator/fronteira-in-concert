@@ -799,12 +799,13 @@
     }
 
     function becadoRowHtml(g) {
-      g = g || { nombre: '', instrumento: '', foto: '' };
+      g = g || { nombre: '', instrumento: '', lugar: '', foto: '' };
       return (
         '<div class="row-card becado-row">' +
           '<div class="form-grid compact">' +
             '<label class="full">Nombre<input type="text" class="b-nombre" value="' + escAttr(g.nombre || '') + '" /></label>' +
             '<label>Instrumento (opcional)<input type="text" class="b-instrumento" value="' + escAttr(g.instrumento || '') + '" /></label>' +
+            '<label>Lugar (opcional)<input type="text" class="b-lugar" value="' + escAttr(g.lugar || '') + '" /></label>' +
           '</div>' +
           imageFieldHtml('Foto', 'b-foto', g.foto || '', 'Subir foto', 'prof') +
           '<div class="row-footer">' +
@@ -1475,6 +1476,8 @@
           const inst = val(row.querySelector('.b-instrumento'));
           const foto = val(row.querySelector('.b-foto'));
           if (inst) g.instrumento = inst;
+          const lugar = val(row.querySelector('.b-lugar'));
+          if (lugar) g.lugar = lugar;
           if (foto) g.foto = foto;
           if (g.nombre || g.foto) ganadores.push(g);
         });

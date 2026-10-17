@@ -1496,3 +1496,11 @@ body { padding-bottom: 1.5rem; }
 .becas-foto { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; display: block; }
 .becas-item figcaption { display: flex; flex-direction: column; gap: 0.1rem; margin-top: 0.4rem; }
 .becas-item figcaption span { font-size: 0.85rem; color: var(--muted); }
+.becas-intro { text-align: center; margin: 0.5rem 0 1rem; }
+.becas-intro-es { font-size: clamp(1.1rem, 4.8vw, 1.5rem); font-weight: 800; margin: 0; }
+.becas-intro-pt { font-size: clamp(0.95rem, 4vw, 1.25rem); font-weight: 700; margin: 0.3rem 0 0; opacity: 0.85; }
+.becas-logo-wrap { display: flex; justify-content: center; margin: 0.5rem auto 1.25rem; }
+.becas-logo { width: 100px; height: 100px; object-fit: contain; background: #fff; border-radius: 14px; padding: 6px; box-sizing: content-box; }
+.becas-logo-placeholder { width: 112px; height: 112px; border: 2px dashed var(--border); border-radius: 14px; }
+.becas-lines { list-style: none; padding: 0; margin: 0 auto; max-width: 560px; display: grid; gap: 0.5rem; }
+.becas-lines li { padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1.05rem; font-weight: 600; text-align: center; }

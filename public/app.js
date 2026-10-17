@@ -797,15 +797,33 @@
   function renderBecas(b) {
     const body = $('#becas-body');
     if (!body) return;
-    const list = (b && Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
+    b = b || {};
+    const list = (Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
+    let html = '';
+    if (b.texto_es || b.texto_pt) {
+      html += '<div class="becas-intro">' +
+        (b.texto_es ? `<p class="becas-intro-es">${escapeHtml(b.texto_es)}</p>` : '') +
+        (b.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(b.texto_pt)}</p>` : '') + '</div>';
+    }
+    if (b.logo) {
+      html += `<div class="becas-logo-wrap"><img class="becas-logo" src="${escapeAttr(b.logo)}" alt="${escapeAttr(b.logo_alt || 'Logo')}" /></div>`;
+    } else if (b.texto_es || b.texto_pt) {
+      html += '<div class="becas-logo-wrap becas-logo-placeholder" aria-hidden="true"></div>';
+    }
     if (!list.length) {
-      body.innerHTML = '<p class="becas-pronto">Próximamente / Em breve</p>';
+      body.innerHTML = html + '<p class="becas-pronto">Próximamente / Em breve</p>';
       return;
     }
-    const intro = b && b.texto ? `<p class="section-lead">${escapeHtml(b.texto)}</p>` : '';
-    body.innerHTML = intro + '<div class="becas-grid">' + list.map((g) => `
+    const conFoto = list.some((g) => g.foto);
+    const line = (g) => [g.nombre, g.instrumento ? `(${g.instrumento})` : '', g.lugar].filter((x) => String(x || '').trim()).join(' ');
+    if (conFoto) {
+      html += '<div class="becas-grid">' + list.map((g) => `
       <figure class="becas-item">${g.foto ? `<img class="becas-foto" src="${escapeAttr(g.foto)}" alt="${escapeAttr(g.nombre || '')}" loading="lazy" />` : ''}
-        <figcaption><strong>${escapeHtml(g.nombre || '')}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}</figcaption></figure>`).join('') + '</div>';
+        <figcaption><strong>${escapeHtml(g.nombre || '')}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}${g.lugar ? `<span>${escapeHtml(g.lugar)}</span>` : ''}</figcaption></figure>`).join('') + '</div>';
+    } else {
+      html += '<ul class="becas-lines">' + list.map((g) => `<li>${escapeHtml(line(g))}</li>`).join('') + '</ul>';
+    }
+    body.innerHTML = html;
   }
 
   function showBecas(on) {
