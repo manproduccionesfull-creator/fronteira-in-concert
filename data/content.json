@@ -2020,13 +2020,17 @@
             "tipo": "subtitulo"
           },
           {
-            "nombre": "Daniel Eduardo Ruiz (Trompete) ONLINE"
+            "nombre": "Daniel Eduardo Ruiz",
+            "instrumento": "Trompete",
+            "lugar": "ONLINE"
           },
           {
-            "nombre": "Vanessa Peters (contrabaixo)"
+            "nombre": "Vanessa Peters",
+            "instrumento": "contrabaixo"
           },
           {
-            "nombre": "Arthur Cabral Rosa (violino)"
+            "nombre": "Arthur Cabral Rosa",
+            "instrumento": "violino"
           },
           {
             "nombre": "Professor Francisco Olanda"
@@ -2036,13 +2040,17 @@
             "tipo": "subtitulo"
           },
           {
-            "nombre": "Thais Mai (violino)"
+            "nombre": "Thais Mai",
+            "instrumento": "violino"
           },
           {
-            "nombre": "Maribel solis (violino)"
+            "nombre": "Maribel solis",
+            "instrumento": "violino"
           },
           {
-            "nombre": "Bianca Domingues (Flauta) ONLINE"
+            "nombre": "Bianca Domingues",
+            "instrumento": "Flauta",
+            "lugar": "ONLINE"
           }
         ]
       }

@@ -1524,3 +1524,4 @@ body { padding-bottom: 1.5rem; }
 .becas-grupo-btn-logo { width: 72px; height: 72px; object-fit: contain; background: #fff; border-radius: 12px; padding: 4px; flex: 0 0 auto; }
 .becas-grupo-btn-nombre { font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 900; letter-spacing: 0.08em; color: var(--gold); }
 .becas-title[hidden] { display: none !important; }
+.becas-card .becas-inst { color: var(--gold); opacity: 1; font-weight: 600; }
