@@ -790,6 +790,8 @@
     renderInicio(content.festival);
     renderApoyan(content.apoyan);
     renderBecas(content.becas2027);
+    renderInscripcion(content.inscripcion);
+    renderContacto(content.contacto, content.festival);
   }
 
   // Ganadores Becas 2027: opcional en content.json -> "becas2027": { "ganadores": [ { "nombre": "", "instrumento": "", "detalle": "" } ] }
@@ -862,9 +864,23 @@
       </button>`).join('') + '</div>';
   }
 
+  function onlyPanel(id) {
+    $$('.panel').forEach((p) => p.classList.toggle('active', p.id === id));
+  }
+
+  // Navegación simple: inicio, apoyan, contacto (y becas aparte)
+  function goTo(id) {
+    if (id === 'inscripcion') id = 'contacto';
+    if (id === 'becas') return openBecas(-1);
+    if (!['inicio', 'apoyan', 'contacto'].includes(id) || id === 'inicio') return closeBecas();
+    onlyPanel(id);
+    history.replaceState(null, '', '#' + id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function openBecas(grupo) {
     becasGrupoSel = typeof grupo === 'number' ? grupo : -1;
-    $$('.panel').forEach((p) => p.classList.toggle('active', p.id === 'becas'));
+    onlyPanel('becas');
     history.replaceState(null, '', becasGrupoSel >= 0 ? `#becas-${becasGrupoSel + 1}` : '#becas');
     renderBecas();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -872,7 +888,7 @@
 
   function closeBecas() {
     becasGrupoSel = -1;
-    $$('.panel').forEach((p) => p.classList.toggle('active', p.id !== 'becas'));
+    onlyPanel('inicio');
     history.replaceState(null, '', location.pathname);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -894,8 +910,14 @@
       const btn = e.target.closest('[data-becas-grupo]');
       if (btn) openBecas(Number(btn.dataset.becasGrupo));
     });
+    document.body.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-goto]');
+      if (btn) goTo(btn.dataset.goto);
+    });
+    bindForm();
     const hm = /^#becas(?:-(\d+))?$/.exec(location.hash);
     if (hm) openBecas(hm[1] ? Number(hm[1]) - 1 : -1);
+    else if (location.hash === '#apoyan' || location.hash === '#contacto' || location.hash === '#inscripcion') goTo(location.hash.slice(1));
     else if (location.hash) history.replaceState(null, '', location.pathname);
     loadContent();
     registerSW();

@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="/icons/icon-512.png" />
   <title>Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=128" />
+  <link rel="stylesheet" href="/styles.css?v=129" />
 </head>
 <body>
   <header class="topbar">
@@ -51,11 +51,52 @@
         <span class="becas-es">Ganadores Becas 2027</span>
         <span class="becas-pt">Ganhadores Bolsas 2027</span>
       </button>
+      <div class="inicio-explore-grid inicio-apoyan-grid">
+        <button type="button" class="inicio-explore-card" data-goto="apoyan"><span class="nav-icon" aria-hidden="true">★</span><span>Apoyan</span></button>
+      </div>
+      <div id="inicio-links" class="inicio-links"></div>
     </section>
 
-    <section id="apoyan" class="panel active" data-panel="apoyan">
+    <section id="apoyan" class="panel" data-panel="apoyan">
+      <button type="button" class="btn outline becas-volver" data-goto="inicio">← Volver / Voltar</button>
       <h2>Quiénes apoyan</h2>
       <div id="apoyan-grid" class="apoyan-groups"></div>
+    </section>
+    <section id="contacto" class="panel" data-panel="contacto">
+      <button type="button" class="btn outline becas-volver" data-goto="inicio">← Volver / Voltar</button>
+      <h2 id="insc-titulo">Inscripción</h2>
+      <p class="section-lead" id="insc-intro"></p>
+      <form id="insc-form" class="form" novalidate>
+        <label>
+          Nombre completo
+          <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" />
+        </label>
+        <label>
+          Teléfono
+          <input type="tel" name="telefono" autocomplete="tel" placeholder="Código de área + número" />
+        </label>
+        <label>
+          Orquesta / institución
+          <input type="text" name="orquesta" placeholder="Opcional" />
+        </label>
+        <label>
+          Mensaje
+          <textarea name="mensaje" rows="4" required placeholder="Contanos en qué querés participar…"></textarea>
+        </label>
+        <button type="submit" class="btn gold full">Enviar por WhatsApp</button>
+      </form>
+
+      <h2 class="contact-subhead">Contacto</h2>
+      <div id="donacion-box" class="donacion-box" hidden>
+        <a id="donacion-btn" class="btn gold full" href="#" target="_blank" rel="noopener noreferrer">Donar con Mercado Pago</a>
+        <p class="muted donacion-hint">Tu aporte ayuda a la Asociación Civil Allegro y a Fronteira in Concert.</p>
+      </div>
+      <ul class="contact-list" id="contact-list"></ul>
+      <p class="org muted" id="contact-org"></p>
     </section>
     <section id="becas" class="panel" data-panel="becas">
       <button type="button" class="btn outline becas-volver" id="becas-volver">← Volver / Voltar</button>
@@ -67,6 +108,6 @@
   </main>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/app.js?v=122" defer></script>
+  <script src="/app.js?v=123" defer></script>
 </body>
 </html>
