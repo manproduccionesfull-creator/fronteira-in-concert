@@ -152,6 +152,13 @@
           <button type="button" class="btn outline btn-sm" id="btn-add-video">+ Agregar video</button>
         </section>
 
+        <!-- GANADORES BECAS 2027 -->
+        <section class="admin-section" id="sec-becas2027">
+          <h2>Ganadores Becas 2027 / Ganhadores Bolsas 2027</h2>
+          <p class="section-lead">Un ganador por línea. Formato: Nombre — Instrumento (el instrumento es opcional). Si queda vacío, la app muestra "Próximamente / Em breve". Después Guardar cambios.</p>
+          <textarea id="becas2027-lista" rows="8" placeholder="Ej: Ana Pérez — Violín"></textarea>
+        </section>
+
         <!-- APOYAN -->
         <section class="admin-section" id="sec-apoyan">
           <h2>Quiénes apoyan</h2>
@@ -1143,6 +1150,13 @@
       bindRemoveButtons(profList);
       bindAllImageFields(profList);
 
+      // Ganadores Becas 2027
+      const becasTa = document.getElementById('becas2027-lista');
+      if (becasTa) {
+        const gs = (data.becas2027 && Array.isArray(data.becas2027.ganadores)) ? data.becas2027.ganadores : [];
+        becasTa.value = gs.map((g) => [g.nombre, g.instrumento].filter(Boolean).join(' — ')).join('\n');
+      }
+
       // Apoyan
       const apoList = document.getElementById('apoyan-list');
       apoList.innerHTML = (data.apoyan || []).map(apoyaRowHtml).join('');
@@ -1430,6 +1444,19 @@
       });
 
       if (content && content.inscripcion) out.inscripcion = content.inscripcion;
+
+      // Ganadores Becas 2027 (opcional)
+      const becasEl = document.getElementById('becas2027-lista');
+      if (becasEl) {
+        const prevB = (content && content.becas2027) || {};
+        const ganadores = becasEl.value.split('\n').map((l) => l.trim()).filter(Boolean).map((l) => {
+          const parts = l.split(/\s+[—–-]\s+/);
+          const g = { nombre: parts[0].trim() };
+          if (parts[1]) g.instrumento = parts.slice(1).join(' - ').trim();
+          return g;
+        });
+        if (ganadores.length || content && content.becas2027) out.becas2027 = Object.assign({}, prevB, { ganadores });
+      }
 
       return out;
     }

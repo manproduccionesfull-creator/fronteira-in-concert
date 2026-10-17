@@ -789,6 +789,28 @@
     // Solo portada (2027) + Apoyan. Resto oculto del HTML; datos intactos en content.json
     renderInicio(content.festival);
     renderApoyan(content.apoyan);
+    renderBecas(content.becas2027);
+  }
+
+  // Ganadores Becas 2027: opcional en content.json -> "becas2027": { "ganadores": [ { "nombre": "", "instrumento": "", "detalle": "" } ] }
+  // Sin datos: muestra "Próximamente / Em breve"
+  function renderBecas(b) {
+    const body = $('#becas-body');
+    if (!body) return;
+    const list = (b && Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && String(g.nombre || '').trim());
+    if (!list.length) {
+      body.innerHTML = '<p class="becas-pronto">Próximamente / Em breve</p>';
+      return;
+    }
+    const intro = b && b.texto ? `<p class="section-lead">${escapeHtml(b.texto)}</p>` : '';
+    body.innerHTML = intro + '<ul class="becas-list">' + list.map((g) => `
+      <li class="becas-item"><strong>${escapeHtml(g.nombre)}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}${g.detalle ? `<span class="muted">${escapeHtml(g.detalle)}</span>` : ''}</li>`).join('') + '</ul>';
+  }
+
+  function showBecas(on) {
+    $$('.panel').forEach((p) => p.classList.toggle('active', on ? p.id === 'becas' : p.id !== 'becas'));
+    history.replaceState(null, '', on ? '#becas' : location.pathname);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function registerSW() {
@@ -798,7 +820,12 @@
 
   function boot() {
     // Solo portada 2027 + Apoyan: sin menú ni navegación
-    if (location.hash) history.replaceState(null, '', location.pathname);
+    const bb = $('#becas-btn');
+    if (bb) bb.addEventListener('click', () => showBecas(true));
+    const bv = $('#becas-volver');
+    if (bv) bv.addEventListener('click', () => showBecas(false));
+    if (location.hash === '#becas') showBecas(true);
+    else if (location.hash) history.replaceState(null, '', location.pathname);
     loadContent();
     registerSW();
   }

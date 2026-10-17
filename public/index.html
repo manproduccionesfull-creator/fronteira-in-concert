@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="/icons/icon-512.png" />
   <title>Fronteira in Concert</title>
-  <link rel="stylesheet" href="/styles.css?v=121" />
+  <link rel="stylesheet" href="/styles.css?v=122" />
 </head>
 <body>
   <header class="topbar">
@@ -47,15 +47,26 @@
         <p class="h27-es">Nos vemos en Septiembre del 2027</p>
         <p class="h27-pt">Nos vemos em setembro de 2027</p>
       </div>
+      <button type="button" class="btn gold full becas-btn" id="becas-btn">
+        <span class="becas-es">Ganadores Becas 2027</span>
+        <span class="becas-pt">Ganhadores Bolsas 2027</span>
+      </button>
     </section>
 
     <section id="apoyan" class="panel active" data-panel="apoyan">
       <h2>Quiénes apoyan</h2>
       <div id="apoyan-grid" class="apoyan-groups"></div>
     </section>
+    <section id="becas" class="panel" data-panel="becas">
+      <button type="button" class="btn outline becas-volver" id="becas-volver">← Volver / Voltar</button>
+      <h2 class="becas-title"><span>Ganadores Becas 2027</span><span class="becas-title-pt">Ganhadores Bolsas 2027</span></h2>
+      <div id="becas-body" class="becas-body">
+        <p class="becas-pronto">Próximamente / Em breve</p>
+      </div>
+    </section>
   </main>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/app.js?v=116" defer></script>
+  <script src="/app.js?v=117" defer></script>
 </body>
 </html>

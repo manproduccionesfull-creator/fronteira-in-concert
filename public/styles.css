@@ -1481,3 +1481,12 @@ body { padding-bottom: 1.5rem; }
 .solo-apoyan #apoyan { margin-top: 1.5rem; }
 .solo-apoyan #apoyan > h2 { text-align: center; }
 .solo-apoyan .hero { text-align: center; }
+/* Botón Ganadores Becas 2027 */
+.becas-btn { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; max-width: 720px; margin: 0.9rem auto 0; padding: 1rem 0.75rem; font-size: clamp(1.15rem, 5vw, 1.6rem); font-weight: 800; box-shadow: 0 0 22px rgba(212, 175, 55, 0.45); }
+.becas-btn .becas-pt { font-size: 0.72em; font-weight: 700; opacity: 0.9; }
+.becas-volver { margin: 0.5rem 0 1rem; }
+.becas-title { text-align: center; display: flex; flex-direction: column; gap: 0.2rem; }
+.becas-title-pt { font-size: 0.8em; opacity: 0.85; }
+.becas-pronto { text-align: center; font-size: clamp(1.3rem, 6vw, 2rem); font-weight: 800; margin: 2.5rem 0; color: var(--gold); }
+.becas-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+.becas-item { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: 12px; }
