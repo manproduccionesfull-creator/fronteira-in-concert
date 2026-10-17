@@ -1517,3 +1517,10 @@ body { padding-bottom: 1.5rem; }
 .becas-lugar { font-size: 0.95rem; font-weight: 700; color: var(--gold); }
 .becas-subtitulo { text-align: center; font-size: 1.15rem; font-weight: 800; color: var(--gold); letter-spacing: 0.04em; margin: 1rem 0 0.5rem; }
 .becas-cards + .becas-cards { margin-top: 0.6rem; }
+/* Ganadores: un botón por grupo */
+.becas-grupo-btns { display: grid; gap: 0.9rem; max-width: 520px; margin: 0.5rem auto 0; }
+.becas-grupo-btn { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--gold); border-radius: 16px; background: transparent; color: inherit; cursor: pointer; font: inherit; text-align: left; }
+.becas-grupo-btn:active { transform: scale(0.98); }
+.becas-grupo-btn-logo { width: 72px; height: 72px; object-fit: contain; background: #fff; border-radius: 12px; padding: 4px; flex: 0 0 auto; }
+.becas-grupo-btn-nombre { font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 900; letter-spacing: 0.08em; color: var(--gold); }
+.becas-title[hidden] { display: none !important; }

@@ -822,27 +822,58 @@
     return out;
   }
 
-  function renderBecas(b) {
-    const body = $('#becas-body');
-    if (!body) return;
-    const grupos = becasGrupos(b).filter(Boolean);
-    const html = grupos.map((gr) => {
-      const list = (Array.isArray(gr.ganadores) ? gr.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
-      return '<section class="becas-grupo">' +
-        (gr.titulo ? `<h3 class="becas-grupo-titulo">${escapeHtml(gr.titulo)}</h3>` : '') +
-        (gr.logo ? `<div class="becas-logo-wrap"><img class="becas-logo" src="${escapeAttr(gr.logo)}" alt="${escapeAttr(gr.logo_alt || gr.titulo || 'Logo')}" /></div>` : '') +
-        ((gr.texto_es || gr.texto_pt) ? '<div class="becas-intro">' +
-          (gr.texto_es ? `<p class="becas-intro-es">${escapeHtml(gr.texto_es)}</p>` : '') +
-          (gr.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(gr.texto_pt)}</p>` : '') + '</div>' : '') +
-        (list.length ? becasListHtml(list) : '<p class="becas-pronto">Próximamente / Em breve</p>') +
-        '</section>';
-    }).join('');
-    body.innerHTML = html || '<p class="becas-pronto">Próximamente / Em breve</p>';
+  let becasData = null;
+  let becasGrupoSel = -1; // -1 = lista de grupos
+
+  function becasGrupoHtml(gr) {
+    const list = (Array.isArray(gr.ganadores) ? gr.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
+    return '<section class="becas-grupo">' +
+      (gr.titulo ? `<h3 class="becas-grupo-titulo">${escapeHtml(gr.titulo)}</h3>` : '') +
+      (gr.logo ? `<div class="becas-logo-wrap"><img class="becas-logo" src="${escapeAttr(gr.logo)}" alt="${escapeAttr(gr.logo_alt || gr.titulo || 'Logo')}" /></div>` : '') +
+      ((gr.texto_es || gr.texto_pt) ? '<div class="becas-intro">' +
+        (gr.texto_es ? `<p class="becas-intro-es">${escapeHtml(gr.texto_es)}</p>` : '') +
+        (gr.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(gr.texto_pt)}</p>` : '') + '</div>' : '') +
+      (list.length ? becasListHtml(list) : '<p class="becas-pronto">Próximamente / Em breve</p>') +
+      '</section>';
   }
 
-  function showBecas(on) {
-    $$('.panel').forEach((p) => p.classList.toggle('active', on ? p.id === 'becas' : p.id !== 'becas'));
-    history.replaceState(null, '', on ? '#becas' : location.pathname);
+  function renderBecas(b) {
+    if (b !== undefined) becasData = b;
+    const body = $('#becas-body');
+    if (!body) return;
+    const grupos = becasGrupos(becasData).filter(Boolean);
+    const title = $('#becas .becas-title');
+    if (becasData == null && becasGrupoSel >= 0) return; // esperar contenido
+    if (becasGrupoSel >= grupos.length) becasGrupoSel = -1;
+    if (becasGrupoSel >= 0) {
+      if (title) title.hidden = true;
+      body.innerHTML = becasGrupoHtml(grupos[becasGrupoSel]);
+      return;
+    }
+    if (title) title.hidden = false;
+    if (!grupos.length) {
+      body.innerHTML = '<p class="becas-pronto">Próximamente / Em breve</p>';
+      return;
+    }
+    body.innerHTML = '<div class="becas-grupo-btns">' + grupos.map((gr, i) => `
+      <button type="button" class="becas-grupo-btn" data-becas-grupo="${i}">
+        ${gr.logo ? `<img class="becas-grupo-btn-logo" src="${escapeAttr(gr.logo)}" alt="" />` : ''}
+        <span class="becas-grupo-btn-nombre">${escapeHtml(gr.titulo || ('Grupo ' + (i + 1)))}</span>
+      </button>`).join('') + '</div>';
+  }
+
+  function openBecas(grupo) {
+    becasGrupoSel = typeof grupo === 'number' ? grupo : -1;
+    $$('.panel').forEach((p) => p.classList.toggle('active', p.id === 'becas'));
+    history.replaceState(null, '', becasGrupoSel >= 0 ? `#becas-${becasGrupoSel + 1}` : '#becas');
+    renderBecas();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeBecas() {
+    becasGrupoSel = -1;
+    $$('.panel').forEach((p) => p.classList.toggle('active', p.id !== 'becas'));
+    history.replaceState(null, '', location.pathname);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -854,10 +885,17 @@
   function boot() {
     // Solo portada 2027 + Apoyan: sin menú ni navegación
     const bb = $('#becas-btn');
-    if (bb) bb.addEventListener('click', () => showBecas(true));
+    if (bb) bb.addEventListener('click', () => openBecas(-1));
     const bv = $('#becas-volver');
-    if (bv) bv.addEventListener('click', () => showBecas(false));
-    if (location.hash === '#becas') showBecas(true);
+    // Volver: desde un grupo -> lista de Ganadores; desde la lista -> portada
+    if (bv) bv.addEventListener('click', () => (becasGrupoSel >= 0 ? openBecas(-1) : closeBecas()));
+    const bbody = $('#becas-body');
+    if (bbody) bbody.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-becas-grupo]');
+      if (btn) openBecas(Number(btn.dataset.becasGrupo));
+    });
+    const hm = /^#becas(?:-(\d+))?$/.exec(location.hash);
+    if (hm) openBecas(hm[1] ? Number(hm[1]) - 1 : -1);
     else if (location.hash) history.replaceState(null, '', location.pathname);
     loadContent();
     registerSW();

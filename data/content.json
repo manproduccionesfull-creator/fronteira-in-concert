@@ -2011,7 +2011,9 @@
         "texto_pt": "Os ganhadores vão para a Fundação Luz Amor de Maringá",
         "ganadores": [
           {
-            "nombre": "Pablo Brendler Acordeon RUIZ DE MONTOYA"
+            "nombre": "Pablo Brendler",
+            "instrumento": "Acordeon",
+            "lugar": "Ruiz de Montoya"
           },
           {
             "nombre": "CHAPECÓ",
