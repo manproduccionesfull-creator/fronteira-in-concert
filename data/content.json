@@ -2009,7 +2009,40 @@
         "logo_alt": "Fundação Luz Amor",
         "texto_es": "Los ganadores van a la Fundación Luz Amor de Maringá",
         "texto_pt": "Os ganhadores vão para a Fundação Luz Amor de Maringá",
-        "ganadores": []
+        "ganadores": [
+          {
+            "nombre": "Pablo Brendler Acordeon RUIZ DE MONTOYA"
+          },
+          {
+            "nombre": "CHAPECÓ",
+            "tipo": "subtitulo"
+          },
+          {
+            "nombre": "Daniel Eduardo Ruiz (Trompete) ONLINE"
+          },
+          {
+            "nombre": "Vanessa Peters (contrabaixo)"
+          },
+          {
+            "nombre": "Arthur Cabral Rosa (violino)"
+          },
+          {
+            "nombre": "Professor Francisco Olanda"
+          },
+          {
+            "nombre": "Bernardo DE IRIGOYEN",
+            "tipo": "subtitulo"
+          },
+          {
+            "nombre": "Thais Mai (violino)"
+          },
+          {
+            "nombre": "Maribel solis (violino)"
+          },
+          {
+            "nombre": "Bianca Domingues (Flauta) ONLINE"
+          }
+        ]
       }
     ]
   }

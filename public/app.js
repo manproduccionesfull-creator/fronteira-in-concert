@@ -809,6 +809,19 @@
       ${g.lugar ? `<span class="becas-lugar">📍 ${escapeHtml(g.lugar)}</span>` : ''}</li>`;
   }
 
+  // Ítems con tipo "subtitulo" se muestran como encabezado dentro de la lista (mismo orden)
+  function becasListHtml(list) {
+    let out = '';
+    let cards = [];
+    const flush = () => { if (cards.length) out += '<ul class="becas-cards">' + cards.map(becaCardHtml).join('') + '</ul>'; cards = []; };
+    list.forEach((g) => {
+      if (g.tipo === 'subtitulo') { flush(); out += `<h4 class="becas-subtitulo">${escapeHtml(g.nombre || '')}</h4>`; }
+      else cards.push(g);
+    });
+    flush();
+    return out;
+  }
+
   function renderBecas(b) {
     const body = $('#becas-body');
     if (!body) return;
@@ -821,7 +834,7 @@
         ((gr.texto_es || gr.texto_pt) ? '<div class="becas-intro">' +
           (gr.texto_es ? `<p class="becas-intro-es">${escapeHtml(gr.texto_es)}</p>` : '') +
           (gr.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(gr.texto_pt)}</p>` : '') + '</div>' : '') +
-        (list.length ? '<ul class="becas-cards">' + list.map(becaCardHtml).join('') + '</ul>' : '<p class="becas-pronto">Próximamente / Em breve</p>') +
+        (list.length ? becasListHtml(list) : '<p class="becas-pronto">Próximamente / Em breve</p>') +
         '</section>';
     }).join('');
     body.innerHTML = html || '<p class="becas-pronto">Próximamente / Em breve</p>';
