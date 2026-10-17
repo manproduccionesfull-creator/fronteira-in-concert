@@ -1504,3 +1504,14 @@ body { padding-bottom: 1.5rem; }
 .becas-logo-placeholder { width: 112px; height: 112px; border: 2px dashed var(--border); border-radius: 14px; }
 .becas-lines { list-style: none; padding: 0; margin: 0 auto; max-width: 560px; display: grid; gap: 0.5rem; }
 .becas-lines li { padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1.05rem; font-weight: 600; text-align: center; }
+/* Becas 2027 por grupos (OSC, ...) */
+.becas-grupo { border: 1px solid var(--border); border-radius: 16px; padding: 1rem 0.75rem 1.1rem; margin: 0 auto 1.25rem; max-width: 720px; }
+.becas-grupo-titulo { text-align: center; font-size: clamp(1.6rem, 7vw, 2.2rem); font-weight: 900; letter-spacing: 0.12em; color: var(--gold); margin: 0 0 0.6rem; }
+.becas-logo { width: 160px; height: 160px; padding: 8px; }
+.becas-cards { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+@media (min-width: 640px) { .becas-cards { grid-template-columns: 1fr 1fr; } }
+.becas-card { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+.becas-card .becas-foto { width: 120px; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.3rem; }
+.becas-nombre { font-size: 1.1rem; }
+.becas-inst { font-size: 0.95rem; opacity: 0.9; }
+.becas-lugar { font-size: 0.95rem; font-weight: 700; color: var(--gold); }

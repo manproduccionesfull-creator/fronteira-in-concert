@@ -155,7 +155,7 @@
         <!-- GANADORES BECAS 2027 -->
         <section class="admin-section" id="sec-becas2027">
           <h2>Ganadores Becas 2027 / Ganhadores Bolsas 2027</h2>
-          <p class="section-lead">Un ganador por fila: foto, nombre e instrumento (opcional). Si no hay ninguno, la app muestra "Próximamente / Em breve". Después Guardar cambios.</p>
+          <p class="section-lead">Ganadores del primer grupo (OSC). Un ganador por fila: foto, nombre, instrumento y lugar. Si no hay ninguno, la app muestra "Próximamente / Em breve". Después Guardar cambios.</p>
           <div id="becas2027-list" class="rows-list"></div>
           <button type="button" class="btn outline btn-sm" id="btn-add-becado">+ Agregar ganador/a</button>
         </section>
@@ -1173,7 +1173,9 @@
       // Ganadores Becas 2027
       const becasList = document.getElementById('becas2027-list');
       if (becasList) {
-        const gs = (data.becas2027 && Array.isArray(data.becas2027.ganadores)) ? data.becas2027.ganadores : [];
+        const b27 = data.becas2027 || {};
+        const g0 = Array.isArray(b27.grupos) ? (b27.grupos[0] || {}) : b27;
+        const gs = Array.isArray(g0.ganadores) ? g0.ganadores : [];
         becasList.innerHTML = gs.map(becadoRowHtml).join('');
         bindRemoveButtons(becasList);
         bindAllImageFields(becasList);
@@ -1481,7 +1483,13 @@
           if (foto) g.foto = foto;
           if (g.nombre || g.foto) ganadores.push(g);
         });
-        if (ganadores.length || (content && content.becas2027)) out.becas2027 = Object.assign({}, prevB, { ganadores });
+        if (ganadores.length || (content && content.becas2027)) {
+          // Grupos (OSC, ...): el admin edita los ganadores del primer grupo; el resto se preserva
+          const grupos = Array.isArray(prevB.grupos) ? prevB.grupos.slice() : [Object.assign({}, prevB)];
+          grupos[0] = Object.assign({}, grupos[0] || {}, { ganadores });
+          out.becas2027 = Object.assign({}, prevB, { grupos });
+          delete out.becas2027.ganadores;
+        }
       }
 
       return out;

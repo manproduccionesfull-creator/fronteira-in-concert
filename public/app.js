@@ -794,36 +794,37 @@
 
   // Ganadores Becas 2027: opcional en content.json -> "becas2027": { "ganadores": [ { "nombre": "", "instrumento": "", "detalle": "" } ] }
   // Sin datos: muestra "Próximamente / Em breve"
+  // becas2027.grupos: [{ titulo, logo, logo_alt, texto_es, texto_pt, ganadores: [{ nombre, instrumento, lugar, foto }] }]
+  function becasGrupos(b) {
+    b = b || {};
+    if (Array.isArray(b.grupos)) return b.grupos;
+    if (b.ganadores || b.texto_es || b.logo) return [b]; // formato viejo
+    return [];
+  }
+
+  function becaCardHtml(g) {
+    return `<li class="becas-card">${g.foto ? `<img class="becas-foto" src="${escapeAttr(g.foto)}" alt="${escapeAttr(g.nombre || '')}" loading="lazy" />` : ''}
+      <strong class="becas-nombre">${escapeHtml(g.nombre || '')}</strong>
+      ${g.instrumento ? `<span class="becas-inst">${escapeHtml(g.instrumento)}</span>` : ''}
+      ${g.lugar ? `<span class="becas-lugar">📍 ${escapeHtml(g.lugar)}</span>` : ''}</li>`;
+  }
+
   function renderBecas(b) {
     const body = $('#becas-body');
     if (!body) return;
-    b = b || {};
-    const list = (Array.isArray(b.ganadores) ? b.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
-    let html = '';
-    if (b.texto_es || b.texto_pt) {
-      html += '<div class="becas-intro">' +
-        (b.texto_es ? `<p class="becas-intro-es">${escapeHtml(b.texto_es)}</p>` : '') +
-        (b.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(b.texto_pt)}</p>` : '') + '</div>';
-    }
-    if (b.logo) {
-      html += `<div class="becas-logo-wrap"><img class="becas-logo" src="${escapeAttr(b.logo)}" alt="${escapeAttr(b.logo_alt || 'Logo')}" /></div>`;
-    } else if (b.texto_es || b.texto_pt) {
-      html += '<div class="becas-logo-wrap becas-logo-placeholder" aria-hidden="true"></div>';
-    }
-    if (!list.length) {
-      body.innerHTML = html + '<p class="becas-pronto">Próximamente / Em breve</p>';
-      return;
-    }
-    const conFoto = list.some((g) => g.foto);
-    const line = (g) => [g.nombre, g.instrumento ? `(${g.instrumento})` : '', g.lugar].filter((x) => String(x || '').trim()).join(' ');
-    if (conFoto) {
-      html += '<div class="becas-grid">' + list.map((g) => `
-      <figure class="becas-item">${g.foto ? `<img class="becas-foto" src="${escapeAttr(g.foto)}" alt="${escapeAttr(g.nombre || '')}" loading="lazy" />` : ''}
-        <figcaption><strong>${escapeHtml(g.nombre || '')}</strong>${g.instrumento ? `<span>${escapeHtml(g.instrumento)}</span>` : ''}${g.lugar ? `<span>${escapeHtml(g.lugar)}</span>` : ''}</figcaption></figure>`).join('') + '</div>';
-    } else {
-      html += '<ul class="becas-lines">' + list.map((g) => `<li>${escapeHtml(line(g))}</li>`).join('') + '</ul>';
-    }
-    body.innerHTML = html;
+    const grupos = becasGrupos(b).filter(Boolean);
+    const html = grupos.map((gr) => {
+      const list = (Array.isArray(gr.ganadores) ? gr.ganadores : []).filter((g) => g && (String(g.nombre || '').trim() || g.foto));
+      return '<section class="becas-grupo">' +
+        (gr.titulo ? `<h3 class="becas-grupo-titulo">${escapeHtml(gr.titulo)}</h3>` : '') +
+        (gr.logo ? `<div class="becas-logo-wrap"><img class="becas-logo" src="${escapeAttr(gr.logo)}" alt="${escapeAttr(gr.logo_alt || gr.titulo || 'Logo')}" /></div>` : '') +
+        ((gr.texto_es || gr.texto_pt) ? '<div class="becas-intro">' +
+          (gr.texto_es ? `<p class="becas-intro-es">${escapeHtml(gr.texto_es)}</p>` : '') +
+          (gr.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(gr.texto_pt)}</p>` : '') + '</div>' : '') +
+        (list.length ? '<ul class="becas-cards">' + list.map(becaCardHtml).join('') + '</ul>' : '<p class="becas-pronto">Próximamente / Em breve</p>') +
+        '</section>';
+    }).join('');
+    body.innerHTML = html || '<p class="becas-pronto">Próximamente / Em breve</p>';
   }
 
   function showBecas(on) {
