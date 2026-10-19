@@ -142,7 +142,12 @@
       }
       const url = normalizeLink(item.destino || item.url);
       if (!url) return '';
-      return `<a class="btn ${estilo} inicio-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(texto)}</a>`;
+      // "Texto ES / Texto PT": dos líneas, botón grande (como Ganadores Becas)
+      const partes = texto.split(' / ');
+      const label = partes.length === 2
+        ? `<span class="link-es">${escapeHtml(partes[0])}</span><span class="link-pt">${escapeHtml(partes[1])}</span>`
+        : escapeHtml(texto);
+      return `<a class="btn ${estilo} inicio-link inicio-link-ext" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
     });
   }
 

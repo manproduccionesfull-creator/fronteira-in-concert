@@ -1551,3 +1551,7 @@ body:has(.solo-apoyan) .app { padding-top: 0.4rem; }
 /* Foto grupal de ganadores (grande, sin recorte) */
 .becas-foto-grupo { margin: 0.5rem 0 1rem; }
 .becas-foto-grupo img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
+/* Botón externo grande (Fotos del festival / Fotos do festival) */
+.solo-apoyan .inicio-links { flex-wrap: wrap; }
+.solo-apoyan .inicio-links .inicio-link-ext { order: -1; flex: 1 0 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.7rem 0.75rem; font-size: clamp(1.1rem, 4.8vw, 1.45rem); font-weight: 800; box-shadow: 0 0 22px rgba(212, 175, 55, 0.45); border-radius: 999px; }
+.solo-apoyan .inicio-links .inicio-link-ext .link-pt { font-size: 0.72em; font-weight: 700; opacity: 0.9; }

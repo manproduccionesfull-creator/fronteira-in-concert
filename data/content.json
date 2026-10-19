@@ -27,6 +27,12 @@
     ],
     "botones": [
       {
+        "texto": "Fotos del festival / Fotos do festival",
+        "tipo": "link",
+        "destino": "https://drive.google.com/drive/folders/1E8AcQ7ZMN5Y5LL28ITiJ9_4uhrWnCQZG",
+        "estilo": "gold"
+      },
+      {
         "texto": "Contacto",
         "tipo": "pagina",
         "destino": "contacto",
