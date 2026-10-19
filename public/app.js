@@ -835,6 +835,7 @@
       ((gr.texto_es || gr.texto_pt) ? '<div class="becas-intro">' +
         (gr.texto_es ? `<p class="becas-intro-es">${escapeHtml(gr.texto_es)}</p>` : '') +
         (gr.texto_pt ? `<p class="becas-intro-pt">${escapeHtml(gr.texto_pt)}</p>` : '') + '</div>' : '') +
+      (gr.foto_grupo ? `<figure class="becas-foto-grupo"><img src="${escapeAttr(gr.foto_grupo)}" alt="${escapeAttr('Ganadores ' + (gr.titulo || ''))}" loading="lazy" /></figure>` : '') +
       (list.length ? becasListHtml(list) : '<p class="becas-pronto">Próximamente / Em breve</p>') +
       '</section>';
   }

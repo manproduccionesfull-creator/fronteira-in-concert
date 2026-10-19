@@ -1548,3 +1548,6 @@ body { padding-bottom: 1.5rem; }
 .solo-apoyan #inicio .inicio-apoyan-grid .inicio-explore-card { min-height: 48px; }
 .solo-apoyan #inicio .inicio-links { margin: 0.55rem auto 0.25rem; }
 body:has(.solo-apoyan) .app { padding-top: 0.4rem; }
+/* Foto grupal de ganadores (grande, sin recorte) */
+.becas-foto-grupo { margin: 0.5rem 0 1rem; }
+.becas-foto-grupo img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
