@@ -8,8 +8,9 @@
     "organizacion": "Asociación Civil Cultural Social Artística y Educativa Allegro",
     "personeria": "Personería Jurídica N° A-4656",
     "presidente": "",
+    "logo": "/uploads/logo-fronteira-2027.png",
     "mostrar": {
-      "logo": false,
+      "logo": true,
       "video": false,
       "edicion": true,
       "fechas": true,
