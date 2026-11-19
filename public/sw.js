@@ -1,14 +1,14 @@
 /* Service Worker — cache shell + content para offline */
-const CACHE = 'fronteira-v85';
+const CACHE = 'fronteira-v86';
 const SHELL = [
   '/',
   '/index.html',
-  '/styles.css?v=132',
+  '/styles.css?v=133',
   '/app.js?v=125',
   '/manifest.webmanifest',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/uploads/logo-fronteira-x.png',
+  '/icons/icon-192.png?v=2027',
+  '/icons/icon-512.png?v=2027',
+  '/uploads/logo-fronteira-2027.png',
   '/uploads/logo-allegro-icon.png',
   '/uploads/logo-fronteira-circular.png',
 ];
@@ -49,7 +49,7 @@ self.addEventListener('fetch', (event) => {
     url.pathname === '/' ||
     url.pathname === '/index.html' ||
     url.pathname === '/app.js?v=125' ||
-    url.pathname === '/styles.css?v=132' ||
+    url.pathname === '/styles.css?v=133' ||
     url.pathname === '/sw.js'
   ) {
     event.respondWith(networkFirst(event.request));

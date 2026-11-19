@@ -644,11 +644,11 @@ img, svg, video {
 
 .brand-mark-img {
   width: 44px;
-  height: 34px;
+  height: 44px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
-  border-radius: 4px;
+  border-radius: 50%;
 }
 
 /* Orchestra logo + foto (admin) */
