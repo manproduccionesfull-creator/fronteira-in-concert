@@ -10,7 +10,7 @@
     "presidente": "",
     "mostrar": {
       "logo": false,
-      "video": true,
+      "video": false,
       "edicion": true,
       "fechas": true,
       "lugar": true,
